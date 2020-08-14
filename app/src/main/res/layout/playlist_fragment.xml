@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="listInfo"
+            type="com.example.ethiomusic.data.model.RecyclerViewHelper&lt;com.example.ethiomusic.data.model.Song&lt;String,String>>" />
+
+        <variable
+            name="viewmodel"
+            type="com.example.ethiomusic.ui.playlist.PlaylistViewModel" />
+
+        <variable
+            name="isFromCache"
+            type="Boolean" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:background="@drawable/item_selected"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/trnasparentColor"
+            app:elevation="8dp">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/playlist_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:elevation="0dp"
+                app:subtitle="@{String.valueOf(viewmodel.playlistData.songs.size) + ` songs`}"
+                app:title="@{viewmodel.playlistData.name}" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="noScroll">
+
+                <ImageView
+                    android:id="@+id/imageButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_baseline_import_export_24" />
+
+                <Button
+                    android:id="@+id/shuffle_playlist_btn"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Shuffle Playlist"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/playlist_song_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="64dp"
+            app:info="@{listInfo}"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:list="@{viewmodel.playlistData.songs}"
+            tools:listitem="@layout/song_list_item" />
+
+
+
+        <include android:id="@+id/selection_menu"
+            layout="@layout/multi_selection_menu"
+            size="@{viewmodel.playlistData.songs.size}"
+            selectedItemSize="@{listInfo.stateManager.multiselectedItems.size}"
+            favoriteFlag="@{isFromCache}"
+            addFlag="@{isFromCache}"
+            downloadFlag="@{isFromCache}"
+            removeFlag="@{isFromCache.TRUE}"
+            android:visibility="gone"/>
+
+        <ProgressBar
+            android:id="@+id/playlist_song_progressbar"
+            style="?android:attr/progressBarStyle"
+            app:progressVisibility="@{viewmodel.playlistData}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/add_song_fab"
+            android:layout_width="80dp"
+            android:layout_height="74dp"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:visibility="@{viewmodel.playlistData.songs.size > 0 ? View.GONE : View.VISIBLE}"
+            app:srcCompat="@drawable/ic_baseline_add_24" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

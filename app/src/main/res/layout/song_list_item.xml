@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.example.ethiomusic.util.viewhelper.RecyclerviewState" />
+
+        <variable
+            name="song"
+            type="com.example.ethiomusic.data.model.Song" />
+
+        <variable
+            name="state"
+            type="com.example.ethiomusic.util.viewhelper.RecyclerviewStateManager" />
+
+        <variable
+            name="type"
+            type="String" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true">
+
+        <ImageView
+            android:id="@+id/thumbnail_imageview"
+            android:layout_width="50dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="@{type.equals(`ALBUM`) ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/selection_checkBox"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.51"
+            app:srcCompat="@drawable/backimage" />
+
+        <TextView
+            android:id="@+id/tittle_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:text="@{song.tittle}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@{state.selectedItem==song ? @color/primaryColor : @color/primaryTextColor}"
+            app:layout_constraintEnd_toStartOf="@+id/playing_indicator_iv"
+            app:layout_constraintStart_toEndOf="@+id/thumbnail_imageview"
+            app:layout_constraintTop_toTopOf="@+id/thumbnail_imageview" />
+
+        <TextView
+            android:id="@+id/subtittle_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@{song.category}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@{state.selectedItem==song ? @color/primaryColor : @color/secondaryTextColor}"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintEnd_toEndOf="@+id/tittle_textview"
+            app:layout_constraintStart_toStartOf="@+id/tittle_textview"
+            app:layout_constraintTop_toBottomOf="@+id/tittle_textview" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="4dp"
+            android:background="?android:attr/listDivider"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/subtittle_textview"
+            app:layout_constraintTop_toBottomOf="@+id/subtittle_textview" />
+
+        <CheckBox
+            android:id="@+id/selection_checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="@{state.isStateinMultiSelectionMode ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/track_number_texxtview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(song.trackNumber)}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@{state.selectedItem==song ? @color/primaryColor : @color/primaryTextColor}"
+            android:visibility="@{type.equals(`ALBUM`) ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/thumbnail_imageview"
+            app:layout_constraintStart_toStartOf="@+id/thumbnail_imageview"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.taishi.library.Indicator
+            android:id="@+id/playing_indicator_iv"
+            android:layout_width="25dp"
+            android:layout_height="0dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/trnasparentColor"
+            android:visibility="@{state.selectedItem==song ? View.VISIBLE : View.GONE}"
+            app:bar_color="@color/primaryColor"
+            app:bar_num="6"
+            app:duration="20000"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintEnd_toStartOf="@+id/download_progress_textview"
+            app:layout_constraintTop_toTopOf="@+id/tittle_textview"
+            app:layout_constraintVertical_bias="0.0"
+            app:step_num="70" />
+
+        <ImageView
+            android:id="@+id/more_options_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:visibility="@{(state.isStateinMultiSelectionMode || type == `QUEUE`) ? View.GONE : View.VISIBLE}"
+            android:tint="@{(state.selectedItem==song ) ? @color/primaryColor : @color/primaryTextColor}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_more_vert_black_24dp" />
+
+        <ImageView
+            android:id="@+id/song_donwload_imageview"
+            android:layout_width="18dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:tint="@color/primaryColor"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintEnd_toStartOf="@+id/download_progress_textview"
+            app:layout_constraintTop_toTopOf="@+id/tittle_textview"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_file_download_black_24dp" />
+
+        <TextView
+            android:id="@+id/download_progress_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="0%"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/primaryColor"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintEnd_toStartOf="@+id/more_options_imageview"
+            app:layout_constraintTop_toTopOf="@+id/tittle_textview" />
+
+        <ImageView
+            android:id="@+id/song_drag_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            android:visibility="@{(state.isStateinMultiSelectionMode || type == `QUEUE`) ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_round_unfold_more_24" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

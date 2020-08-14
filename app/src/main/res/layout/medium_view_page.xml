@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable name="album"
+            type="com.example.ethiomusic.data.model.BaseModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true">
+
+        <ImageView
+            android:id="@+id/medium_thumbnail_imageview"
+            android:layout_width="180dp"
+            android:layout_height="175dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/backimage" />
+
+        <TextView
+            android:id="@+id/tittle_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="Title TextView"
+            android:textAlignment="viewStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#BCFFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/medium_thumbnail_imageview"
+            app:layout_constraintStart_toStartOf="@+id/medium_thumbnail_imageview"
+            app:layout_constraintTop_toBottomOf="@+id/medium_thumbnail_imageview" />
+
+        <TextView
+            android:id="@+id/subtittle_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Subtitle TextView"
+            android:textAlignment="viewStart"
+            android:textColor="#92FFFFFF"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="@+id/tittle_textview"
+            app:layout_constraintStart_toStartOf="@+id/tittle_textview"
+            app:layout_constraintTop_toBottomOf="@+id/tittle_textview" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

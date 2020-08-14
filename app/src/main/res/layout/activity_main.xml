@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.support.v4.media.MediaMetadataCompat" />
+
+        <import type="android.support.v4.media.session.PlaybackStateCompat" />
+
+        <import type="android.text.format.DateUtils" />
+
+        <import type="com.example.ethiomusic.util.viewhelper.PlayerState.RadioState" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewmodel"
+            type="com.example.ethiomusic.MainActivityViewmodel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainactivity_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <fragment
+            android:id="@+id/nav_host_fragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            app:navGraph="@navigation/main_navigation"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:elevation="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toBottomOf="@+id/player_card"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/player_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primaryLightColor"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_nav_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/bsheet_imageView"
+                android:layout_width="40dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="3dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="@+id/bsheet_song_artist_textview"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/bsheet_song_tittle_textview"
+                app:loadImage="@{viewmodel.nowPlaying.getString(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON_URI)}"
+                app:srcCompat="@drawable/backimage" />
+
+            <ProgressBar
+                android:id="@+id/bottonsheet_song_progressbar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:progress="@{Integer.valueOf(String.valueOf(viewmodel.playbackState.position))}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/bsheet_song_tittle_textview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:text="@{viewmodel.nowPlaying.getString(MediaMetadataCompat.METADATA_KEY_TITLE)}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toStartOf="@+id/bsheet_play_btn"
+                app:layout_constraintStart_toEndOf="@+id/bsheet_imageView"
+                app:layout_constraintTop_toBottomOf="@+id/bottonsheet_song_progressbar" />
+
+            <TextView
+                android:id="@+id/bsheet_song_artist_textview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="3dp"
+                android:text="@{viewmodel.nowPlaying.getString(MediaMetadataCompat.METADATA_KEY_DISPLAY_SUBTITLE)}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/bsheet_play_btn"
+                app:layout_constraintStart_toEndOf="@+id/bsheet_imageView"
+                app:layout_constraintTop_toBottomOf="@+id/bsheet_song_tittle_textview" />
+
+            <ImageView
+                android:id="@+id/bsheet_play_btn"
+                android:layout_width="50dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="6dp"
+                android:backgroundTint="#00FFFFFF"
+                android:onClick="@{() -> viewmodel.play()}"
+                android:visibility="@{viewmodel.playbackState.state == PlaybackStateCompat.STATE_PLAYING ? View.INVISIBLE : View.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/exo_icon_play" />
+
+            <ImageView
+                android:id="@+id/bsheet_pause_btn"
+                android:layout_width="50dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
+                android:onClick="@{() -> viewmodel.pause()}"
+                android:visibility="@{viewmodel.playbackState.state == PlaybackStateCompat.STATE_PLAYING ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/bsheet_play_btn"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/exo_icon_pause" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:elevation="6dp"
+            app:labelVisibilityMode="labeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/nav_menu" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

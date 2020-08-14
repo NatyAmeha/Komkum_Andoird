@@ -1,0 +1,43 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/primaryColor</item>
+    </style>
+
+    <style name="AppthemeLight" parent="Theme.AppCompat.Light.NoActionBar">
+
+    </style>
+
+    <style name="AppthemeDark" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="android:statusBarColor">@color/primaryDarkColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/primaryColor</item>
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorControlActivated">@color/primaryColor</item>
+
+<!--        <item name="android:fontFamily">@font/asap</item>-->
+<!--        <item name="fontFamily">@font/asap</item>-->
+    </style>
+
+    <style name="AppthemeDark.Launcher">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
+    <style name="TextAppearance.AppCompat.tittle">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="AppbarBackground">
+        <item name="android:background">@color/primaryDarkColor</item>
+    </style>
+
+    <style name="BodyBackground">
+        <item name="android:background">@color/primaryLightColor</item>
+    </style>
+
+</resources>

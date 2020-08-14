@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single" >
+        <item
+            android:id="@+id/show_all_download_menu_item"
+            android:icon="@drawable/ic_baseline_format_list_numbered_24"
+            android:title="All"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/show_song_download_menu_item"
+            android:icon="@drawable/ic_audiotrack_black_24dp"
+            android:title="Songs"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/show_album_download_menu_item"
+            android:icon="@drawable/ic_album_black_24dp"
+            android:title="Albums"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/show_playlist_download_menu_item"
+            android:icon="@drawable/ic_baseline_playlist_play_24"
+            android:title="Playlist"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/show_podcast_download_menu_item"
+            android:icon="@drawable/ic_check_circle_black_24dp"
+            android:title="Podcasts"
+            app:showAsAction="always" />
+    </group>
+</menu>

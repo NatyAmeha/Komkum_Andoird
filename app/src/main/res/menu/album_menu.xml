@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/addto_fav_album_menu_item"
+        android:icon="@drawable/ic_round_favorite_border_24"
+        android:title="Add to Favorite"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/remove_fav_album_menu_item"
+        android:icon="@drawable/ic_favorite_border_black_24dp"
+        android:title="Remove From Favorite"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/album_edit_menu_item"
+        android:icon="@drawable/ic_mode_edit_black_24dp"
+        android:title="Edit" />
+    <item
+        android:id="@+id/download_menu_item"
+        android:title="Download" />
+    <item
+        android:id="@+id/remove_download_menu_item"
+        android:title="Remove Download" />
+    <item
+        android:id="@+id/go_to_artist_menu_item"
+        android:title="Go To Artist" />
+</menu>

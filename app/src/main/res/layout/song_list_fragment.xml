@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.example.ethiomusic.ui.song.SongViewModel" />
+        <variable
+            name="listInfo"
+            type="com.example.ethiomusic.data.model.RecyclerViewHelper&lt;com.example.ethiomusic.data.model.Song&lt;String,String>>" />
+
+        <variable
+            name="isFromCache"
+            type="Boolean" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:background="@color/primaryDarkColor"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/song_list_appbar"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="@color/primaryDarkColor">
+
+            <androidx.appcompat.widget.Toolbar
+                app:subtitle="@{String.valueOf(viewmodel.songLists.size + ` songs`)}"
+                android:id="@+id/song_list_toolbar"
+                android:layout_height="64dp"
+                android:layout_width="match_parent"
+                android:background="@color/primaryDarkColor"/>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/song_list_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="64dp"
+            app:info="@{listInfo}"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            app:list="@{viewmodel.songLists}"
+            tools:listitem="@layout/song_list_item" />
+
+        <ProgressBar
+            android:id="@+id/song_list_progressbar"
+            style="?android:attr/progressBarStyle"
+            app:progressVisibility="@{viewmodel.songLists}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+        <include android:id="@+id/selection_menu"
+            layout="@layout/multi_selection_menu"
+            size="@{viewmodel.songLists.size}"
+            selectedItemSize="@{listInfo.stateManager.multiselectedItems.size}"
+            favoriteFlag="@{isFromCache}"
+            addFlag="@{isFromCache}"
+            downloadFlag="@{isFromCache}"
+            removeFlag="@{isFromCache}"
+            android:visibility="gone"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

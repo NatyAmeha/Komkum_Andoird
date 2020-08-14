@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="onboardingActivityViewmodel"
+            type="com.example.ethiomusic.OnboardingActivityViewmodel" />
+        <variable
+            name="owner"
+            type="androidx.lifecycle.LifecycleOwner" />
+        <variable
+            name="interactionManager"
+            type="com.example.ethiomusic.util.viewhelper.IRecyclerViewInteractionListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.onboarding.CategorySelectionFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/category_selection_recyclerview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/category_selection_continu_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView70" />
+
+
+<!--        app:selectionlist="@{onboardingActivityViewmodel.categoryList}"-->
+<!--        app:statemanager="@{onboardingActivityViewmodel.categoryRecyclerviewStateManager}"-->
+<!--        app:owner="@{owner}"-->
+<!--        app:interaction="@{interactionManager}"-->
+<!--        -->
+        <Button
+            android:id="@+id/category_selection_continu_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="continue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/category_selection_recyclerview" />
+
+        <TextView
+            android:id="@+id/textView69"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:text="Choose What Kinds of Music you like"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView70"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select one or more genres"
+            app:layout_constraintEnd_toEndOf="@+id/textView69"
+            app:layout_constraintStart_toStartOf="@+id/textView69"
+            app:layout_constraintTop_toBottomOf="@+id/textView69" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

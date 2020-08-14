@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <import type="android.support.v4.media.session.PlaybackStateCompat"/>
+        <import type="android.support.v4.media.MediaMetadataCompat"/>
+        <variable
+            name="mainviewmodel"
+            type="com.example.ethiomusic.MainActivityViewmodel" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/player_bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        app:behavior_peekHeight="?attr/actionBarSize"
+        android:elevation="10dp"
+        app:elevation="10dp">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/bsheetappbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/transparent">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/primaryDarkColor"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="6dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/player_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/bsheet_imageView"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/bottonsheet_song_progressbar"
+                        app:layout_constraintVertical_bias="0.8"
+                        app:loadImage="@{mainviewmodel.nowPlaying.getString(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON_URI)}"
+                        app:srcCompat="@drawable/backimage" />
+
+                    <ProgressBar
+                        android:id="@+id/bottonsheet_song_progressbar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:progress="@{Integer.valueOf(String.valueOf(mainviewmodel.playbackState.position))}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/bsheet_song_tittle_textview"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:text="@{mainviewmodel.nowPlaying.getString(MediaMetadataCompat.METADATA_KEY_TITLE)}"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="#FFFFFF"
+                        app:layout_constraintEnd_toStartOf="@+id/bsheet_play_btn"
+                        app:layout_constraintStart_toEndOf="@+id/bsheet_imageView"
+                        app:layout_constraintTop_toTopOf="@+id/bsheet_imageView" />
+
+                    <TextView
+                        android:id="@+id/bsheet_song_artist_textview"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="@{mainviewmodel.nowPlaying.getString(MediaMetadataCompat.METADATA_KEY_DISPLAY_SUBTITLE)}"
+                        app:layout_constraintBottom_toBottomOf="@+id/bsheet_imageView"
+                        app:layout_constraintEnd_toStartOf="@+id/bsheet_play_btn"
+                        app:layout_constraintStart_toEndOf="@+id/bsheet_imageView"
+                        app:layout_constraintTop_toBottomOf="@+id/bsheet_song_tittle_textview" />
+
+                    <ImageView
+                        android:id="@+id/bsheet_play_btn"
+                        android:layout_width="50dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:backgroundTint="#00FFFFFF"
+                        android:onClick="@{() -> mainviewmodel.play()}"
+                        android:visibility="@{mainviewmodel.playbackState.state == PlaybackStateCompat.STATE_PLAYING ? View.INVISIBLE : View.VISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_play_circle_filled_black_24dp" />
+
+                    <ImageView
+                        android:id="@+id/bsheet_pause_btn"
+                        android:layout_width="50dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:onClick="@{() -> mainviewmodel.pause()}"
+                        android:visibility="@{mainviewmodel.playbackState.state == PlaybackStateCompat.STATE_PLAYING ? View.VISIBLE : View.INVISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/bsheet_play_btn"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_pause_circle_filled_black_24dp" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/player_toolbar"
+                    app:title="Now Playing"
+                    app:navigationIcon="@drawable/ic_keyboard_arrow_down_black_24dp"
+                    android:pointerIcon="context_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="#8E807D7D"
+                    android:visibility="gone" />
+
+            </androidx.cardview.widget.CardView>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <com.google.android.material.circularreveal.CircularRevealRelativeLayout
+            android:id="@+id/backrlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/primaryDarkColor"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+<!--            <fragment-->
+<!--                android:id="@+id/player_navhost_fragment"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:name="androidx.navigation.fragment.NavHostFragment"-->
+<!--                app:defaultNavHost="false"-->
+<!--                app:navGraph="@navigation/player_navigation" />-->
+
+        </com.google.android.material.circularreveal.CircularRevealRelativeLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>
