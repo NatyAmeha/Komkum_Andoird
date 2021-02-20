@@ -10,15 +10,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
         android:background="?attr/selectableItemBackground"
         android:clickable="true">
 
         <ImageView
             android:id="@+id/thumbnail_imageview"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
+            android:layout_width="@dimen/playlist_image_size"
+            android:layout_height="@dimen/playlist_image_size"
+            android:layout_marginStart="@dimen/margin_start"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,7 @@
             android:id="@+id/tittle_textview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/margin_start"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="TextView"
@@ -46,6 +46,7 @@
             android:text="TextView"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="#82FFFFFF"
+            android:textSize="@dimen/playlist_desc_text_size"
             app:layout_constraintEnd_toEndOf="@+id/tittle_textview"
             app:layout_constraintStart_toStartOf="@+id/tittle_textview"
             app:layout_constraintTop_toBottomOf="@+id/tittle_textview" />
@@ -53,12 +54,13 @@
         <TextView
             android:id="@+id/radio_description_textview"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Playlist or Radio Station Desc. applies here"
+            android:layout_height="0dp"
             android:textColor="#82FFFFFF"
+            android:textSize="@dimen/playlist_desc_text_size"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/subtittle_textview"
             app:layout_constraintStart_toStartOf="@+id/subtittle_textview"
-            app:layout_constraintTop_toBottomOf="@+id/subtittle_textview" />
+            app:layout_constraintTop_toBottomOf="@+id/subtittle_textview"
+            app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -4,6 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="com.zomatunes.zomatunes.data.model.Song"/>
+        <import type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper" />
+        <variable
+            name="songInfo"
+            type="RecyclerViewHelper&lt;Song&lt;String,String>>" />
+
+        <variable
+            name="songLIst"
+            type="java.util.List&lt;Song&lt;String,String>>" />
 
     </data>
 
@@ -28,11 +37,12 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/song_list_recyclerview"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:info="@{songInfo}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/song_type_textview" />
+            app:layout_constraintTop_toBottomOf="@+id/song_type_textview"
+            app:list="@{songLIst}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

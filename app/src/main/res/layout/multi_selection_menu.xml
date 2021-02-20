@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-       <import type="com.example.ethiomusic.data.model.Song"/>
+       <import type="com.zomatunes.zomatunes.data.model.Song"/>
         <variable
             name="size"
             type="Integer" />
@@ -23,6 +23,9 @@
             type="Boolean" />
         <variable
             name="removeFlag"
+            type="Boolean" />
+        <variable
+            name="isLikedList"
             type="Boolean" />
     </data>
 
@@ -95,7 +98,7 @@
                     android:insetTop="2dp"
                     android:insetBottom="2dp"
                     android:text="Like"
-                    android:enabled="@{!favoriteFlag &amp;&amp; selectedItemSize > 0}"
+                    android:enabled="@{!favoriteFlag &amp;&amp; !isLikedList &amp;&amp; selectedItemSize > 0}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/add_icon"

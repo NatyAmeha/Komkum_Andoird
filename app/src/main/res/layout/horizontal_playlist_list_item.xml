@@ -16,10 +16,12 @@
         android:background="?attr/selectableItemBackground"
         android:clickable="true">
 
-        <ImageView
+
+
+        <com.zomatunes.zomatunes.ui.customview.CustomPlaylistImageview
             android:id="@+id/medium_thumbnail_imageview"
-            android:layout_width="180dp"
-            android:layout_height="175dp"
+            android:layout_width="@dimen/medium_view_image_width"
+            android:layout_height="@dimen/medium_view_image_height"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -28,20 +30,18 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/backimage" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/tittle_textview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
             android:text="Title TextView"
             android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#BCFFFFFF"
-            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@+id/medium_thumbnail_imageview"
             app:layout_constraintStart_toStartOf="@+id/medium_thumbnail_imageview"
             app:layout_constraintTop_toBottomOf="@+id/medium_thumbnail_imageview" />

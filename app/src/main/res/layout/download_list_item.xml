@@ -8,18 +8,21 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/download_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
+        android:background="?attr/selectableItemBackground">
 
-        <ImageView
+        <com.zomatunes.zomatunes.ui.customview.CustomPlaylistImageview
             android:id="@+id/thumbnail_imageview"
-            android:layout_width="100dp"
-            android:layout_height="90dp"
-            android:layout_marginStart="16dp"
+            android:layout_width="@dimen/download_image_width"
+            android:layout_height="@dimen/download_image_height"
+            android:layout_marginStart="@dimen/margin_start"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/circularimg" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tittle_textview"
@@ -27,19 +30,20 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
+
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="19sp"
+            android:textSize="@dimen/download_title_text_size"
+            android:maxLines="2"
             app:layout_constraintEnd_toStartOf="@+id/download_options_imageview"
             app:layout_constraintStart_toEndOf="@+id/thumbnail_imageview"
             app:layout_constraintTop_toTopOf="@+id/thumbnail_imageview" />
 
         <TextView
             android:id="@+id/subtittle_textview"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="@+id/tittle_textview"
+            android:textSize="@dimen/download_sub_title_text_size"
             app:layout_constraintStart_toStartOf="@+id/tittle_textview"
             app:layout_constraintTop_toBottomOf="@+id/tittle_textview" />
 
@@ -71,60 +75,28 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/thumbnail_imageview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/thumbnail_imageview"
             app:srcCompat="@drawable/ic_more_vert_black_24dp" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/download_card_view"
-            android:layout_width="65dp"
+        <View
+            android:id="@+id/view"
+            android:layout_width="20dp"
             android:layout_height="0dp"
-            app:cardBackgroundColor="#B31F1E1E"
-            app:layout_constraintBottom_toBottomOf="@+id/thumbnail_imageview"
-            app:layout_constraintEnd_toEndOf="@+id/thumbnail_imageview"
-            app:layout_constraintTop_toTopOf="@+id/thumbnail_imageview">
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/tab_item_not_active"
+            app:layout_constraintBottom_toBottomOf="@+id/subtittle_textview"
+            app:layout_constraintStart_toEndOf="@+id/subtittle_textview"
+            app:layout_constraintTop_toTopOf="@+id/subtittle_textview" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/download_type_textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/download_type_imageview" />
-
-                <ImageView
-                    android:id="@+id/download_type_imageview"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_audiotrack_black_24dp" />
-
-                <TextView
-                    android:id="@+id/download_description_textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    app:layout_constraintEnd_toEndOf="@+id/download_type_textview"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="@+id/download_type_textview"
-                    app:layout_constraintTop_toBottomOf="@+id/download_type_textview" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/size_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toTopOf="@+id/subtittle_textview" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -66,15 +66,16 @@
             app:title="Download Only on Wifi" />
 
         <ListPreference
-            android:defaultValue="false"
+            android:defaultValue="128"
             app:entries="@array/download_quality_entiries"
             app:entryValues="@array/download_quality_values"
             app:icon="@drawable/ic_baseline_hd_24"
             app:key="download_quality"
             app:title="Download Quality"
-            app:useSimpleSummaryProvider="true"></ListPreference>
+            app:useSimpleSummaryProvider="true" />
 
         <ListPreference app:key="download_task"
+            android:defaultValue="3"
             app:title="Prallel Downloads"
             app:summary="Choose Number of Concurrent Download"
             app:icon="@drawable/ic_baseline_format_list_numbered_24"
@@ -82,22 +83,6 @@
             app:entryValues="@array/task_values"
             app:useSimpleSummaryProvider="true"/>
 
-        <SwitchPreferenceCompat
-            android:defaultValue="true"
-            app:defaultValue="true"
-            app:icon="@android:drawable/stat_notify_chat"
-            app:key="download_duplication"
-            app:summary="Notify Me when there is duplicated downloads of songs in album or playlist"
-            app:title="Notify Duplicate Dwonloads" />
-
-
-        <SwitchPreferenceCompat
-            android:defaultValue="true"
-            app:defaultValue="true"
-            app:icon="@drawable/ic_baseline_note_24"
-            app:key="download_lyrics"
-            app:summary="Download songs together with Lyrcs"
-            app:title="Downlod Lyrics" />
     </PreferenceCategory>
 
     <Preference app:iconSpaceReserved="false"

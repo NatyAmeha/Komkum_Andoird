@@ -6,10 +6,10 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.ethiomusic.ui.artist.ArtistViewModel" />
+            type="com.zomatunes.zomatunes.ui.artist.ArtistViewModel" />
         <variable
             name="listInfo"
-            type="com.example.ethiomusic.data.model.RecyclerViewHelper&lt;com.example.ethiomusic.data.model.Artist&lt;String,String>>" />
+            type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper&lt;com.zomatunes.zomatunes.data.model.Artist&lt;String,String>>" />
 
     </data>
 
@@ -40,12 +40,11 @@
                 android:id="@+id/recyclerView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
 
                 app:artistinfo="@{listInfo}"
-                app:artistlist="@{viewModel.favoriteArtists.data}"
-                app:layout_constraintBottom_toTopOf="@+id/find_more_artist_btn"
+                app:artistlist="@{viewModel.artistsList}"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -53,10 +52,10 @@
 
             <Button
                 android:id="@+id/find_more_artist_btn"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="64dp"
+                android:elevation="30dp"
                 android:text="Find more Artists"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +71,7 @@
             android:layout_height="wrap_content"
             app:layout_anchor="@+id/recyclerView"
             app:layout_anchorGravity="center"
-            app:progressVisibility="@{viewModel.favoriteArtists.data}"/>
+            app:progressVisibility="@{viewModel.artistsList}"/>
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

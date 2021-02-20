@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "976217994523",
+    "firebase_url": "https://ethiomusic-fd9e7.firebaseio.com",
+    "project_id": "ethiomusic-fd9e7",
+    "storage_bucket": "ethiomusic-fd9e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:976217994523:android:0f78863fe29fda75284fbe",
+        "android_client_info": {
+          "package_name": "com.zomatunes.zomatunes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "976217994523-d047qh1gkl5r9kct4ve27tln7utart1v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zomatunes.zomatunes",
+            "certificate_hash": "9ae92a926859ae45320681fbd54f7c79c404d781"
+          }
+        },
+        {
+          "client_id": "976217994523-ipdbc8puhhejn43gikbb3r1e0l0b6vn3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBADimGjBPd-fKKy_0GC0jgiFrwJ7cv3_k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "976217994523-ipdbc8puhhejn43gikbb3r1e0l0b6vn3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

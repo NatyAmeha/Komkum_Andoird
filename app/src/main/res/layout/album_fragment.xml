@@ -7,11 +7,11 @@
         <import type="android.view.View"/>
         <variable
             name="listInfo"
-            type="com.example.ethiomusic.data.model.RecyclerViewHelper&lt;com.example.ethiomusic.data.model.Song&lt;String,String>>" />
+            type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper&lt;com.zomatunes.zomatunes.data.model.Song&lt;String,String>>" />
 
         <variable
             name="viewmodel"
-            type="com.example.ethiomusic.ui.album.AlbumViewModel" />
+            type="com.zomatunes.zomatunes.ui.album.AlbumViewModel" />
 
         <variable
             name="isFromCache"
@@ -23,8 +23,18 @@
         android:id="@+id/album_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/appbar_gradient"
-        tools:context=".ui.album.AlbumListFragment">
+        android:background="@color/primaryDarkColor"
+        tools:context=".ui.album.AlbumFragment">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/album_song_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="56dp"
+            app:info="@{listInfo}"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            app:list="@{viewmodel.album.songs}"
+            tools:listitem="@layout/song_list_item" />
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar"
@@ -36,47 +46,70 @@
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/c_toolbar_layout"
                 android:layout_width="match_parent"
-                android:layout_height="272dp"
-                android:visibility="@{viewmodel.album != null ? View.VISIBLE : View.INVISIBLE}"
-                app:title="@{viewmodel.album.name}"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
+                app:statusBarScrim="@color/primaryDarkColor"
+                app:titleEnabled="false">
 
-                app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Large"
-                app:expandedTitleGravity="center|bottom"
-                app:layout_scrollFlags="scroll|enterAlways|exitUntilCollapsed">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="30dp">
+                    android:visibility="@{viewmodel.album != null ? View.VISIBLE : View.INVISIBLE}"
+                    android:layout_height="wrap_content"
+                    app:layout_collapseMode="parallax">
 
-                    <ImageView
-                        android:id="@+id/album_imageview"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_marginStart="110dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="110dp"
-                        android:layout_marginBottom="56dp"
-                        android:scaleType="fitXY"
-                        app:layout_collapseMode="parallax"
+                    <com.zomatunes.zomatunes.ui.customview.CustomPlaylistImageview
+                        android:id="@+id/custom_playlist_imageview"
+                        android:layout_width="@dimen/cover_image_size"
+                        android:layout_height="@dimen/cover_image_size"
+                        android:layout_marginTop="56dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <Button
+                        android:id="@+id/album_shuffle_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="Shuffle Songs"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.493"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.00999999"
-                        app:loadImage="@{viewmodel.album.albumCoverPath.replace(`localhost` , `192.168.43.166`)}" />
+                        app:layout_constraintTop_toBottomOf="@+id/album_artist_name_textview" />
 
                     <TextView
                         android:id="@+id/album_artist_name_textview"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@{viewmodel.album.category}"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:maxLines="1"
                         android:textAlignment="center"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/album_name_textview" />
+
+                    <TextView
+                        android:id="@+id/album_name_textview"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:text="@{viewmodel.album.name}"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textColor="#FFFFFF"
+
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/custom_playlist_imageview" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -84,44 +117,11 @@
                     android:id="@+id/album_toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:layout_marginStart="1dp"
-                    app:layout_collapseMode="pin" />
+                    app:layout_collapseMode="pin"
+                    app:title="@{viewmodel.album.name}" />
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/album_shuffle_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Shuffle Songs"
-                android:visibility="@{viewmodel.album != null ? View.VISIBLE : View.INVISIBLE}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/album_song_recyclerview"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="64dp"
-
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/album_shuffle_btn"
-                app:info="@{listInfo}"
-                app:list="@{viewmodel.album.songs}"
-                tools:listitem="@layout/song_list_item" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <ProgressBar
@@ -129,10 +129,10 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="296dp"
+
             android:elevation="40dp"
             android:visibility="@{viewmodel.album != null ? View.GONE : View.VISIBLE}"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center" />
 
         <include android:id="@+id/selection_menu"
             layout="@layout/multi_selection_menu"

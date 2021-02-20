@@ -6,10 +6,10 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.example.ethiomusic.ui.album.AlbumListViewModel" />
+            type="com.zomatunes.zomatunes.ui.album.AlbumListViewModel" />
         <variable
             name="listInfo"
-            type="com.example.ethiomusic.data.model.RecyclerViewHelper&lt;com.example.ethiomusic.data.model.BaseModel>" />
+            type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper&lt;com.zomatunes.zomatunes.data.model.BaseModel>" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -34,11 +34,10 @@
             android:id="@+id/album_list_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="64dp"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            tools:listitem="@layout/large_view_list_item"
             app:albuminfo="@{listInfo}"
-            app:albumlist="@{viewmodel.albumListData}"/>
+            app:albumlist="@{viewmodel.albumListData}"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            tools:listitem="@layout/large_view_list_item" />
 
 
         <ProgressBar

@@ -23,10 +23,88 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/radio_toolbar"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_width="match_parent" />
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/c_toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
+                app:statusBarScrim="@color/primaryDarkColor"
+                app:titleEnabled="false">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/appbar_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.zomatunes.zomatunes.ui.customview.CustomPlaylistImageview
+                        android:id="@+id/radio_image_custom_view"
+                        android:layout_width="@dimen/cover_image_size"
+                        android:layout_height="@dimen/cover_image_size"
+                        android:layout_marginTop="56dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/radio_name_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Radio Title"
+                        android:textSize="@dimen/title_text_view_size"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/radio_image_custom_view" />
+
+                    <Button
+                        android:id="@+id/shuffle_station_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Shuffle Radio Station"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/radio_name_textview" />
+
+                    <Button
+                        android:id="@+id/like_radio_btn"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_round_favorite_border_24"
+                        android:text="Like Radio "
+                        android:visibility="invisible"
+                        app:layout_constraintEnd_toEndOf="@+id/shuffle_station_btn"
+                        app:layout_constraintHorizontal_bias="0.422"
+                        app:layout_constraintStart_toStartOf="@+id/shuffle_station_btn"
+                        app:layout_constraintTop_toBottomOf="@+id/shuffle_station_btn" />
+
+                    <Button
+                        android:id="@+id/unlike_radio_btn"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_favorite_border_black_24dp"
+                        android:text="Liked"
+                        android:visibility="invisible"
+                        app:layout_constraintEnd_toEndOf="@+id/shuffle_station_btn"
+                        app:layout_constraintStart_toStartOf="@+id/shuffle_station_btn"
+                        app:layout_constraintTop_toBottomOf="@+id/shuffle_station_btn" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/radio_toolbar"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_width="match_parent"
+                    app:layout_collapseMode="pin"/>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -35,165 +113,61 @@
             android:layout_height="match_parent"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/radio_image1_imageview"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="16dp"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintBottom_toTopOf="@+id/radio_image3_imageview"
-                    app:layout_constraintEnd_toStartOf="@+id/radio_image2_imageview"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_queue_music_black_24dp"
-                    tools:src="@tools:sample/backgrounds/scenic" />
-
-                <ImageView
-                    android:id="@+id/radio_image2_imageview"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintBottom_toTopOf="@+id/radio_image4_imageview"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/radio_image1_imageview"
-                    app:layout_constraintTop_toTopOf="@+id/radio_image1_imageview"
-                    app:srcCompat="@drawable/backimage"
-                    tools:src="@tools:sample/avatars" />
-
-                <ImageView
-                    android:id="@+id/radio_image3_imageview"
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintEnd_toStartOf="@+id/radio_image4_imageview"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintHorizontal_chainStyle="packed"
-                    app:layout_constraintStart_toStartOf="@+id/radio_image1_imageview"
-                    app:layout_constraintTop_toBottomOf="@+id/radio_image1_imageview"
-                    app:srcCompat="@drawable/backimage" />
-
-                <ImageView
-                    android:id="@+id/radio_image4_imageview"
-                    android:layout_width="0dp"
-                    android:layout_height="80dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/backimg"
-                    app:layout_constraintEnd_toEndOf="@+id/radio_image2_imageview"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/radio_image3_imageview"
-                    app:layout_constraintTop_toBottomOf="@+id/radio_image2_imageview" />
-
-                <TextView
-                    android:id="@+id/radio_name_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:text="Radio Title"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/radio_image3_imageview" />
-
-                <Button
-                    android:id="@+id/shuffle_station_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Shuffle Radio Station"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/radio_name_textview" />
-
-                <TextView
-                    android:id="@+id/textView45"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="24dp"
-                    android:text="Songs in this Radio"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="#FBF9F9"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/like_radio_btn" />
-
-                <TextView
-                    android:id="@+id/song_list_textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="32dp"
-                    android:inputType="textMultiLine|textImeMultiLine"
-                    android:textAlignment="viewStart"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView45" />
-
-                <Button
-                    android:id="@+id/like_radio_btn"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_round_favorite_border_24"
-                    android:text="Like Radio "
-                    android:visibility="invisible"
-                    app:layout_constraintEnd_toEndOf="@+id/shuffle_station_btn"
-                    app:layout_constraintHorizontal_bias="0.422"
-                    app:layout_constraintStart_toStartOf="@+id/shuffle_station_btn"
-                    app:layout_constraintTop_toBottomOf="@+id/shuffle_station_btn" />
 
                 <TextView
                     android:id="@+id/textView47"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
                     android:layout_marginTop="24dp"
                     android:text="Artists in this Radio"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textView45"
                     app:layout_constraintTop_toBottomOf="@+id/song_list_textview" />
+
+                <TextView
+                    android:id="@+id/textView45"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="32dp"
+                    android:text="Songs in this Radio"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#FBF9F9"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/song_list_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:maxLines="4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textView45"
+                    app:layout_constraintTop_toBottomOf="@+id/textView45" />
 
                 <TextView
                     android:id="@+id/artist_list_textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/song_list_textview"
-                    app:layout_constraintStart_toStartOf="@+id/song_list_textview"
+                    android:layout_marginEnd="16dp"
+                    android:maxLines="4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textView47"
                     app:layout_constraintTop_toBottomOf="@+id/textView47" />
-
-                <Button
-                    android:id="@+id/unlike_radio_btn"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_favorite_border_black_24dp"
-                    android:text="Liked"
-                    android:visibility="invisible"
-                    app:layout_constraintEnd_toEndOf="@+id/shuffle_station_btn"
-                    app:layout_constraintStart_toStartOf="@+id/shuffle_station_btn"
-                    app:layout_constraintTop_toBottomOf="@+id/shuffle_station_btn" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
+
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

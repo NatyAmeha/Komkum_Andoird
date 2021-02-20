@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/lyrics_view_end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="300">
+       <KeyFrameSet>
+       </KeyFrameSet>
+        <OnClick motion:targetId="@id/button5" />
+    </Transition>
+
+    <Transition
+        android:id="@+id/start_to_queue_transition"
+        motion:constraintSetStart="@+id/start"
+        motion:constraintSetEnd="@+id/queue_list_end"
+        motion:duration="400">
+        <OnClick motion:targetId="@id/queue_list_image_view" />
+    </Transition>
+
+    <Transition
+        android:id="@+id/lyrics_to_start_transition"
+        motion:constraintSetStart="@+id/lyrics_view_end"
+        motion:constraintSetEnd="@+id/start"
+        motion:duration="300" >
+        <OnClick motion:targetId="@id/player_collapsed_header_container" />
+    </Transition>
+
+    <Transition
+        android:id="@+id/queue_to_start_transition"
+        motion:constraintSetStart="@+id/queue_list_end"
+        motion:constraintSetEnd="@+id/start"
+        motion:duration="300">
+        <OnClick motion:targetId="@id/player_collapsed_header_container" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+
+        <Constraint
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_marginStart="0dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/player_collapsed_header_container"
+            android:layout_marginLeft="0dp" />
+        <Constraint
+            android:elevation="50dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toTopOf="@+id/player_info_container"
+            motion:layout_constraintTop_toBottomOf="@+id/player_main_header_container"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/queue_song_image_viewpager"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="24dp" />
+    </ConstraintSet>
+
+
+
+    <ConstraintSet android:id="@+id/lyrics_view_end">
+        <Constraint
+            android:id="@+id/player_main_header_container"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            motion:layout_constraintBottom_toTopOf="@+id/queue_song_image_viewpager"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/player_collapsed_header_container"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_marginStart="0dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:elevation="20dp"
+            android:layout_marginLeft="0dp" />
+        <Constraint
+            android:id="@+id/player_info_container"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toTopOf="@+id/player_controller_container"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:visibility="invisible" />
+        <Constraint
+            android:layout_height="50dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_width="60dp"
+            motion:layout_constraintTop_toTopOf="@+id/player_collapsed_header_container"
+            android:id="@+id/queue_song_image_viewpager"
+            motion:layout_constraintBottom_toBottomOf="@+id/player_collapsed_header_container"
+            android:layout_marginStart="16dp"
+            motion:layout_constraintTop_toBottomOf="@+id/player_main_header_container"
+            android:elevation="50dp" />
+        <Constraint
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/player_controller_container" />
+        <Constraint
+            android:id="@+id/lyrics_container"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toTopOf="@+id/player_controller_container"
+            motion:layout_constraintTop_toBottomOf="@+id/queue_song_image_viewpager"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="8dp" />
+    </ConstraintSet>
+
+    <ConstraintSet
+        android:id="@+id/queue_list_end">
+
+        <Constraint
+            android:id="@+id/player_main_header_container"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            motion:layout_constraintBottom_toTopOf="@+id/queue_song_image_viewpager"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+            android:id="@+id/player_collapsed_header_container"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_marginStart="0dp"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:elevation="20dp"
+            android:layout_marginLeft="0dp" />
+        <Constraint
+            android:id="@+id/player_info_container"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toTopOf="@+id/player_controller_container"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:visibility="invisible" />
+        <Constraint
+            android:layout_height="50dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_width="60dp"
+            motion:layout_constraintTop_toTopOf="@+id/player_collapsed_header_container"
+            android:id="@+id/queue_song_image_viewpager"
+            motion:layout_constraintBottom_toBottomOf="@+id/player_collapsed_header_container"
+            android:layout_marginStart="16dp"
+            motion:layout_constraintTop_toBottomOf="@+id/player_main_header_container"
+            android:elevation="50dp" />
+        <Constraint
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/player_controller_container" />
+
+        <Constraint
+            android:id="@+id/queue_list_recyclerview"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toTopOf="@+id/player_controller_container"
+            motion:layout_constraintTop_toBottomOf="@+id/queue_song_image_viewpager"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp" />
+
+    </ConstraintSet>
+
+</MotionScene>

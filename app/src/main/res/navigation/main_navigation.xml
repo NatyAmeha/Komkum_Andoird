@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/baseFragment"
-        android:name="com.example.ethiomusic.ui.home.BaseFragment"
+        android:name="com.zomatunes.zomatunes.ui.home.BaseFragment"
         android:label="fragment_base"
         tools:layout="@layout/fragment_base" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/albumFragment"
-        android:name="com.example.ethiomusic.ui.album.AlbumFragment"
+        android:name="com.zomatunes.zomatunes.ui.album.AlbumFragment"
         android:label="AlbumFragment" >
         <action
             android:id="@+id/action_albumFragment_to_artistFragment"
@@ -36,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/albumListFragment"
-        android:name="com.example.ethiomusic.ui.album.AlbumListFragment"
+        android:name="com.zomatunes.zomatunes.ui.album.AlbumListFragment"
         android:label="AlbumListFragment" >
         <action
             android:id="@+id/action_albumListFragment_to_albumFragment"
@@ -44,11 +44,11 @@
     </fragment>
     <fragment
         android:id="@+id/playlistFragment"
-        android:name="com.example.ethiomusic.ui.playlist.PlaylistFragment"
+        android:name="com.zomatunes.zomatunes.ui.playlist.PlaylistFragment"
         android:label="PlaylistFragment" />
     <fragment
         android:id="@+id/artistFragment"
-        android:name="com.example.ethiomusic.ui.artist.ArtistFragment"
+        android:name="com.zomatunes.zomatunes.ui.artist.ArtistFragment"
         android:label="ArtistFragment" >
         <action
             android:id="@+id/action_artistFragment_to_albumFragment"
@@ -56,15 +56,15 @@
     </fragment>
     <fragment
         android:id="@+id/songListFragment"
-        android:name="com.example.ethiomusic.ui.song.SongListFragment"
+        android:name="com.zomatunes.zomatunes.ui.song.SongListFragment"
         android:label="SongListFragment" />
     <fragment
         android:id="@+id/addToFragment"
-        android:name="com.example.ethiomusic.ui.home.AddToFragment"
+        android:name="com.zomatunes.zomatunes.ui.home.AddToFragment"
         android:label="AddToFragment" />
     <fragment
         android:id="@+id/artistListFragment"
-        android:name="com.example.ethiomusic.ui.artist.ArtistListFragment"
+        android:name="com.zomatunes.zomatunes.ui.artist.ArtistListFragment"
         android:label="ArtistListFragment" >
         <action
             android:id="@+id/action_artistListFragment_to_artisSelectiontListFragment2"
@@ -72,60 +72,145 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.ethiomusic.ui.search.SearchFragment"
+        android:name="com.zomatunes.zomatunes.ui.search.SearchFragment"
         android:label="SearchFragment" />
     <fragment
         android:id="@+id/downloadListFragment"
-        android:name="com.example.ethiomusic.ui.download.DownloadListFragment"
+        android:name="com.zomatunes.zomatunes.ui.download.DownloadListFragment"
         android:label="DownloadListFragment" />
     <fragment
         android:id="@+id/radioFragment"
-        android:name="com.example.ethiomusic.ui.radio.RadioFragment"
+        android:name="com.zomatunes.zomatunes.ui.radio.RadioFragment"
         android:label="radio_fragment"
         tools:layout="@layout/radio_fragment" />
     <fragment
         android:id="@+id/radioHomeFragment"
-        android:name="com.example.ethiomusic.ui.radio.RadioHomeFragment"
+        android:name="com.zomatunes.zomatunes.ui.radio.RadioHomeFragment"
         android:label="RadioHomeFragment" />
     <fragment
         android:id="@+id/artistInfoFragment"
-        android:name="com.example.ethiomusic.ui.artist.ArtistInfoFragment"
+        android:name="com.zomatunes.zomatunes.ui.artist.ArtistInfoFragment"
         android:label="ArtistInfoFragment" />
     <fragment
         android:id="@+id/addSongFragment"
-        android:name="com.example.ethiomusic.ui.song.AddSongFragment"
+        android:name="com.zomatunes.zomatunes.ui.song.AddSongFragment"
         android:label="AddSongFragment" />
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.ethiomusic.ui.home.HomeFragment"
+        android:name="com.zomatunes.zomatunes.ui.home.HomeFragment"
         android:label="HomeFragment" />
     <fragment
-        android:id="@+id/artistsHomeFragment"
-        android:name="com.example.ethiomusic.ui.artist.ArtistsHomeFragment"
-        android:label="ArtistsHomeFragment" />
+        android:id="@+id/bookHomeFragment"
+        android:name="com.zomatunes.zomatunes.ui.book.BookHomeFragment"
+        android:label="BookHomeFragment" />
     <fragment
         android:id="@+id/libraryFragment"
-        android:name="com.example.ethiomusic.ui.library.LibraryFragment"
+        android:name="com.zomatunes.zomatunes.ui.library.LibraryFragment"
         android:label="LibraryFragment" />
     <fragment
         android:id="@+id/queueListFragment"
-        android:name="com.example.ethiomusic.ui.player.QueueListFragment"
+        android:name="com.zomatunes.zomatunes.ui.player.QueueListFragment"
         android:label="QueueListFragment" />
     <fragment
         android:id="@+id/userFragment"
-        android:name="com.example.ethiomusic.ui.user.UserFragment"
+        android:name="com.zomatunes.zomatunes.ui.user.UserFragment"
         android:label="user_fragment"
         tools:layout="@layout/user_fragment" />
     <fragment
         android:id="@+id/playerFragment"
-        android:name="com.example.ethiomusic.ui.player.PlayerFragment"
+        android:name="com.zomatunes.zomatunes.ui.player.PlayerFragment"
         android:label="PlayerFragment" />
     <fragment
         android:id="@+id/browseMusicFragment"
-        android:name="com.example.ethiomusic.ui.browse.BrowseMusicFragment"
+        android:name="com.zomatunes.zomatunes.ui.browse.BrowseMusicFragment"
         android:label="BrowseMusicFragment" />
     <fragment
         android:id="@+id/artisSelectiontListFragment2"
-        android:name="com.example.ethiomusic.ui.onboarding.ArtisSelectiontListFragment"
+        android:name="com.zomatunes.zomatunes.ui.onboarding.ArtisSelectiontListFragment"
         android:label="ArtisSelectiontListFragment" />
+    <fragment
+        android:id="@+id/audiobookSellFragment"
+        android:name="com.zomatunes.zomatunes.ui.book.AudiobookSellFragment"
+        android:label="BookSellFragment">
+        <deepLink app:uri="www.example.com/user" />
+    </fragment>
+    <fragment
+        android:id="@+id/audiobookFragment"
+        android:name="com.zomatunes.zomatunes.ui.book.AudiobookFragment"
+        android:label="BookFragment">
+
+    </fragment>
+    <fragment
+        android:id="@+id/bookBrowseFragment"
+        android:name="com.zomatunes.zomatunes.ui.book.BookBrowseFragment"
+        android:label="BookBrowseFragment" >
+        <action
+            android:id="@+id/action_bookBrowseFragment_to_bookSellFragment"
+            app:destination="@id/audiobookSellFragment"
+            app:popUpTo="@id/bookBrowseFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/reviewListFragment"
+        android:name="com.zomatunes.zomatunes.ui.book.ReviewListFragment"
+        android:label="fragment_review_list"
+        tools:layout="@layout/fragment_review_list" />
+    <fragment
+        android:id="@+id/subscriptionFragment2"
+        android:name="com.zomatunes.zomatunes.ui.account.subscription.SubscriptionFragment"
+        android:label="SubscriptionFragment" />
+    <fragment
+        android:id="@+id/friendsListFragment"
+        android:name="com.zomatunes.zomatunes.ui.user.FriendsListFragment"
+        android:label="FriendsListFragment" />
+    <fragment
+        android:id="@+id/friendActivityFragment"
+        android:name="com.zomatunes.zomatunes.ui.user.FriendActivityFragment"
+        android:label="FriendActivityFragment" />
+    <fragment
+        android:id="@+id/authorFragment"
+        android:name="com.zomatunes.zomatunes.ui.author.AuthorFragment"
+        android:label="AuthorFragment" />
+    <fragment
+        android:id="@+id/EBookSellFragment"
+        android:name="com.zomatunes.zomatunes.ui.book.EBookSellFragment"
+        android:label="EBookSellFragment" />
+    <fragment
+        android:id="@+id/bookReaderFragment"
+        android:name="com.zomatunes.zomatunes.ui.book.BookReaderFragment"
+        android:label="fragment_book_reader"
+        tools:layout="@layout/fragment_book_reader" />
+    <fragment
+        android:id="@+id/fullscreenFragment"
+        android:name="com.zomatunes.zomatunes.FullscreenFragment"
+        android:label="fragment_fullscreen"
+        tools:layout="@layout/fragment_fullscreen" />
+    <fragment
+        android:id="@+id/radioListFragment"
+        android:name="com.zomatunes.zomatunes.ui.radio.RadioListFragment"
+        android:label="RadioListFragment" />
+    <fragment
+        android:id="@+id/playlistListFragment"
+        android:name="com.zomatunes.zomatunes.ui.playlist.PlaylistListFragment"
+        android:label="PlaylistListFragment" />
+    <fragment
+        android:id="@+id/chartListFragment"
+        android:name="com.zomatunes.zomatunes.ui.playlist.ChartListFragment"
+        android:label="ChartListFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.zomatunes.zomatunes.ui.user.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/recommendationFragment"
+        android:name="com.zomatunes.zomatunes.ui.user.RecommendationFragment"
+        android:label="RecommendationFragment" />
+    <fragment
+        android:id="@+id/bookCollectionFragment"
+        android:name="com.zomatunes.zomatunes.ui.book.BookCollectionFragment"
+        android:label="BookCollectionFragment" />
+    <fragment
+        android:id="@+id/bookListFragment"
+        android:name="com.zomatunes.zomatunes.ui.book.BookListFragment"
+        android:label="BookListFragment" />
 </navigation>

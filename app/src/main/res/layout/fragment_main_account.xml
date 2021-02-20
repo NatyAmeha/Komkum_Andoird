@@ -19,8 +19,9 @@
             android:id="@+id/album_add_imageview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:foreground="@drawable/appbar_gradient"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/cover" />
+            app:srcCompat="@drawable/onboardingcover" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -31,7 +32,7 @@
                 android:layout_width="81dp"
                 android:layout_height="77dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="72dp"
+                android:layout_marginTop="64dp"
                 app:layout_constraintBottom_toTopOf="@+id/textView15"
                 app:layout_constraintEnd_toStartOf="@+id/textView13"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -43,12 +44,14 @@
                 android:id="@+id/textView13"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="16dp"
                 android:gravity="center_vertical"
-                android:text="EthioMusic"
+                android:text="Zomma"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3"
                 android:textColor="#F9F9FB"
                 android:textSize="40dp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/album_download_imageview"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -60,12 +63,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="108dp"
+                android:layout_marginTop="64dp"
                 android:layout_marginEnd="8dp"
                 android:text="Welcome"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
                 android:textColor="#FCFCFE"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/more_popular_album_textview"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -78,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="sign up and pay $50 to have an access of unlimited songs and podcasts"
+                android:text="Sit back and enjoy our premium and exclusive contents and  recommendations"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="#FEFEFE"
@@ -99,7 +103,7 @@
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/btn_rounded"
                 android:text="create an account"
-                app:layout_constraintBottom_toTopOf="@+id/textView18"
+                app:layout_constraintBottom_toTopOf="@+id/fb_login_btn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -110,40 +114,30 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:background="@drawable/btn_rounded"
                 android:text="Login"
-                app:layout_constraintBottom_toTopOf="@+id/fb_login_btn"
-                app:layout_constraintEnd_toEndOf="@+id/create_account_btn"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/create_account_btn"
-                app:layout_constraintTop_toBottomOf="@+id/textView18" />
-
-            <com.facebook.login.widget.LoginButton
-                android:id="@+id/fb_login_btn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/create_account_btn"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/create_account_btn"
-                app:layout_constraintTop_toBottomOf="@+id/login_btn" />
+                app:layout_constraintTop_toBottomOf="@+id/fb_login_btn" />
 
-
-
-            <TextView
-                android:id="@+id/textView18"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/fb_login_btn"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
                 android:layout_marginBottom="8dp"
-                android:text="already registered?"
-                android:textSize="18sp"
+                android:background="@drawable/btn_rounded"
+                android:drawableLeft="@drawable/com_facebook_button_icon"
+                android:text="Continue with facebook"
+                app:backgroundTint="@color/com_facebook_button_background_color_pressed"
                 app:layout_constraintBottom_toTopOf="@+id/login_btn"
                 app:layout_constraintEnd_toEndOf="@+id/create_account_btn"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/create_account_btn"
                 app:layout_constraintTop_toBottomOf="@+id/create_account_btn" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.circularreveal.CircularRevealRelativeLayout>

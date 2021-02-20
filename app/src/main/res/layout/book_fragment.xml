@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_width="match_parent" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/book_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+                tools:context=".ui.audiobook.BookFragment">
+
+                <ImageView
+                    android:id="@+id/book_cover_imageview"
+                    android:layout_width="@dimen/book_image_width"
+                    android:layout_height="@dimen/book_image_height"
+                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/backimage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/book_title_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Book Title"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/book_cover_imageview"
+                    app:layout_constraintTop_toTopOf="@+id/book_cover_imageview" />
+
+                <TextView
+                    android:id="@+id/book_author_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Author Name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    app:layout_constraintEnd_toEndOf="@+id/book_title_textview"
+                    app:layout_constraintStart_toStartOf="@+id/book_title_textview"
+                    app:layout_constraintTop_toBottomOf="@+id/book_title_textview" />
+
+                <TextView
+                    android:id="@+id/narrator_name_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Narrated by Narrator Name"
+                    app:layout_constraintEnd_toEndOf="@+id/book_author_textview"
+                    app:layout_constraintStart_toStartOf="@+id/book_author_textview"
+                    app:layout_constraintTop_toBottomOf="@+id/book_author_textview" />
+
+                <TextView
+                    android:id="@+id/listening_percent_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="29% Listening"
+                    app:layout_constraintEnd_toEndOf="@+id/narrator_name_textview"
+                    app:layout_constraintStart_toStartOf="@+id/narrator_name_textview"
+                    app:layout_constraintTop_toBottomOf="@+id/narrator_name_textview" />
+
+                <TextView
+                    android:id="@+id/rating_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text=" 5 Rating "
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toStartOf="@+id/divider4"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/book_cover_imageview" />
+
+                <TextView
+                    android:id="@+id/duration_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="1hr  45 min"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toStartOf="@+id/divider5"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/divider4"
+                    app:layout_constraintTop_toTopOf="@+id/rating_textview" />
+
+                <TextView
+                    android:id="@+id/download_amount_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="245 download"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/divider5"
+                    app:layout_constraintTop_toTopOf="@+id/duration_textview" />
+
+                <View
+                    android:id="@+id/divider4"
+                    android:layout_width="3dp"
+                    android:layout_height="15dp"
+                    android:background="?android:attr/listDivider"
+                    app:layout_constraintBottom_toBottomOf="@+id/rating_textview"
+                    app:layout_constraintEnd_toStartOf="@+id/duration_textview"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/rating_textview"
+                    app:layout_constraintTop_toTopOf="@+id/rating_textview" />
+
+                <View
+                    android:id="@+id/divider5"
+                    android:layout_width="3dp"
+                    android:layout_height="15dp"
+                    android:background="?android:attr/listDivider"
+                    app:layout_constraintBottom_toBottomOf="@+id/duration_textview"
+                    app:layout_constraintEnd_toStartOf="@+id/download_amount_textview"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/duration_textview"
+                    app:layout_constraintTop_toTopOf="@+id/duration_textview" />
+
+                <Button
+                    android:id="@+id/continue_listening_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Continue LIstening"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.48"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/duration_textview" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/chapter_recyclerview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginBottom="56dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView79"
+                    tools:listitem="@layout/chapter_list_item" />
+
+                <TextView
+                    android:id="@+id/textView79"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginTop="32dp"
+                    android:text="Chapters"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/continue_listening_btn" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <ProgressBar
+            android:id="@+id/book_loading_progressbar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

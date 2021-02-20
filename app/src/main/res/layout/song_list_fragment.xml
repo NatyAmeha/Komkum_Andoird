@@ -6,10 +6,10 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.example.ethiomusic.ui.song.SongViewModel" />
+            type="com.zomatunes.zomatunes.ui.song.SongViewModel" />
         <variable
             name="listInfo"
-            type="com.example.ethiomusic.data.model.RecyclerViewHelper&lt;com.example.ethiomusic.data.model.Song&lt;String,String>>" />
+            type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper&lt;com.zomatunes.zomatunes.data.model.Song&lt;String,String>>" />
 
         <variable
             name="isFromCache"
@@ -54,6 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"/>
+
 
         <include android:id="@+id/selection_menu"
             layout="@layout/multi_selection_menu"

@@ -4,12 +4,12 @@
 
     <item
         android:id="@+id/homeFragment"
-        android:icon="@drawable/ic_baseline_home_24"
-        android:title="Home" />
+        android:icon="@drawable/ic_audiotrack_black_24dp"
+        android:title="Music" />
     <item
-        android:id="@+id/artistsHomeFragment"
-        android:icon="@drawable/ic_baseline_person_pin_24"
-        android:title="Artists" />
+        android:id="@+id/bookHomeFragment"
+        android:icon="@drawable/ic_baseline_menu_book_24"
+        android:title="Books" />
     <item
         android:id="@+id/searchFragment"
         android:icon="@drawable/ic_search_black_24dp"

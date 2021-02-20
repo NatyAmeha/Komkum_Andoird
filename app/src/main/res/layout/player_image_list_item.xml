@@ -4,17 +4,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:elevation="30dp">
 
     <ImageView
         android:id="@+id/queue_song_image_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:elevation="0dp"
-        android:paddingStart="28dp"
+        android:paddingStart="0dp"
         android:paddingTop="0dp"
-        android:paddingEnd="28dp"
+        android:paddingEnd="0dp"
         android:paddingBottom="0dp"
+        android:transitionName="imageView"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

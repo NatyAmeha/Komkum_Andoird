@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainAccountFragment"
-        android:name="com.example.ethiomusic.ui.account.MainAccountFragment"
+        android:name="com.zomatunes.zomatunes.ui.account.MainAccountFragment"
         android:label="fragment_main_account"
         tools:layout="@layout/fragment_main_account" >
         <action
@@ -29,17 +29,20 @@
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
-        android:name="com.example.ethiomusic.ui.account.RegistrationFragment"
+        android:name="com.zomatunes.zomatunes.ui.account.RegistrationFragment"
         android:label="fragment_registration"
-        tools:layout="@layout/fragment_registration" >
+        tools:layout="@layout/fragment_registration">
         <action
             android:id="@+id/action_registrationFragment_to_categorySelectionFragment"
             app:destination="@id/categorySelectionFragment"
             app:popUpTo="@id/registrationFragment" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="www.api.zomatunes.com/user" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.ethiomusic.ui.account.login.LoginFragment"
+        android:name="com.zomatunes.zomatunes.ui.account.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -54,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/subscriptionFragment"
-        android:name="com.example.ethiomusic.ui.account.subscription.SubscriptionFragment"
+        android:name="com.zomatunes.zomatunes.ui.account.subscription.SubscriptionFragment"
         android:label="fragment_subscription"
         tools:layout="@layout/fragment_subscription" >
         <action
@@ -63,7 +66,7 @@
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="com.example.ethiomusic.ui.account.login.ForgotPasswordFragment"
+        android:name="com.zomatunes.zomatunes.ui.account.login.ForgotPasswordFragment"
         android:label="fragment_forgot_password"
         tools:layout="@layout/fragment_forgot_password" >
         <action
@@ -72,7 +75,7 @@
     </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"
-        android:name="com.example.ethiomusic.ui.account.login.ResetPasswordFragment"
+        android:name="com.zomatunes.zomatunes.ui.account.login.ResetPasswordFragment"
         android:label="fragment_reset_password"
         tools:layout="@layout/fragment_reset_password" >
         <action
@@ -81,7 +84,7 @@
     </fragment>
     <fragment
         android:id="@+id/categorySelectionFragment"
-        android:name="com.example.ethiomusic.ui.onboarding.CategorySelectionFragment"
+        android:name="com.zomatunes.zomatunes.ui.onboarding.CategorySelectionFragment"
         android:label="fragment_category_selection"
         tools:layout="@layout/fragment_category_selection" >
         <action
@@ -90,7 +93,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainOnboardingFragment"
-        android:name="com.example.ethiomusic.ui.onboarding.MainOnboardingFragment"
+        android:name="com.zomatunes.zomatunes.ui.onboarding.MainOnboardingFragment"
         android:label="fragment_main_onboarding"
         tools:layout="@layout/fragment_main_onboarding" >
         <action
@@ -99,11 +102,15 @@
     </fragment>
     <fragment
         android:id="@+id/artistSelectionListFragment"
-        android:name="com.example.ethiomusic.ui.onboarding.ArtisSelectiontListFragment"
+        android:name="com.zomatunes.zomatunes.ui.onboarding.ArtisSelectiontListFragment"
         android:label="artist_selection_list_fragment"
         tools:layout="@layout/artist_selection_list_fragment" >
         <action
             android:id="@+id/action_artistSelectionListFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/paymentDialogFragment"
+        android:name="com.zomatunes.zomatunes.ui.account.subscription.PaymentDialogFragment"
+        android:label="PaymentDialogFragment" />
 </navigation>

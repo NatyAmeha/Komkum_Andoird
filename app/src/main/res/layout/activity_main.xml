@@ -11,13 +11,13 @@
 
         <import type="android.text.format.DateUtils" />
 
-        <import type="com.example.ethiomusic.util.viewhelper.PlayerState.RadioState" />
+        <import type="com.zomatunes.zomatunes.util.viewhelper.PlayerState.RadioState" />
 
         <import type="android.view.View" />
 
         <variable
             name="viewmodel"
-            type="com.example.ethiomusic.MainActivityViewmodel" />
+            type="com.zomatunes.zomatunes.MainActivityViewmodel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,22 +29,23 @@
         <fragment
             android:id="@+id/nav_host_fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
-            app:navGraph="@navigation/main_navigation"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:elevation="0dp"
             app:defaultNavHost="true"
-            app:layout_constraintBottom_toBottomOf="@+id/player_card"
+            app:layout_constraintBottom_toTopOf="@+id/bottom_nav_view"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintTop_toTopOf="parent"
+            app:navGraph="@navigation/main_navigation"
+            tools:layout="@layout/home_fragment" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/player_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/primaryLightColor"
+            android:visibility="@{(viewmodel.playlistQueue.size > 0 &amp;&amp; viewmodel.showPlayerCard &amp;&amp; !viewmodel.isAudiobookIntro ) ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toTopOf="@+id/bottom_nav_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -56,11 +57,12 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="3dp"
                 android:scaleType="fitXY"
+                android:transitionName="imageView"
                 app:layout_constraintBottom_toBottomOf="@+id/bsheet_song_artist_textview"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/bsheet_song_tittle_textview"
                 app:loadImage="@{viewmodel.nowPlaying.getString(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON_URI)}"
-                app:srcCompat="@drawable/backimage" />
+                app:srcCompat="@drawable/backimg" />
 
             <ProgressBar
                 android:id="@+id/bottonsheet_song_progressbar"
@@ -130,6 +132,8 @@
                 app:srcCompat="@drawable/exo_icon_pause" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView

@@ -4,8 +4,7 @@
 
     <item>
 
-        <bitmap android:src="@drawable/logoicon"
-            android:tint="@color/primaryColor"
+        <bitmap android:src="@drawable/sp_image"
             android:gravity="center"/>
     </item>
 

@@ -4,19 +4,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.example.ethiomusic.data.model.Playlist"/>
-        <import type="com.example.ethiomusic.data.model.RecyclerViewHelper"/>
+        <import type="com.zomatunes.zomatunes.data.model.Playlist"/>
+        <import type="com.zomatunes.zomatunes.data.model.Radio"/>
+        <import type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper"/>
         <import type="android.view.View"/>
         <variable
             name="viewmodel"
-            type="com.example.ethiomusic.ui.browse.BrowseMusicViewModel" />
+            type="com.zomatunes.zomatunes.ui.browse.BrowseMusicViewModel" />
         <variable
             name="artistInfo"
-            type="com.example.ethiomusic.data.model.RecyclerViewHelper&lt;com.example.ethiomusic.data.model.Artist&lt;String,String>>" />
+            type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper&lt;com.zomatunes.zomatunes.data.model.Artist&lt;String,String>>" />
 
         <variable
             name="playlistInfo"
             type="RecyclerViewHelper&lt;Playlist&lt;String>>" />
+
+        <variable
+            name="radioInfo"
+            type="RecyclerViewHelper&lt;Radio>" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -206,10 +211,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:paddingBottom="56dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/radio_station_header_textview"
-                    app:radioList="@{viewmodel.browseResult.radioStations}"/>
+                    app:radioInfo="@{radioInfo}"
+                    app:radioList="@{viewmodel.browseResult.radioStations}" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 

@@ -11,7 +11,11 @@
         android:id="@+id/browse_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:layout_marginStart="@dimen/browse_item_margin_start"
+        android:layout_marginEnd="@dimen/browse_item_margin_start"
+        android:layout_marginTop="@dimen/browse_item_margin_top"
+        android:layout_marginBottom="@dimen/browse_item_margin_top"
+        android:elevation="20dp">
 
         <TextView
             android:id="@+id/browse_title_textview"
@@ -26,7 +30,7 @@
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textColor="#FFFFFF"
-            android:textSize="30sp"
+            android:textSize="@dimen/browse_item_textview_size"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,16 +49,16 @@
 
         <ImageView
             android:id="@+id/browse_image_view"
-            android:layout_width="120dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="@dimen/browse_item_imageview_width"
+            android:layout_height="@dimen/browse_item_imageview_height"
+            android:backgroundTintMode="src_over"
+            android:clickable="false"
+            android:cropToPadding="true"
             android:elevation="0dp"
+            android:foreground="@drawable/backimage"
             android:foregroundTint="@color/transparent"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

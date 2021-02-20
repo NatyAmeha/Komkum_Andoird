@@ -18,14 +18,12 @@
     </string-array>
 
     <string-array name="download_quality_entiries">
-        <item>Ask Every Time</item>
         <item>Low (96kps)</item>
         <item>Medium (128kbs)</item>
         <item>High (256kbs)</item>
     </string-array>
 
     <string-array name="stream_quality_values">
-        <item>Auto</item>
         <item>96</item>
         <item>128</item>
         <item>256</item>

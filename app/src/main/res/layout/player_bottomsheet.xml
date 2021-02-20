@@ -9,7 +9,7 @@
         <import type="android.support.v4.media.MediaMetadataCompat"/>
         <variable
             name="mainviewmodel"
-            type="com.example.ethiomusic.MainActivityViewmodel" />
+            type="com.zomatunes.zomatunes.MainActivityViewmodel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat

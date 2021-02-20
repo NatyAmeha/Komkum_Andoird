@@ -19,9 +19,10 @@
         <item name="colorAccent">@color/primaryColor</item>
         <item name="colorSecondary">@color/secondaryColor</item>
         <item name="colorControlActivated">@color/primaryColor</item>
+        <item name="md_background_color">@color/transparent</item>
 
-<!--        <item name="android:fontFamily">@font/asap</item>-->
-<!--        <item name="fontFamily">@font/asap</item>-->
+        <!--        <item name="android:fontFamily">@font/asap</item>-->
+        <!--        <item name="fontFamily">@font/asap</item>-->
     </style>
 
     <style name="AppthemeDark.Launcher">
@@ -38,6 +39,15 @@
 
     <style name="BodyBackground">
         <item name="android:background">@color/primaryLightColor</item>
+    </style>
+
+    <style name="Widget.AppthemeDark.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+    <style name="Widget.AppthemeDark.ButtonBar.Fullscreen" parent="">
+        <item name="android:background">@color/black_overlay</item>
+        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
 
 </resources>

@@ -60,14 +60,11 @@
                     android:id="@+id/monthly_stream_textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="32dp"
                     android:text="TextView"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="@+id/total_song_textview"
                     app:layout_constraintTop_toBottomOf="@+id/total_song_textview" />
 
                 <TextView
@@ -77,8 +74,9 @@
                     android:layout_marginTop="16dp"
                     android:text="TextView"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/monthly_stream_textview"
-                    app:layout_constraintStart_toStartOf="@+id/monthly_stream_textview"
                     app:layout_constraintTop_toBottomOf="@+id/monthly_stream_textview" />
 
                 <TextView
@@ -88,8 +86,8 @@
                     android:layout_marginTop="16dp"
                     android:text="TextView"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#FFFFFF"
                     app:layout_constraintEnd_toEndOf="@+id/total_stream_textview"
-                    app:layout_constraintStart_toStartOf="@+id/total_stream_textview"
                     app:layout_constraintTop_toBottomOf="@+id/total_stream_textview" />
 
                 <TextView
@@ -99,8 +97,8 @@
                     android:layout_marginTop="16dp"
                     android:text="TextView"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#FFFFFF"
                     app:layout_constraintEnd_toEndOf="@+id/monthly_download_textview"
-                    app:layout_constraintStart_toStartOf="@+id/monthly_download_textview"
                     app:layout_constraintTop_toBottomOf="@+id/monthly_download_textview" />
 
                 <TextView
@@ -121,23 +119,81 @@
                     android:layout_marginTop="16dp"
                     android:text="TextView"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#FFFFFF"
                     app:layout_constraintEnd_toEndOf="@+id/artist_follower_textview"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="@+id/artist_follower_textview"
                     app:layout_constraintTop_toBottomOf="@+id/artist_follower_textview" />
 
                 <TextView
                     android:id="@+id/artist_follower_textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="32dp"
+                    android:layout_marginEnd="40dp"
                     android:text="TextView"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#FFFFFF"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView18" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:text="Followers"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView50" />
+
+                <TextView
+                    android:id="@+id/textView38"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Total songs"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    app:layout_constraintStart_toStartOf="@+id/textView18"
+                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+                <TextView
+                    android:id="@+id/textView102"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Monthly Stream"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    app:layout_constraintStart_toStartOf="@+id/textView38"
+                    app:layout_constraintTop_toBottomOf="@+id/textView38" />
+
+                <TextView
+                    android:id="@+id/textView103"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Total Streams"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    app:layout_constraintStart_toStartOf="@+id/textView102"
+                    app:layout_constraintTop_toBottomOf="@+id/textView102" />
+
+                <TextView
+                    android:id="@+id/textView120"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Monthly Downloads"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    app:layout_constraintStart_toStartOf="@+id/textView103"
+                    app:layout_constraintTop_toBottomOf="@+id/textView103" />
+
+                <TextView
+                    android:id="@+id/textView121"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Total Downloads"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    app:layout_constraintStart_toStartOf="@+id/textView120"
+                    app:layout_constraintTop_toBottomOf="@+id/textView120" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>

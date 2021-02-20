@@ -7,15 +7,19 @@
 
         <import type="android.view.View" />
 
-        <import type="com.example.ethiomusic.util.viewhelper.RecyclerviewState" />
+        <import type="com.zomatunes.zomatunes.util.viewhelper.RecyclerviewState" />
 
         <variable
             name="song"
-            type="com.example.ethiomusic.data.model.Song" />
+            type="com.zomatunes.zomatunes.data.model.Song" />
+
+        <variable
+            name="selectedSong"
+            type="com.zomatunes.zomatunes.data.model.Song" />
 
         <variable
             name="state"
-            type="com.example.ethiomusic.util.viewhelper.RecyclerviewStateManager" />
+            type="com.zomatunes.zomatunes.util.viewhelper.RecyclerviewStateManager" />
 
         <variable
             name="type"
@@ -24,17 +28,20 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/song_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
-        android:clickable="true">
+
+        android:clickable="true"
+        android:foreground="@{(state.selectedItem!=song || song != selectedSong) ? @color/trnasparentColor :  @color/background}">
 
         <ImageView
             android:id="@+id/thumbnail_imageview"
-            android:layout_width="50dp"
-            android:layout_height="0dp"
+            android:layout_width="@dimen/song_cover_image_size"
+            android:layout_height="@dimen/song_cover_image_size"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp"
             android:visibility="@{type.equals(`ALBUM`) ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -48,14 +55,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
+            android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
             android:singleLine="true"
-            android:marqueeRepeatLimit="marquee_forever"
             android:text="@{song.tittle}"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@{state.selectedItem==song ? @color/primaryColor : @color/primaryTextColor}"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
             app:layout_constraintEnd_toStartOf="@+id/playing_indicator_iv"
             app:layout_constraintStart_toEndOf="@+id/thumbnail_imageview"
             app:layout_constraintTop_toTopOf="@+id/thumbnail_imageview" />
@@ -64,52 +71,36 @@
             android:id="@+id/subtittle_textview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:text="@{song.category}"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="@{state.selectedItem==song ? @color/primaryColor : @color/secondaryTextColor}"
-            app:layout_constraintBottom_toTopOf="@+id/divider"
+            android:textColor="#B6FFFFFF"
+            android:textSize="11sp"
             app:layout_constraintEnd_toEndOf="@+id/tittle_textview"
             app:layout_constraintStart_toStartOf="@+id/tittle_textview"
             app:layout_constraintTop_toBottomOf="@+id/tittle_textview" />
-
-        <View
-            android:id="@+id/divider"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="4dp"
-            android:background="?android:attr/listDivider"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/subtittle_textview"
-            app:layout_constraintTop_toBottomOf="@+id/subtittle_textview" />
 
         <CheckBox
             android:id="@+id/selection_checkBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:visibility="@{state.isStateinMultiSelectionMode ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/thumbnail_imageview"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/thumbnail_imageview" />
 
         <TextView
             android:id="@+id/track_number_texxtview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="15dp"
             android:text="@{String.valueOf(song.trackNumber)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@{state.selectedItem==song ? @color/primaryColor : @color/primaryTextColor}"
             android:visibility="@{type.equals(`ALBUM`) ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/thumbnail_imageview"
             app:layout_constraintEnd_toEndOf="@+id/thumbnail_imageview"
             app:layout_constraintStart_toStartOf="@+id/thumbnail_imageview"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/thumbnail_imageview" />
 
         <com.taishi.library.Indicator
             android:id="@+id/playing_indicator_iv"
@@ -117,15 +108,15 @@
             android:layout_height="0dp"
             android:layout_alignParentTop="true"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="16dp"
             android:background="@color/trnasparentColor"
-            android:visibility="@{state.selectedItem==song ? View.VISIBLE : View.GONE}"
+            android:visibility="gone"
             app:bar_color="@color/primaryColor"
             app:bar_num="6"
             app:duration="20000"
-            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/download_progress_textview"
-            app:layout_constraintTop_toTopOf="@+id/tittle_textview"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             app:step_num="70" />
 
@@ -134,8 +125,8 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginEnd="8dp"
-            android:visibility="@{(state.isStateinMultiSelectionMode || type == `QUEUE`) ? View.GONE : View.VISIBLE}"
             android:tint="@{(state.selectedItem==song ) ? @color/primaryColor : @color/primaryTextColor}"
+            android:visibility="@{(state.isStateinMultiSelectionMode || type == `QUEUE`) ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -146,12 +137,11 @@
             android:layout_width="18dp"
             android:layout_height="0dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             android:tint="@color/primaryColor"
             android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/download_progress_textview"
-            app:layout_constraintTop_toTopOf="@+id/tittle_textview"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_file_download_black_24dp" />
 
@@ -160,14 +150,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             android:text="0%"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/primaryColor"
+            android:textSize="17sp"
             android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/more_options_imageview"
-            app:layout_constraintTop_toTopOf="@+id/tittle_textview" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/song_drag_imageview"

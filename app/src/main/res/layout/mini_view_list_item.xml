@@ -10,7 +10,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="?attr/selectableItemBackground"
@@ -18,11 +17,11 @@
 
         <ImageView
             android:id="@+id/thumbnail_imageview"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginStart="8dp"
+            android:layout_width="@dimen/mini_view_image_size"
+            android:layout_height="@dimen/mini_view_image_size"
+            android:layout_marginStart="@dimen/min_view_image_margin_start"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="@dimen/min_view_image_margin_start"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,13 +30,14 @@
 
         <TextView
             android:id="@+id/tittle_textview"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text=""
+            android:layout_marginTop="3dp"
+            android:text="alskdjfasl "
+            android:maxLines="2"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#97FFFFFF"
+            android:textColor="#FFFFFF"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/thumbnail_imageview"
             app:layout_constraintStart_toStartOf="@+id/thumbnail_imageview"
@@ -45,10 +45,11 @@
 
         <TextView
             android:id="@+id/subtittle_textview"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text=""
             android:textAlignment="center"
+            android:maxLines="1"
             android:textColor="#87FFFFFF"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="@+id/tittle_textview"

@@ -7,10 +7,10 @@
         <import type="android.view.View"/>
         <variable
             name="viewmodel"
-            type="com.example.ethiomusic.ui.artist.ArtistViewModel" />
+            type="com.zomatunes.zomatunes.ui.artist.ArtistViewModel" />
         <variable
             name="listinfo"
-            type="com.example.ethiomusic.data.model.RecyclerViewHelper&lt;com.example.ethiomusic.data.model.Artist&lt;String,String>>" />
+            type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper&lt;com.zomatunes.zomatunes.data.model.Artist&lt;String,String>>" />
 
     </data>
 

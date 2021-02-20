@@ -8,7 +8,7 @@
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-
+        app:statusBarBackground="@color/primaryDarkColor"
         android:background="@color/primaryDarkColor"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -23,7 +23,37 @@
                 android:id="@+id/download_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/primaryDarkColor" />
+                android:background="@color/primaryDarkColor"
+                app:layout_scrollFlags="scroll|snap|enterAlways"/>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/download_tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/primaryDarkColor"
+                app:tabIndicatorFullWidth="false"
+                app:tabMode="scrollable">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Music" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Audiobook" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Book" />
+
+
+            </com.google.android.material.tabs.TabLayout>
+
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -32,63 +62,25 @@
             android:layout_height="match_parent"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/download_recyclerview"
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/download_viewpager"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginBottom="52dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/play_download_btn"
-                tools:listitem="@layout/download_list_item" />
-
-            <ImageView
-                android:id="@+id/download_filter_imageview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/play_download_btn"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/play_download_btn"
-                app:srcCompat="@drawable/ic_sort_black_24dp" />
-
-            <Button
-                android:id="@+id/play_download_btn"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:drawableLeft="@drawable/ic_play_circle_filled_black_24dp"
-                android:text="Play all"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-
-        <TextView
-            android:id="@+id/textView37"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="No Downloads"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_anchor="@+id/download_recyclerview"
-            app:layout_anchorGravity="center"
-            android:visibility="gone" />
-
         <ProgressBar
             android:id="@+id/dowload_loading_progressbar"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_anchor="@+id/download_recyclerview"
+            app:layout_anchor="@+id/download_viewpager"
             app:layout_anchorGravity="center" />
 
 
