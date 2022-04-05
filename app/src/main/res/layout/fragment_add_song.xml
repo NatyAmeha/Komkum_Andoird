@@ -15,14 +15,42 @@
             android:id="@+id/song_result_recyclerview"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/default_margin_start"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="@dimen/default_margin_start"
             android:visibility="invisible"
+
             app:layout_constraintBottom_toBottomOf="@+id/song_viewpager"
             app:layout_constraintEnd_toEndOf="@+id/song_viewpager"
             app:layout_constraintStart_toStartOf="@+id/song_viewpager"
             app:layout_constraintTop_toBottomOf="@+id/search_song_text_input" />
+
+        <!--        <com.mancj.materialsearchbar.MaterialSearchBar-->
+        <!--            android:id="@+id/searchview"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="8dp"-->
+        <!--            android:layout_marginTop="8dp"-->
+        <!--            android:layout_marginEnd="8dp"-->
+        <!--            android:background="@color/primaryDarkColor"-->
+        <!--            app:cardCornerRadius="6dp"-->
+        <!--            app:cardElevation="10dp"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            app:mt_highlightedTextColor="@color/primaryTextColor"-->
+        <!--            app:mt_hint="Find your Favorite Artists"-->
+        <!--            app:mt_menuDividerEnabled="true"-->
+        <!--            app:mt_menuIconDrawable="?android:attr/actionModeWebSearchDrawable"-->
+        <!--            app:mt_menuIconTint="#FFFFFF"-->
+        <!--            app:mt_navIconEnabled="true"-->
+        <!--            app:mt_placeholder="Find your Favorite Artists"-->
+        <!--            app:mt_placeholderColor="@color/primaryTextColor"-->
+        <!--            app:mt_roundedSearchBarEnabled="true"-->
+        <!--            app:mt_searchBarColor="@color/primaryLightColor"-->
+        <!--            app:mt_searchIconTint="@color/primaryTextColor"-->
+        <!--            app:mt_speechMode="true"-->
+        <!--            app:mt_textColor="@color/primaryTextColor" />-->
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/song_viewpager"
@@ -30,50 +58,60 @@
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
             app:layout_constraintBottom_toTopOf="@+id/tabLayout"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_song_text_input">
+            app:layout_constraintTop_toBottomOf="@+id/search_song_text_input"
+            app:layout_constraintVertical_bias="0.0">
 
         </androidx.viewpager2.widget.ViewPager2>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <com.mancj.materialsearchbar.MaterialSearchBar
             android:id="@+id/search_song_text_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginStart="@dimen/default_margin_start"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/default_margin_start"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/search_song_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Search Songs"
-                android:textAlignment="viewStart"
-                android:textSize="16sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toTopOf="parent"
+            app:mt_highlightedTextColor="@color/primaryTextColor"
+            app:mt_hint="@string/search_song"
+            app:mt_menuDividerEnabled="true"
+            app:mt_menuIconDrawable="?android:attr/actionModeWebSearchDrawable"
+            app:mt_menuIconTint="#FFFFFF"
+            app:mt_navIconEnabled="false"
+            app:mt_placeholder="@string/search_song"
+            app:mt_roundedSearchBarEnabled="true"
+            app:mt_searchBarColor="@color/light_secondaryDarkColor" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:tabBackground="@drawable/tab_item_selector"
             app:tabGravity="center"
             app:tabIndicatorColor="@color/trnasparentColor"
-            app:tabMaxWidth="20dp">
+            app:tabIndicatorHeight="0dp"
+            app:tabMaxWidth="20dp" />
 
-
-        </com.google.android.material.tabs.TabLayout>
+        <ProgressBar
+            android:id="@+id/progressBar6"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/circle_4"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

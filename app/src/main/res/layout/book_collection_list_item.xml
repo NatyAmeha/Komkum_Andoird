@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <com.zomatunes.zomatunes.ui.customview.CustomBookCollectionView
+        <com.komkum.komkum.ui.customview.CustomBookCollectionView
             android:id="@+id/book_collection_custom_view"
             android:layout_width="@dimen/book_collection_image_width"
             android:layout_height="@dimen/book__collection_image_height"
@@ -30,7 +30,6 @@
             android:maxLines="2"
             android:text="short book collection description"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textColor="#8FFFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/book_collection_custom_view"
             app:layout_constraintHorizontal_bias="0.0"

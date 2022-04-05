@@ -24,8 +24,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/backimage" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/book_title_textview"
@@ -35,7 +34,6 @@
             android:text="Book Tittle ;lkasjdf ;lkas djf;laksdjf "
             android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#FFFFFF"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="@+id/book_cover_imageview"
             app:layout_constraintStart_toStartOf="@+id/book_cover_imageview"

@@ -5,12 +5,20 @@
 
     <data>
         <import type="android.view.View"/>
+        <import type="com.komkum.komkum.data.model.Artist"/>
        <variable
            name="isArtistFavorite"
            type="Boolean" />
         <variable
             name="artistMetadata"
-            type="com.zomatunes.zomatunes.data.model.ArtistMetaData" />
+            type="com.komkum.komkum.data.model.ArtistMetaData" />
+        <variable
+            name="artistListInfo"
+            type="com.komkum.komkum.data.model.RecyclerViewHelper&lt;com.komkum.komkum.data.model.Artist&lt;String,String>>" />
+        <variable
+            name="similarArtistList"
+            type="java.util.List&lt;Artist&lt;String,String>>" />
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -18,44 +26,46 @@
         android:fitsSystemWindows="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primaryDarkColor"
         tools:context=".ui.artist.ArtistFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
             android:fitsSystemWindows="true"
-            android:background="@color/trnasparentColor"
+            android:elevation="1000dp"
+            android:background="@color/transparent"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/artist_collapsing_toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="280dp"
-                app:titleEnabled="false"
+                android:layout_height="300dp"
+                android:fitsSystemWindows="true"
+                app:statusBarScrim="@color/light_secondaryDarkColor"
+                app:contentScrim="@color/light_secondaryDarkColor"
                 app:expandedTitleGravity="bottom|center"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
-                app:contentScrim="@color/primaryDarkColor"
-                app:statusBarScrim="@color/primaryDarkColor">
+                app:titleEnabled="false">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/artist_header_container"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
                     app:layout_collapseMode="parallax">
 
                     <ImageView
                         android:id="@+id/artist_profile_image"
                         android:layout_width="match_parent"
-                        android:layout_height="280dp"
+                        android:layout_height="@dimen/banner_1_image_size_"
 
                         android:cropToPadding="false"
                         android:elevation="0dp"
                         android:fitsSystemWindows="true"
                         android:foreground="@drawable/appbar_gradient"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/backimage"
+                        android:src="@drawable/music_placeholder"
                         app:layout_collapseMode="parallax"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -69,8 +79,7 @@
                         android:layout_marginEnd="24dp"
                         android:layout_marginBottom="24dp"
                         android:textAlignment="center"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textSize="16sp"
+                        android:textAppearance="@style/Body1"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -83,18 +92,51 @@
                         android:layout_marginEnd="16dp"
                         android:textAlignment="center"
                         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                        android:textColor="#FFFFFF"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@+id/artist_followers_textview"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
+                    <TextView
+                        android:id="@+id/rank_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginBottom="56dp"
+                        android:text="1"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                        android:textStyle="bold"
+                        android:visibility="@{artistMetadata != null ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintBottom_toTopOf="@+id/artist_name_textview"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/rank_indicator_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" ST"
+                        android:visibility="@{artistMetadata != null ? View.VISIBLE : View.GONE}"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/rank_textview"
+                        app:layout_constraintTop_toTopOf="@+id/rank_textview" />
+
+                    <TextView
+                        android:id="@+id/textView122"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/this_month"
+                        android:visibility="invisible"
+                        app:layout_constraintStart_toEndOf="@+id/rank_textview"
+                        app:layout_constraintTop_toBottomOf="@+id/rank_indicator_textview" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/artist_toolbar"
+                    android:background="@color/transparent"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
+                    android:elevation="1000dp"
                     app:layout_collapseMode="pin" />
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -115,13 +157,13 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/artist_info_btn"
+                    android:id="@+id/artist_donate_btn"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="About"
+                    android:layout_marginEnd="@dimen/default_margin_start"
+                    android:text="@string/support"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/artist_follow_btn"
@@ -131,25 +173,24 @@
                     android:id="@+id/artist_follow_btn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="Follow"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:layout_marginTop="@dimen/default_margin_start"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/follow"
                     android:visibility="@{isArtistFavorite ? View.INVISIBLE : View.VISIBLE}"
-                    app:layout_constraintEnd_toStartOf="@+id/artist_info_btn"
+                    app:layout_constraintEnd_toStartOf="@+id/artist_donate_btn"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView43"
+                    android:id="@+id/latest_release_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="24dp"
-                    android:padding="8dp"
-                    android:text="Lateset Release"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="#FFFFFF"
+                    android:text="@string/latest_release"
+                    android:textAppearance="@style/Title"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/artist_follow_btn" />
@@ -158,19 +199,17 @@
                     android:id="@+id/textView44"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="32dp"
-                    android:padding="8dp"
-                    android:text="Top Songs"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/single_songs"
+                    android:textAlignment="textStart"
+                    android:textAppearance="@style/Title"
                     android:textStyle="bold"
                     android:visibility="@{artistMetadata.artist.singleSongs.size != 0 ? View.VISIBLE : View.GONE}"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/latest_release_container" />
+                    app:layout_constraintStart_toStartOf="@+id/textView37"
+                    app:layout_constraintTop_toBottomOf="@+id/top_song_recyclerview" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/top_song_recyclerview"
+                    android:id="@+id/single_song_recyclerview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -183,21 +222,20 @@
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="See all songs"
+                    android:text="@string/see_all_songs"
                     android:visibility="@{artistMetadata.artist.singleSongs.size > 4 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/top_song_recyclerview" />
+                    app:layout_constraintTop_toBottomOf="@+id/single_song_recyclerview" />
 
                 <TextView
                     android:id="@+id/textView46"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="32dp"
-                    android:text="Top Albums"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="#FFFFFF"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/albums"
+                    android:textAppearance="@style/Title"
                     android:textStyle="bold"
                     android:visibility="@{artistMetadata.artist.albums.size != 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintStart_toStartOf="parent"
@@ -217,9 +255,9 @@
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="see All Albums"
+                    android:text="@string/see_all_albums"
                     android:visibility="@{artistMetadata.artist.albums.size > 4 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/top_album_recyclerview" />
 
@@ -227,24 +265,20 @@
                     android:id="@+id/artist_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="32dp"
-                    android:padding="8dp"
-                    android:text="Similar Artists"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="#FFFFFF"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/similar_artists"
+                    android:textAppearance="@style/Title"
                     android:textStyle="bold"
                     android:visibility="invisible"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/all_albums_btn" />
+                    app:layout_constraintTop_toBottomOf="@+id/artist_radio_card_view" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/similar_artist_recyclerview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="64dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/artist_textview" />
@@ -254,7 +288,7 @@
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:text="Following"
+                    android:text="@string/following"
                     android:visibility="@{isArtistFavorite ? View.VISIBLE : View.INVISIBLE}"
                     app:layout_constraintBottom_toBottomOf="@+id/artist_follow_btn"
                     app:layout_constraintEnd_toEndOf="@+id/artist_follow_btn"
@@ -266,13 +300,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
-                    app:cardBackgroundColor="@android:color/secondary_text_light"
+                    app:cardBackgroundColor="@color/light_secondaryColor"
                     app:cardCornerRadius="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView43">
+                    app:layout_constraintTop_toBottomOf="@+id/latest_release_textview">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -280,37 +314,37 @@
 
                         <TextView
                             android:id="@+id/latest_type_textview"
+                            style="@style/Caption"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="TextView"
                             android:textAlignment="viewStart"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                            android:textAppearance="@style/Caption"
                             app:layout_constraintEnd_toEndOf="@+id/latest_date_textview"
                             app:layout_constraintStart_toStartOf="@+id/latest_date_textview"
                             app:layout_constraintTop_toBottomOf="@+id/latest_date_textview" />
 
                         <TextView
                             android:id="@+id/latest_date_textview"
+                            style="@style/Body2"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:text="TextView"
                             android:textAlignment="viewStart"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textSize="16sp"
+                            android:textAppearance="@style/Body2"
                             app:layout_constraintEnd_toEndOf="@+id/latest_name_textview"
                             app:layout_constraintStart_toStartOf="@+id/latest_name_textview"
                             app:layout_constraintTop_toBottomOf="@+id/latest_name_textview" />
 
                         <TextView
                             android:id="@+id/latest_name_textview"
+                            style="@style/Subtitle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
-                            android:layout_marginTop="4dp"
                             android:layout_marginEnd="16dp"
+                            android:maxLines="1"
                             android:text="Latest Name"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textColor="#FFFFFF"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/latest_content_imageview"
                             app:layout_constraintTop_toTopOf="@+id/latest_content_imageview" />
@@ -319,13 +353,107 @@
                             android:id="@+id/latest_content_imageview"
                             android:layout_width="90dp"
                             android:layout_height="80dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginBottom="4dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:scaleType="centerCrop"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/artist_radio_card_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="8dp"
+                    app:cardCornerRadius="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/all_albums_btn">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/gradient6">
+
+                        <ImageView
+                            android:id="@+id/imageView5"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="16dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/radio_placeholder" />
+
+                        <TextView
+                            android:id="@+id/textView42"
+                            style="@style/Title"
+                            android:textColor="@color/light_secondaryLightColor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/default_margin_start"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/artist_radio"
+                            android:textAppearance="@style/Title"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+                        <TextView
+                            android:id="@+id/textView55"
+                            style="@style/Body1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:textColor="@color/light_secondaryLightColor"
+                            android:text="Station contains differnt songs  related to this artist genre and moods"
+                            android:textAlignment="textStart"
+                            android:textAppearance="@style/Body3"
+                            app:layout_constraintEnd_toStartOf="@+id/imageView5"
+                            app:layout_constraintStart_toStartOf="@+id/textView42"
+                            app:layout_constraintTop_toBottomOf="@+id/textView42" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/textView37"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/top_songs"
+                    android:textAppearance="@style/Title"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/latest_release_container" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/top_song_recyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView37" />
+
+                <androidx.compose.ui.platform.ComposeView
+                    android:id="@+id/donation_leaderboard_composeview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="56dp"
+                    android:text="TextView"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/similar_artist_recyclerview" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
@@ -336,15 +464,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="@{artistMetadata == null ? View.VISIBLE : View.GONE}"/>
+            android:background="@drawable/circle_4"
+            android:visibility="@{artistMetadata == null ? View.VISIBLE : View.GONE}" />
 
         <TextView
             android:id="@+id/artist_error_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="sorry \n Something wen wrong please try again"
+            android:text="Sorry something went wrong \n Please try again."
             android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
             android:visibility="gone" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

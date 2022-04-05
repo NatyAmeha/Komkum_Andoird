@@ -4,29 +4,51 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColor</item>
-        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorPrimaryDark">@color/light_secondaryDarkColor</item>
         <item name="colorAccent">@color/primaryColor</item>
     </style>
 
-    <style name="AppthemeLight" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppthemeLight" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/light_primaryColor</item>
+        <!--        <item name="android:windowTranslucentStatus">true</item>-->
+        <!--        <item name="android:navigationMode"></item>-->
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:statusBarColor">@color/light_secondaryDarkColor</item>
+        <item name="colorPrimaryDark">@color/light_secondaryLightColor</item>
+        <item name="colorAccent">@color/light_primaryColor</item>
 
+        <item name="android:navigationBarColor">@color/light_secondaryColor</item>
+        <item name="android:windowBackground">@color/light_background</item>
+
+        <!--        <item name="android:windowBackground">@drawable/item_selected</item>-->
+<!--        <item name="cardBackgroundColor">@color/background</item>-->
+        <item name="colorSecondary">@color/light_secondaryColor</item>
+        <item name="colorControlActivated">@color/light_primaryColor</item>
+<!--        <item name="md_background_color">@color/transparent</item>-->
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="fontFamily">@font/roboto</item>
+<!--        <item name="android:textColorSecondary">@color/light_secondaryTextColor</item>-->
     </style>
 
     <style name="AppthemeDark" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">@color/primaryColor</item>
-        <item name="android:statusBarColor">@color/primaryDarkColor</item>
-        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
-        <item name="colorAccent">@color/primaryColor</item>
-        <item name="colorSecondary">@color/secondaryColor</item>
-        <item name="colorControlActivated">@color/primaryColor</item>
-        <item name="md_background_color">@color/transparent</item>
-
-        <!--        <item name="android:fontFamily">@font/asap</item>-->
-        <!--        <item name="fontFamily">@font/asap</item>-->
+<!--        <item name="colorPrimary">@color/primaryColor</item>-->
+<!--&lt;!&ndash;        <item name="android:windowTranslucentStatus">true</item>&ndash;&gt;-->
+<!--&lt;!&ndash;        <item name="android:navigationMode"></item>&ndash;&gt;-->
+<!--        <item name="android:windowContentTransitions">true</item>-->
+<!--        <item name="android:statusBarColor">@color/background</item>-->
+<!--        <item name="colorPrimaryDark">@color/primaryDarkColor</item>-->
+<!--        <item name="colorAccent">@color/primaryColor</item>-->
+<!--        <item name="android:windowBackground">@drawable/item_selected</item>-->
+<!--        <item name="cardBackgroundColor">@color/background</item>-->
+<!--        <item name="colorSecondary">@color/secondaryColor</item>-->
+<!--        <item name="colorControlActivated">@color/primaryColor</item>-->
+<!--        <item name="md_background_color">@color/transparent</item>-->
+<!--        <item name="android:fontFamily">@font/roboto</item>-->
+<!--        <item name="fontFamily">@font/roboto</item>-->
     </style>
 
-    <style name="AppthemeDark.Launcher">
-        <item name="android:windowBackground">@drawable/splash_screen</item>
+    <style name="AppthemeLight.Launcher">
+        <item name="android:windowBackground">@drawable/splash_icon_screen</item>
     </style>
 
     <style name="TextAppearance.AppCompat.tittle">
@@ -34,11 +56,11 @@
     </style>
 
     <style name="AppbarBackground">
-        <item name="android:background">@color/primaryDarkColor</item>
+        <item name="android:background">@color/light_secondaryDarkColor</item>
     </style>
 
     <style name="BodyBackground">
-        <item name="android:background">@color/primaryLightColor</item>
+        <item name="android:background">@color/light_secondaryColor</item>
     </style>
 
     <style name="Widget.AppthemeDark.ActionBar.Fullscreen" parent="Widget.AppCompat.ActionBar">
@@ -46,8 +68,106 @@
     </style>
 
     <style name="Widget.AppthemeDark.ButtonBar.Fullscreen" parent="">
-        <item name="android:background">@color/black_overlay</item>
+        <item name="android:background">@color/light_secondaryDarkColor</item>
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
+
+
+
+
+
+
+
+
+
+
+    <style name="Header2" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/header2</item>
+    </style>
+    <style name="Header3" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/header3</item>
+    </style>
+    <style name="Header4" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/header4</item>
+    </style>
+    <style name="Header" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/header</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Title" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/title</item>
+    </style>
+
+
+    <style name="Subtitle" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/subtitle</item>
+    </style>
+    <style name="Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/subtitle1</item>
+    </style>
+    <style name="Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/subtitle2</item>
+    </style>
+    <style name="Body1" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/body_1</item>
+    </style>
+
+    <style name="Body2" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="textColor">?android:textColorSecondary</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/body_2</item>
+    </style>
+
+    <style name="Body3" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="textColor">#8FFFFFFF</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/body_3</item>
+    </style>
+
+
+    <style name="Button" parent="TextAppearance.MaterialComponents.Button">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/button</item>
+    </style>
+    <style name="Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/caption</item>
+    </style>
+
+    <style name="Caption2" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/caption2</item>
+    </style>
+
+    <style name="Overline" parent="TextAppearance.MaterialComponents.Overline">
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/overline</item>
+    </style>
+
 
 </resources>

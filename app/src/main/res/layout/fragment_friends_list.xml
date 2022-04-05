@@ -15,6 +15,7 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
+            android:background="@color/primaryDarkColor"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
 
@@ -29,8 +30,9 @@
             android:id="@+id/friends_list_recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            tools:listitem="@layout/user_list_item" >
+            tools:listitem="@layout/user_list_item">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -39,7 +41,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="No Friends  Available. No facebook friends use this app"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="No friends available.\n No facebook friends use this app"
             android:visibility="gone" />
 
         <ProgressBar

@@ -6,28 +6,27 @@
     <data>
         <variable
             name="viewModel"
-            type="com.zomatunes.zomatunes.ui.artist.ArtistViewModel" />
+            type="com.komkum.komkum.ui.artist.ArtistViewModel" />
         <variable
             name="listInfo"
-            type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper&lt;com.zomatunes.zomatunes.data.model.Artist&lt;String,String>>" />
+            type="com.komkum.komkum.data.model.RecyclerViewHelper&lt;com.komkum.komkum.data.model.Artist&lt;String,String>>" />
 
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primaryDarkColor">
-
+        android:background="@drawable/item_selected">
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
+            android:background="@color/transparent"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/artist_list_toolbar"
                 android:layout_height="?attr/actionBarSize"
-                android:layout_width="match_parent"
-                android:background="@color/primaryDarkColor"/>
+                android:layout_width="match_parent" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -50,19 +49,20 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:listitem="@layout/mini_view_list_item" />
 
-            <Button
-                android:id="@+id/find_more_artist_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="64dp"
-                android:elevation="30dp"
-                android:text="Find more Artists"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+        <Button
+            android:id="@+id/find_more_artist_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="@dimen/default_margin_start"
+            android:background="@drawable/btn_rounded"
+            android:elevation="30dp"
+            android:text="@string/find_more_artists" />
 
         <ProgressBar
             android:id="@+id/artistlist_progressbar"
@@ -71,7 +71,19 @@
             android:layout_height="wrap_content"
             app:layout_anchor="@+id/recyclerView"
             app:layout_anchorGravity="center"
+            android:background="@drawable/circle_4"
             app:progressVisibility="@{viewModel.artistsList}"/>
+
+        <TextView
+            android:id="@+id/artist_list_error_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:text="No Artists found \n Your favorite Artists goes here"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold" />
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:background="?attr/selectableItemBackground"
         android:layout_marginBottom="8dp">
 
         <androidx.cardview.widget.CardView
@@ -36,67 +37,62 @@
 
                 <TextView
                     android:id="@+id/subscription_name"
-                    android:layout_width="wrap_content"
+                    style="@style/Title"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:text="Plan Name"
-                    android:textAlignment="viewStart"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/subscription_price"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:background="@drawable/btn_rounded"
+                    android:backgroundTint="#FFFFFF"
                     android:elevation="50dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
                     android:text="14.99"
+                    android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColor="#0E0E0E"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/subscription_features_textview"
+                    app:layout_constraintStart_toStartOf="@+id/subscription_features_textview"
                     app:layout_constraintTop_toBottomOf="@+id/subscription_features_textview" />
 
                 <TextView
                     android:id="@+id/subscription_features_textview"
+                    style="@style/Body1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="@dimen/default_margin_start"
                     android:text="Description About the current subscription or recurring plan Description About the current subscription or recurring plan Description About the current subscription or recurring plan "
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/subscription_name" />
 
                 <TextView
-                    android:id="@+id/subs_daylength_textview"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="24dp"
-                    android:text="30 Days Free trial"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
                     android:id="@+id/textView26"
+                    style="@style/Caption"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="32dp"
                     android:layout_marginBottom="8dp"
                     android:text="Payment deducted based on your payment choise \n renewed after 30 days"
                     android:textAlignment="viewStart"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/subscription_price"
+                    app:layout_constraintStart_toStartOf="@+id/subscription_price"
                     app:layout_constraintTop_toBottomOf="@+id/subscription_price" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

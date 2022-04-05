@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.komkum.komkum.data.model.RecyclerViewHelper"/>
+        <import type="com.komkum.komkum.data.model.Product"/>
+        <import type="android.view.View"/>
+        <import type="com.komkum.komkum.data.model.ProductPackage"/>
+
+
+        <variable
+            name="productInfo"
+            type="RecyclerViewHelper&lt;Product>" />
+
+        <variable
+            name="packageInfo"
+            type="RecyclerViewHelper&lt;ProductPackage&lt;Product>>" />
+
+        <variable
+            name="productViewmodel"
+            type="com.komkum.komkum.ui.store.ProductViewModel" />
+    </data>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        app:statusBarBackground="@color/light_background"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            app:elevation="30dp"
+            android:background="@color/transparent"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <com.mancj.materialsearchbar.MaterialSearchBar
+                android:id="@+id/product_searchview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:elevation="50dp"
+                app:mt_hint="Search products"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:mt_maxSuggestionsCount="1"
+                app:mt_menuDividerEnabled="true"
+                app:mt_menuIconDrawable="?android:attr/actionModeWebSearchDrawable"
+                app:mt_placeholder="Search products"
+                app:mt_roundedSearchBarEnabled="true"
+                app:mt_searchBarColor="@color/light_secondaryDarkColor" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/product_search_recyclerview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="56dp"
+                    android:paddingBottom="56dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/package_list_recyclerview"
+                    app:productInfo="@{productInfo}"
+                    app:productList="@{productViewmodel.productList}"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/productlist_list_item" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/package_list_recyclerview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/light_secondaryLightColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:packageInfo="@{packageInfo}"
+                    app:packageList="@{productViewmodel.packageList}" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+
+
+        <ProgressBar
+            android:id="@+id/product_search_progressbar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/search_error_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:text="Something went wrong please try again" />
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

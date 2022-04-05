@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.google.android.material.circularreveal.CircularRevealRelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/circularRevealRelativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.onboarding.MainOnboardingFragment"
-    android:animateLayoutChanges="true">
+    android:animateLayoutChanges="true"
+    tools:context=".ui.onboarding.MainOnboardingFragment">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/onboarding_viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </androidx.viewpager2.widget.ViewPager2>
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/onboarding_viewpager"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:tabBackground="@drawable/tab_item_selector"
         app:tabGravity="center"
         app:tabIndicatorColor="@color/trnasparentColor"
@@ -41,13 +44,15 @@
 
     <Button
         android:id="@+id/onboarding_next_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/onboarding_viewpager"
-        android:layout_centerHorizontal="true"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
-        android:text="Next" />
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/btn_rounded"
+        android:text="@string/next"
+        app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</com.google.android.material.circularreveal.CircularRevealRelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 

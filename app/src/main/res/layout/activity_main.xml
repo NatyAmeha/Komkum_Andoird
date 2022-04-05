@@ -11,13 +11,13 @@
 
         <import type="android.text.format.DateUtils" />
 
-        <import type="com.zomatunes.zomatunes.util.viewhelper.PlayerState.RadioState" />
+        <import type="com.komkum.komkum.util.viewhelper.PlayerState.RadioState" />
 
         <import type="android.view.View" />
 
         <variable
             name="viewmodel"
-            type="com.zomatunes.zomatunes.MainActivityViewmodel" />
+            type="com.komkum.komkum.MainActivityViewmodel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,14 +37,23 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navGraph="@navigation/main_navigation"
-            tools:layout="@layout/home_fragment" />
+            app:navGraph="@navigation/main_navigation" />
+
+
+<!--        <androidx.viewpager2.widget.ViewPager2-->
+<!--            android:id="@+id/main_container_viewpager"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/bottom_nav_view"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"/>-->
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/player_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/primaryLightColor"
+            android:background="@color/light_secondaryColor"
             android:visibility="@{(viewmodel.playlistQueue.size > 0 &amp;&amp; viewmodel.showPlayerCard &amp;&amp; !viewmodel.isAudiobookIntro ) ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toTopOf="@+id/bottom_nav_view"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,15 +70,13 @@
                 app:layout_constraintBottom_toBottomOf="@+id/bsheet_song_artist_textview"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/bsheet_song_tittle_textview"
-                app:loadImage="@{viewmodel.nowPlaying.getString(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON_URI)}"
-                app:srcCompat="@drawable/backimg" />
+                app:loadImage="@{viewmodel.nowPlaying.getString(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON_URI)}" />
 
             <ProgressBar
                 android:id="@+id/bottonsheet_song_progressbar"
                 style="?android:attr/progressBarStyleHorizontal"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:progress="@{Integer.valueOf(String.valueOf(viewmodel.playbackState.position))}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -80,10 +87,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="8dp"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
                 android:text="@{viewmodel.nowPlaying.getString(MediaMetadataCompat.METADATA_KEY_TITLE)}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="#FFFFFF"
-                android:textSize="15sp"
+                android:textAppearance="@style/Body3"
+                android:textStyle="bold"
+                android:transitionName="title"
                 app:layout_constraintEnd_toStartOf="@+id/bsheet_play_btn"
                 app:layout_constraintStart_toEndOf="@+id/bsheet_imageView"
                 app:layout_constraintTop_toBottomOf="@+id/bottonsheet_song_progressbar" />
@@ -95,9 +105,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="3dp"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
                 android:text="@{viewmodel.nowPlaying.getString(MediaMetadataCompat.METADATA_KEY_DISPLAY_SUBTITLE)}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textSize="13sp"
+                android:textAppearance="@style/Caption"
+                android:transitionName="subtitle"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/bsheet_play_btn"
                 app:layout_constraintStart_toEndOf="@+id/bsheet_imageView"
@@ -116,7 +129,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/exo_icon_play" />
+                app:srcCompat="@drawable/ic_baseline_play_arrow_gray_24" />
 
             <ImageView
                 android:id="@+id/bsheet_pause_btn"
@@ -129,23 +142,47 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/bsheet_play_btn"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/exo_icon_pause" />
+                app:srcCompat="@drawable/ic_baseline_pause_pause_24" />
+
+            <ProgressBar
+                android:id="@+id/stream_loading_progressbar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:visibility="@{viewmodel.playbackState.state == PlaybackStateCompat.STATE_BUFFERING ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/bsheet_play_btn"
+                app:layout_constraintStart_toStartOf="@+id/bsheet_play_btn"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_nav_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:elevation="6dp"
+            app:elevation="6dp"
+            android:background="@color/light_secondaryColor"
             app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/nav_menu" />
+
+        <ProgressBar
+            android:id="@+id/progressBar4"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/circle_4"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -33,7 +33,7 @@
 
     <dimen name="cover_image_size">160dp</dimen>
     <dimen name="title_text_view_size">23sp</dimen>
-    <dimen name="sub_title_text_view_size">16sp</dimen>
+    <dimen name="sub_title_text_view_size">15sp</dimen>
 
 
     <dimen name="error_view_margin_top">96dp</dimen>
@@ -42,7 +42,7 @@
     <dimen name="mini_view_image_size">120dp</dimen>
     <dimen name="min_view_image_margin_start">8dp</dimen>
 
-    <dimen name="playlist_image_size">120dp</dimen>
+    <dimen name="playlist_image_size">110dp</dimen>
     <dimen name="playlist_desc_text_size">14sp</dimen>
 
     <dimen name="browse_item_textview_size">28sp</dimen>
@@ -54,14 +54,14 @@
 
     <dimen name="song_cover_image_size">45dp</dimen>
     <dimen name="song_title_text_size">17sp</dimen>
-    <dimen name="song_sub_title_text_size">11sp</dimen>
+    <dimen name="song_sub_title_text_size">13sp</dimen>
 
     <dimen name="medium_view_image_width">170dp</dimen>
-    <dimen name="medium_view_image_height">165dp</dimen>
+    <dimen name="medium_view_image_height">170dp</dimen>
 
     <dimen name="download_image_width">95dp</dimen>
     <dimen name="download_image_height">85dp</dimen>
-    <dimen name="download_title_text_size">19sp</dimen>
+    <dimen name="download_title_text_size">17sp</dimen>
     <dimen name="download_sub_title_text_size">14sp</dimen>
     <dimen name="download_icon_size">20dp</dimen>
 
@@ -73,10 +73,130 @@
     <dimen name="player_margin_bottom">12dp</dimen>
     <dimen name="player_header_icon_size">40dp</dimen>
     <dimen name="player_header_title_text_size">16sp</dimen>
+    <dimen name="player_margin_top">8dp</dimen>
+    <dimen name="player_viewpager_top">4dp</dimen>
 
 
-    <dimen name="bullet_span_size">50</dimen>
 
+    <dimen name="player_lyrics_text_size">14sp</dimen>
+
+
+    <dimen name="user_profile_image_view_size">145dp</dimen>
+
+
+
+    <dimen name="library_item_image_size">35dp</dimen>
+    <dimen name="library_item_text_size">18sp</dimen>
+
+
+
+    <dimen name="bullet_span_size">30</dimen>
+
+
+    <dimen name="mainaccount_fragment_margin">70dp</dimen>
+    <dimen name="mainaccount_fragment_btn_margin_top">50dp</dimen>
+    <dimen name="onboarding_fragment_margin_bottom">150dp</dimen>
+
+
+
+    <dimen name="top_margin_value">56dp</dimen>
+    <dimen name="medium_margin_value">32dp</dimen>
+    <dimen name="minimum_margin_value">16dp</dimen>
+    <dimen name="home_fragment_margin_top">24dp</dimen>
+
+
+
+    <dimen name="default_margin_start">16dp</dimen>
+    <dimen name="login_margin_top">100dp</dimen>
+
+    <dimen name="bullet_size">4dp</dimen>
+
+    <dimen name="fb_friend_btn_margin">32dp</dimen>
+
+    <dimen name="search_box_margin">24dp</dimen>
+
+    <dimen name="onboarding_margin_top">300dp</dimen>
+
+
+
+
+
+
+<!--    image-->
+    <dimen name="mini_circle_image_size">35dp</dimen>
+    <dimen name="medium_circle_image_size">50dp</dimen>
+
+    <dimen name="large_1_circle_image_size">120dp</dimen>
+    <dimen name="large_circle_image_size">75dp</dimen>
+
+    <dimen name="banner_1_image_size_">280dp</dimen>
+    <dimen name="banner_2_image_size_">250dp</dimen>
+    <dimen name="banner_3_image_size_">200dp</dimen>
+
+
+
+<!--   icon size-->
+    <dimen name="medium_icon_size">40dp</dimen>
+    <dimen name="small_icon_size">25dp</dimen>
+
+
+
+<!--    margin-->
+    <dimen name="default_margin_top">8dp</dimen>
+
+
+
+<!--    //store dimension-->
+    <dimen name="ad_banner_height">130dp</dimen>
+    <dimen name="game_card_width">300dp</dimen>
+    <dimen name="game_card_height">200dp</dimen>
+    <dimen name="game_advertiser_image_size">190dp</dimen>
+    <dimen name="game_price_bar">125dp</dimen>
+
+
+
+    <dimen name="package_image_width">160dp</dimen>
+    <dimen name="package_image_height">120dp</dimen>
+
+
+
+    <dimen name="product_list_item_size">190dp</dimen>
+    <dimen name="vertical_product_list_item_size">140dp</dimen>
+    <dimen name="product_mini_list_item_size">130dp</dimen>
+    <dimen name="product_category_image_size">75dp</dimen>
+    <dimen name="product_gallery_height">250dp</dimen>
+
+
+
+
+    <!--    team-->
+    <dimen name="team_list_item_image_size">60dp</dimen>
+    <dimen name="team_mini_list_item_image_size">80dp</dimen>
+
+
+
+
+    <!--    // typography dimension-->
+    <dimen name="header_font_size">22sp</dimen>
+    <dimen name="title_font_size">20</dimen>
+
+
+<!--    text size-->
+    <dimen name="header">22sp</dimen>
+    <dimen name="header2">28sp</dimen>
+    <dimen name="header3">32sp</dimen>
+    <dimen name="header4">40sp</dimen>
+    <dimen name="title">19sp</dimen>
+    <dimen name="subtitle">17sp</dimen>
+    <dimen name="subtitle1">14sp</dimen>
+    <dimen name="subtitle2">12sp</dimen>
+    <dimen name="body_1">16sp</dimen>
+    <dimen name="body_2">14sp</dimen>
+    <dimen name="body_3">15sp</dimen>
+    <dimen name="button">12sp</dimen>
+    <dimen name="caption">13sp</dimen>
+    <dimen name="caption2">12sp</dimen>
+    <dimen name="overline">9sp</dimen>
 
 
 </resources>

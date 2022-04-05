@@ -17,7 +17,6 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
             android:fitsSystemWindows="true"
-
             android:layout_height="@dimen/book__collection_fragment_header_height"
             android:layout_width="match_parent">
 
@@ -29,9 +28,9 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
 
-                app:contentScrim="?attr/colorPrimary">
+                app:contentScrim="@color/primaryDarkColor">
 
-                <com.zomatunes.zomatunes.ui.customview.CustomBookCollectionView
+                <com.komkum.komkum.ui.customview.CustomBookCollectionView
                     android:id="@+id/book_collection_header_customview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
@@ -62,6 +61,7 @@
                     android:layout_marginTop="16dp"
                     android:text="Book Collection Title"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textSize="21sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -81,8 +81,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Curated by "
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textSize="20sp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#FFFFFF"
                     app:layout_constraintStart_toStartOf="@+id/book_collections_description_textview"
                     app:layout_constraintTop_toBottomOf="@+id/book_collections_description_textview" />
 
@@ -90,7 +90,7 @@
                     android:id="@+id/curator_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ZomaTunes"
+                    android:text="Komkum"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     app:layout_constraintStart_toStartOf="@+id/textView119"
                     app:layout_constraintTop_toBottomOf="@+id/textView119" />

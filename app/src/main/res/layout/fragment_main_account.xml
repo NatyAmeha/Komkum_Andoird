@@ -19,123 +19,106 @@
             android:id="@+id/album_add_imageview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:foreground="@drawable/appbar_gradient"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/onboardingcover" />
+            />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/album_download_imageview"
-                android:layout_width="81dp"
-                android:layout_height="77dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="64dp"
+                android:id="@+id/main_app_icon_imageview"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/app_icon_rounded"
                 app:layout_constraintBottom_toTopOf="@+id/textView15"
-                app:layout_constraintEnd_toStartOf="@+id/textView13"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_audiotrack_black_24dp" />
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="16dp"
-                android:gravity="center_vertical"
-                android:text="Zomma"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline3"
-                android:textColor="#F9F9FB"
-                android:textSize="40dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/album_download_imageview"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/album_download_imageview"
-                app:layout_constraintTop_toTopOf="@+id/album_download_imageview" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView15"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="64dp"
-                android:layout_marginEnd="8dp"
-                android:text="Welcome"
+                android:layout_marginStart="@dimen/default_margin_start"
+                android:layout_marginEnd="@dimen/default_margin_start"
+                android:text="@string/welcome"
                 android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
-                android:textColor="#FCFCFE"
+                android:textAppearance="@style/Header3"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/more_popular_album_textview"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/album_download_imageview" />
+                app:layout_constraintTop_toBottomOf="@+id/main_app_icon_imageview" />
 
             <TextView
                 android:id="@+id/more_popular_album_textview"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="Sit back and enjoy our premium and exclusive contents and  recommendations"
+                android:text="@string/app_welcome_message"
                 android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:textColor="#FEFEFE"
-                android:textSize="18sp"
+                android:textAppearance="@style/Subtitle"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/create_account_btn"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView15"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView15"
                 app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
             <Button
                 android:id="@+id/create_account_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="72dp"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="24dp"
                 android:background="@drawable/btn_rounded"
-                android:text="create an account"
+                android:text="@string/create_an_account"
                 app:layout_constraintBottom_toTopOf="@+id/fb_login_btn"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView15"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/more_popular_album_textview" />
+                app:layout_constraintStart_toStartOf="@+id/textView15"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <Button
                 android:id="@+id/login_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/btn_rounded"
-                android:text="Login"
+                android:layout_marginBottom="32dp"
+                android:background="@drawable/btn_round_outline"
+                android:text="@string/login"
+                android:textColor="@color/primaryDarkColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/create_account_btn"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="@+id/create_account_btn"
-                app:layout_constraintTop_toBottomOf="@+id/fb_login_btn" />
+                app:layout_constraintStart_toStartOf="@+id/create_account_btn" />
 
             <Button
                 android:id="@+id/fb_login_btn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="24dp"
                 android:background="@drawable/btn_rounded"
                 android:drawableLeft="@drawable/com_facebook_button_icon"
-                android:text="Continue with facebook"
+                android:text="@string/continue_with_facebook"
+                android:textAlignment="center"
+                android:textAllCaps="false"
                 app:backgroundTint="@color/com_facebook_button_background_color_pressed"
                 app:layout_constraintBottom_toTopOf="@+id/login_btn"
                 app:layout_constraintEnd_toEndOf="@+id/create_account_btn"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/create_account_btn"
-                app:layout_constraintTop_toBottomOf="@+id/create_account_btn" />
+                app:layout_constraintStart_toStartOf="@+id/create_account_btn" />
+
+            <ProgressBar
+                android:id="@+id/fb_login_progressbar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/circle_4"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

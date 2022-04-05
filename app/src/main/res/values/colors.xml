@@ -6,7 +6,7 @@
 
     <color name="primaryColor">#008577</color>
 
-    <color name="primaryLightColor">#2c2c2c</color>
+    <color name="primaryLightColor">#1E1E1E</color>
 
     <color name="primaryDarkColor">#000000</color>
 
@@ -18,18 +18,45 @@
 
     <color name="primaryTextColor">#FFFFFF</color>
 
-    <color name="secondaryTextColor">#50FFFFFF</color>
-    <color name="background">#1BFFFFFF</color>
+    <color name="secondaryTextColor">#8FFFFFFF</color>
+    <color name="background">#303030</color>
+    <color name="selectedSongBackground">#334A4949</color>
     <color name="trnasparentColor">#00000000</color>
+
+    <color name="yellow">#F57C00</color>
+    <color name="red">#D32F2F</color>
 
 
     <color name="sg1">#673AB7</color>
     <color name="sg2">#923CB5</color>
-    <color name="black_overlay">#66000000</color>
+    <color name="black_overlay">#FC1A1818</color>
     <color name="light_blue_600">#FF039BE5</color>
-    <color name="light_blue_900">#FF01579B</color>
+    <color name="light_blue_900">#FF4360a8</color>
     <color name="light_blue_A200">#FF40C4FF</color>
-    <color name="light_blue_A400">#FF00B0FF</color>
+    <color name="light_blue_A400">#AD1457</color>
 
+    <color name="domi">#AD1457</color>
+
+
+
+    <color name="light_primaryColor">#f57c00</color>
+
+    <color name="light_primaryLightColor">#ffad42</color>
+
+    <color name="light_primaryDarkColor">#ffffff</color>
+
+    <color name="light_secondaryColor">#f5f5f5</color>
+
+    <color name="light_secondaryLightColor">#ffffff</color>
+
+    <color name="light_secondaryDarkColor">#c2c2c2</color>
+
+    <color name="light_primaryTextColor">#ffffff</color>
+
+    <color name="light_secondaryTextColor">#000000</color>
+
+    <color name="light_background">#fcfcfc</color>
+
+    <color name="gray_background">#D0393838</color>
 
 </resources>

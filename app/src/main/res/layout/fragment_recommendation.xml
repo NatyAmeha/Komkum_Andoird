@@ -13,106 +13,46 @@
         android:layout_height="match_parent"
         tools:context=".ui.user.RecommendationFragment">
 
-        <Button
-            android:id="@+id/done_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/btn_rounded"
-            android:text="Complete"
-            android:visibility="gone" />
 
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/nestedScrollView3"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/recommendation_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/recommendation_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone">
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/recommendation_viewpager"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/next_recommendaation_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/textView66"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="56dp"
-                    android:layout_marginEnd="32dp"
-                    android:text="What music do you listen to?"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/next_recommendaation_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/btn_rounded"
+                android:enabled="false"
+                android:text="Next"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-                <TextView
-                    android:id="@+id/textView80"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="select one or multiple categoy"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                    android:textColor="#7FFFFFFF"
-                    app:layout_constraintEnd_toEndOf="@+id/textView66"
-                    app:layout_constraintStart_toStartOf="@+id/textView66"
-                    app:layout_constraintTop_toBottomOf="@+id/textView66" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/music_category_recyclerview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView80"
-                    tools:itemCount="2"
-                    tools:listitem="@layout/category_selection_list_item" />
-
-                <TextView
-                    android:id="@+id/textView81"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:text="What books you are interested"
-                    android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    app:layout_constraintEnd_toEndOf="@+id/textView66"
-                    app:layout_constraintStart_toStartOf="@+id/textView66"
-                    app:layout_constraintTop_toBottomOf="@+id/music_category_recyclerview" />
-
-                <TextView
-                    android:id="@+id/textView118"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="select one or multiple categories"
-                    android:textAlignment="center"
-                    app:layout_constraintEnd_toEndOf="@+id/textView81"
-                    app:layout_constraintStart_toStartOf="@+id/textView81"
-                    app:layout_constraintTop_toBottomOf="@+id/textView81" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/book_category_recyclerview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="56dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView118"
-                    tools:itemCount="10"
-                    tools:listitem="@layout/browse_list_item" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.core.widget.NestedScrollView>
 
         <ProgressBar
             android:id="@+id/progressBar3"
-            android:layout_gravity="center"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/circle_4" />
 
         <TextView
             android:id="@+id/recommendation_error_textview"
@@ -122,6 +62,16 @@
             android:text="Error occured. Try again"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:visibility="gone" />
+
+        <Button
+            android:id="@+id/fetch_recommendation_btn"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_gravity="center"
+            android:layout_marginTop="100dp"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Try again" />
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

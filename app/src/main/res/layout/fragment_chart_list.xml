@@ -4,24 +4,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.zomatunes.zomatunes.data.model.Playlist"/>
-        <import type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper"/>
+        <import type="com.komkum.komkum.data.model.Playlist"/>
+        <import type="com.komkum.komkum.data.model.RecyclerViewHelper"/>
         <variable
             name="playlistViewmodel"
-            type="com.zomatunes.zomatunes.ui.playlist.PlaylistViewModel" />
+            type="com.komkum.komkum.ui.playlist.PlaylistViewModel" />
         <variable
             name="playlistInfo"
             type="RecyclerViewHelper&lt;Playlist&lt;String>>" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-
-
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
+            android:background="@color/transparent"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
 
@@ -32,15 +31,32 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/chartList_recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="56dp"
+        <androidx.core.widget.NestedScrollView
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            app:playlistInfo="@{playlistInfo}"
-            app:playlistList="@{playlistViewmodel.chartsList.data}"
-            tools:context=".ui.playlist.ChartListFragment" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/chartList_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="56dp"
+                app:playlistInfo="@{playlistInfo}"
+                app:playlistList="@{playlistViewmodel.chartsList.data}"
+                tools:context=".ui.playlist.ChartListFragment" />
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+        <ProgressBar
+            android:id="@+id/char_list_progressbar"
+            style="?android:attr/progressBarStyle"
+            android:background="@drawable/circle_4"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            app:progressVisibility="@{playlistViewmodel.chartsList.data}"
+            android:layout_height="wrap_content" />
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -24,7 +24,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/backimage"
+        android:src="@drawable/music_placeholder"
         app:layout_constraintBottom_toBottomOf="@id/top_image_container"
         app:layout_constraintEnd_toEndOf="@id/top_image_container"
         app:layout_constraintStart_toStartOf="@id/top_image_container"

@@ -7,4 +7,21 @@
 
     <dimen name="viewpager_next_item_visible">24dp</dimen>
     <dimen name="viewpager_current_item_horizontal_margin">32dp</dimen>
+
+    <dimen name="header">22sp</dimen>
+    <dimen name="header2">28sp</dimen>
+    <dimen name="header3">32sp</dimen>
+    <dimen name="header4">40sp</dimen>
+    <dimen name="title">19sp</dimen>
+    <dimen name="subtitle">17sp</dimen>
+    <dimen name="subtitle1">14sp</dimen>
+    <dimen name="subtitle2">12sp</dimen>
+    <dimen name="body_1">16sp</dimen>
+    <dimen name="body_2">14sp</dimen>
+    <dimen name="body_3">15sp</dimen>
+    <dimen name="button">12sp</dimen>
+    <dimen name="caption">13sp</dimen>
+    <dimen name="caption2">12sp</dimen>
+    <dimen name="overline">10sp</dimen>
+
 </resources>

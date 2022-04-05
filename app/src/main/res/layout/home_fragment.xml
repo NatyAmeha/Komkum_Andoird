@@ -5,20 +5,20 @@
 
     <data>
         <import type="android.view.View"/>
-        <import type="com.zomatunes.zomatunes.data.model.Song"/>
-        <import type="com.zomatunes.zomatunes.data.model.Playlist"/>
-        <import type="com.zomatunes.zomatunes.data.model.Radio"/>
-        <import type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper"/>
+        <import type="com.komkum.komkum.data.model.Song"/>
+        <import type="com.komkum.komkum.data.model.Playlist"/>
+        <import type="com.komkum.komkum.data.model.Radio"/>
+        <import type="com.komkum.komkum.data.model.RecyclerViewHelper"/>
         <variable
             name="homeViewmodel"
-            type="com.zomatunes.zomatunes.ui.home.HomeViewModel" />
+            type="com.komkum.komkum.ui.home.HomeViewModel" />
         <variable
             name="showingHistory"
             type="Boolean" />
 
         <variable
             name="artistInfo"
-            type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper&lt;com.zomatunes.zomatunes.data.model.Artist&lt;String,String>>" />
+            type="com.komkum.komkum.data.model.RecyclerViewHelper&lt;com.komkum.komkum.data.model.Artist&lt;String,String>>" />
 
         <variable
             name="playlistInfo"
@@ -32,9 +32,10 @@
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/music_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primaryDarkColor"
+        app:statusBarBackground="@color/background"
         tools:context=".ui.home.HomeFragment">
 
 
@@ -52,8 +53,8 @@
                     android:id="@+id/textView33"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="New Music Playlists for you"
-                    android:textColor="#82FFFFFF"
+                    android:text="@string/new_music_playlists_for_you"
+                    android:textAppearance="@style/Caption"
                     app:layout_constraintStart_toStartOf="@+id/textView27"
                     app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
@@ -73,11 +74,10 @@
                     android:id="@+id/album_artist_name_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
-                    android:text="Recently played"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="#FFFFFF"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/recently_played"
+                    android:textAppearance="@style/Header"
                     android:textStyle="bold"
                     android:visibility="@{homeViewmodel.homeDataBeta.data.recentActivity.size > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintStart_toStartOf="parent"
@@ -99,26 +99,26 @@
                     android:id="@+id/textView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="56dp"
-                    android:text="New Albums"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="#FFFFFF"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/new_albums"
+
+                    android:textAppearance="@style/Header"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/more_new_album_textview"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/textView27"
-                    app:layout_constraintTop_toBottomOf="@+id/new_album_viewpager" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/gamelist_composeview" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/more_new_album_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_marginEnd="16dp"
-                    android:gravity="center"
-                    android:text="see more"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_baseline_arrow_forward_24"
                     android:textAlignment="center"
-                    android:textColor="#FFFFFF"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView10"
+                    android:visibility="@{homeViewmodel.homeDataBeta.data.newAlbum.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView29"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView10" />
 
@@ -137,28 +137,14 @@
                     android:id="@+id/more_popular_album_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="56dp"
-                    android:text="Made for you"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="#FFFFFF"
+                    android:text="@string/made_for_you"
+                    android:textAppearance="@style/Header"
                     android:textStyle="bold"
                     android:visibility="@{homeViewmodel.homeDataBeta.data.madeForYou.size > 0 ? View.VISIBLE : View.GONE}"
-                    app:layout_constraintEnd_toStartOf="@+id/more_gospel_album_textview"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/textView10"
-                    app:layout_constraintTop_toBottomOf="@+id/new_album_recyclerview" />
-
-                <TextView
-                    android:id="@+id/more_gospel_album_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:text="see more"
-                    android:visibility="@{homeViewmodel.homeDataBeta.data.madeForYou.size > 0 ? View.VISIBLE : View.GONE}"
-                    android:textColor="#FFFFFF"
-                    app:layout_constraintBottom_toBottomOf="@+id/more_popular_album_textview"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/more_popular_album_textview" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/donation_copose_view" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/song_you_may_like_recyclerview"
@@ -176,7 +162,7 @@
                     android:id="@+id/featured_radio_recyclerview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="56dp"
+                    android:layout_marginTop="40dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -188,13 +174,15 @@
                     android:id="@+id/textView24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="64dp"
-                    android:text="New Artists"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="#FFFFFF"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:layout_marginTop="48dp"
+                    android:text="@string/new_artists"
+
+                    android:textAppearance="@style/Header"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/textView25"
-                    app:layout_constraintTop_toBottomOf="@+id/radio_list_tablayout" />
+                    android:visibility="@{homeViewmodel.homeDataBeta.data.newArtist.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/featured_radio_recyclerview" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/new_artist_recyclerview"
@@ -209,15 +197,18 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView62" />
 
                 <TextView
-                    android:id="@+id/artist_playlist"
+                    android:id="@+id/top_radio_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="64dp"
-                    android:text="Recommended Stations"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="#FFFFFF"
+                    android:text="@string/top_radio_stations"
+
+                    android:textAppearance="@style/Header"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/textView24"
+
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/new_artist_recyclerview" />
 
 
@@ -226,25 +217,23 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="parent"
 
-                    app:layout_constraintTop_toBottomOf="@+id/textView63"
-                    app:radioInfo="@{radioInfo}"
-                    app:radioList="@{homeViewmodel.homeDataBeta.data.popularRadio}" />
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/top_radio_textview" />
 
                 <TextView
                     android:id="@+id/textView19"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="64dp"
-                    android:text="Recommended Albums"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="#FFFFFF"
+                    android:text="@string/recommended_albums"
+                    android:textAppearance="@style/Header"
                     android:textStyle="bold"
+                    android:visibility="@{homeViewmodel.homeDataBeta.data.recommendedAlbum.size > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/top_artist_recyclerview" />
 
@@ -263,28 +252,15 @@
                     android:id="@+id/textView21"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="64dp"
-                    android:layout_marginEnd="16dp"
                     android:text="Featured Playlist"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="#FFFFFF"
+                    android:textAppearance="@style/Header"
+
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toStartOf="@+id/more_ortodox_album_textview"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    android:visibility="@{homeViewmodel.homeDataBeta.data.featuredPlaylist.size > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/popular_secular_album_recyclerview" />
-
-                <TextView
-                    android:id="@+id/more_ortodox_album_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:text="see more"
-                    android:textColor="#FFFFFF"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView59"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView21" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/popular_ortodox_albums_recyclerview"
@@ -302,26 +278,28 @@
                     android:id="@+id/textView25"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="48dp"
-                    android:text="Top Charts"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="#FFFFFF"
+                    android:text="@string/top_charts"
+                    android:textAppearance="@style/Header"
                     android:textStyle="bold"
+                    android:visibility="@{homeViewmodel.homeDataBeta.data.topCharts.size > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toStartOf="@+id/more_charts_textview"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/popular_ortodox_albums_recyclerview" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/more_charts_textview"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="see more"
-                    android:textColor="#FFFFFF"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView25"
-                    app:layout_constraintEnd_toEndOf="@+id/more_ortodox_album_textview"
-                    app:layout_constraintTop_toTopOf="@+id/textView25" />
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="@dimen/default_margin_start"
+
+                    android:visibility="@{homeViewmodel.homeDataBeta.data.topCharts.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView60"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView25"
+                    android:src="@drawable/ic_baseline_arrow_forward_24" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/top_playlist_recyclerview"
@@ -336,51 +314,38 @@
                     app:playlistList="@{homeViewmodel.homeDataBeta.data.topCharts}" />
 
                 <TextView
-                    android:id="@+id/textView42"
+                    android:id="@+id/popular_playlist_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="64dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="Your Stations"
+                    android:layout_marginTop="48dp"
+                    android:text="Popular Playlists"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:visibility="@{homeViewmodel.homeDataBeta.data.featuredRadio.size > 0 ? View.VISIBLE : View.GONE}"
-                    app:layout_constraintEnd_toStartOf="@+id/more_radio_stations_textview"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/artist_playlist"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@+id/top_radio_textview"
                     app:layout_constraintTop_toBottomOf="@+id/artist_radio_racyclerview" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/popular_song_reyclerview"
+                    android:id="@+id/popular_playlist_recyclerview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginBottom="56dp"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView64" />
-
-                <TextView
-                    android:id="@+id/more_radio_stations_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:text="see more"
-                    android:textColor="#FFFFFF"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView42" />
 
                 <TextView
                     android:id="@+id/textView27"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="40dp"
-                    android:text="@string/demo_name"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="#FFFFFF"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/new_songs"
+                    android:textAppearance="@style/Header"
                     android:textStyle="bold"
+                    android:visibility="@{homeViewmodel.homeDataBeta.data.newMusic.size > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/recent_recyclerview" />
 
@@ -389,8 +354,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:text="Discover and enjoy these  New albums"
-                    android:textColor="#88FFFFFF"
+                    android:text="@string/discover_and_enjoy_these_new_albums"
+                    android:textAppearance="@style/Caption"
+                    android:visibility="@{homeViewmodel.homeDataBeta.data.newAlbum.size > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toStartOf="@+id/more_new_album_textview"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/textView10"
@@ -400,12 +366,9 @@
                     android:id="@+id/textView57"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:text="Category description made for you"
+                    android:text="@string/daily_mix_description"
+                    android:textAppearance="@style/Caption"
                     android:visibility="@{homeViewmodel.homeDataBeta.data.madeForYou.size > 0 ? View.VISIBLE : View.GONE}"
-                    android:textColor="#82FFFFFF"
-                    app:layout_constraintEnd_toStartOf="@+id/more_gospel_album_textview"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/more_popular_album_textview"
                     app:layout_constraintTop_toBottomOf="@+id/more_popular_album_textview" />
 
@@ -413,8 +376,10 @@
                     android:id="@+id/textView58"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="based on songs that you like"
-                    android:textColor="#82FFFFFF"
+                    android:text="@string/recommended_album_description"
+                    android:textAppearance="@style/Caption"
+
+                    android:visibility="@{homeViewmodel.homeDataBeta.data.recommendedAlbum.size > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintStart_toStartOf="@+id/textView19"
                     app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
@@ -422,17 +387,18 @@
                     android:id="@+id/textView59"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#82FFFFFF"
                     android:visibility="gone"
                     app:layout_constraintStart_toStartOf="@+id/textView21"
                     app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
                 <TextView
                     android:id="@+id/textView60"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Find Songs and Artists on top of the Charts"
-                    android:textColor="#82FFFFFF"
+                    android:layout_marginEnd="32dp"
+                    android:text="@string/chart_description"
+                    android:textAppearance="@style/Caption"
+                    android:visibility="@{homeViewmodel.homeDataBeta.data.topCharts.size > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toStartOf="@+id/more_charts_textview"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/textView25"
@@ -442,8 +408,9 @@
                     android:id="@+id/textView62"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="New Artists on the rise"
-                    android:textColor="#82FFFFFF"
+                    android:text="@string/new_artist_description"
+                    android:textAppearance="@style/Caption"
+                    android:visibility="@{homeViewmodel.homeDataBeta.data.newArtist.size > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintStart_toStartOf="@+id/textView24"
                     app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
@@ -451,30 +418,28 @@
                     android:id="@+id/textView63"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="17dp"
                     android:text="Station selected from your artists"
-                    android:textColor="#82FFFFFF"
-                    app:layout_constraintStart_toStartOf="@+id/artist_playlist"
-                    app:layout_constraintTop_toBottomOf="@+id/artist_playlist" />
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@+id/top_radio_textview"
+                    app:layout_constraintTop_toBottomOf="@+id/new_artist_recyclerview" />
 
                 <TextView
                     android:id="@+id/textView64"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:text="Radio Stations you liked "
-                    android:textColor="#82FFFFFF"
-                    app:layout_constraintEnd_toStartOf="@+id/more_radio_stations_textview"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/textView42"
-                    app:layout_constraintTop_toBottomOf="@+id/textView42" />
+                    android:text="Enjoy popular playlists from our listeners"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="@+id/popular_playlist_textview"
+                    app:layout_constraintTop_toBottomOf="@+id/popular_playlist_textview" />
 
                 <TextView
                     android:id="@+id/textView65"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Your recent Activities"
+                    android:text="@string/your_recent_activities"
+                    android:textAppearance="@style/Caption"
                     android:visibility="@{homeViewmodel.homeDataBeta.data.recentActivity.size > 0 ? View.VISIBLE : View.GONE}"
-                    android:textColor="#82FFFFFF"
                     app:layout_constraintStart_toStartOf="@+id/album_artist_name_textview"
                     app:layout_constraintTop_toBottomOf="@+id/album_artist_name_textview" />
 
@@ -482,11 +447,13 @@
                     android:id="@+id/textView67"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="64dp"
-                    android:text="Top Artists"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:text="@string/trending_artists"
+                    android:textAppearance="@style/Header"
+
                     android:textStyle="bold"
+                    android:visibility="@{homeViewmodel.homeDataBeta.data.popularArtist.size > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/song_you_may_like_recyclerview" />
 
@@ -495,8 +462,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="64dp"
-                    android:text="Top Artists based on streams"
-                    android:textColor="#82FFFFFF"
+                    android:text="@string/top_artist_description"
+                    android:textAppearance="@style/Caption"
+                    android:visibility="@{homeViewmodel.homeDataBeta.data.popularArtist.size > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/textView67"
@@ -517,37 +485,86 @@
                     android:id="@+id/textView51"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Featured playlist from our curators"
+                    android:text="@string/featured_playlist"
+                    android:visibility="@{homeViewmodel.homeDataBeta.data.featuredPlaylist.size > 0 ? View.VISIBLE : View.GONE}"
+                    android:textAppearance="@style/Caption"
+
                     app:layout_constraintStart_toStartOf="@+id/textView21"
                     app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/radio_list_tablayout"
-                    android:layout_width="match_parent"
+                <androidx.compose.ui.platform.ComposeView
+                    android:id="@+id/donation_copose_view"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView192" />
+
+                <TextView
+                    android:id="@+id/textView154"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/donations"
+                    android:textAppearance="@style/Header"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/new_album_recyclerview" />
+
+                <TextView
+                    android:id="@+id/textView192"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/Caption"
+                    android:text="@string/donation_description"
+                    app:layout_constraintStart_toStartOf="@+id/textView154"
+                    app:layout_constraintTop_toBottomOf="@+id/textView154" />
+
+                <TextView
+                    android:id="@+id/game_header_txtview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:layout_marginTop="32dp"
+                    android:text="Games"
+                    android:textAppearance="@style/Header"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/new_album_viewpager" />
+
+                <TextView
+                    android:id="@+id/game_header_desc_textview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    android:text="@string/play_and_win"
+                    android:textAppearance="@style/Caption"
+                    app:layout_constraintEnd_toStartOf="@+id/see_more_games"
+                    app:layout_constraintStart_toStartOf="@+id/game_header_txtview"
+                    app:layout_constraintTop_toBottomOf="@+id/game_header_txtview" />
+
+                <androidx.compose.ui.platform.ComposeView
+                    android:id="@+id/gamelist_composeview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/featured_radio_recyclerview"
-                    app:tabBackground="@drawable/tab_item_selector"
-                    app:tabGravity="center"
-                    app:tabIndicatorColor="@android:color/transparent"
-                    app:tabMaxWidth="20dp">
+                    app:layout_constraintTop_toBottomOf="@+id/game_header_desc_textview" />
 
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Monday" />
-
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Tuesday" />
-
-                    <com.google.android.material.tabs.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Wednesday" />
-                </com.google.android.material.tabs.TabLayout>
+                <ImageView
+                    android:id="@+id/see_more_games"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/game_header_desc_textview"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/game_header_txtview"
+                    app:srcCompat="@drawable/ic_baseline_arrow_forward_24" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
@@ -556,13 +573,16 @@
             android:id="@+id/home_loading_progressbar"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
+            android:background="@drawable/circle_4"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:visibility="@{(homeViewmodel.homeDataBeta.data == null)? View.VISIBLE : View.INVISIBLE}" />
 
-        <include android:id="@+id/error_view"
+        <include
+            android:id="@+id/error_view"
             layout="@layout/error_page"
-            android:visibility="gone"/>
+            android:visibility="gone" />
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

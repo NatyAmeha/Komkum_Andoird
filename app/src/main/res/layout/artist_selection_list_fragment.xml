@@ -3,24 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
 
-    </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:background="@drawable/item_selected"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.onboarding.ArtisSelectiontListFragment">
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:background="@color/transparent"
+            android:elevation="0dp"
+            app:elevation="0dp"
+            android:layout_height="wrap_content">
+
+            <com.mancj.materialsearchbar.MaterialSearchBar
+                android:id="@+id/searchview"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_margin="8dp"
+
+                android:background="@color/transparent"
+                app:mt_hint="Find your favorite artists"
+                app:mt_menuDividerEnabled="true"
+                app:mt_menuIconDrawable="?android:attr/actionModeWebSearchDrawable"
+                app:mt_placeholder="Find your favorite artists"
+                app:mt_placeholderColor="@color/primaryTextColor"
+                app:mt_roundedSearchBarEnabled="true"
+                app:mt_searchIconTint="@color/primaryTextColor"
+                app:mt_speechMode="true" />
+        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/onboarding_finish_btn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -40,21 +58,24 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:layout_marginBottom="1dp"
+                    android:layout_marginBottom="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView17" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView17"
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <TextView
                     android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Popular Artists"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/top_artists"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,11 +83,12 @@
                     android:id="@+id/textView17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="32dp"
-                    android:text="New Artists"
+                    android:text="@string/new_artists"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/popular_artist_recyclerview" />
 
@@ -89,57 +111,15 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
-        <Button
-            android:id="@+id/onboarding_finish_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            android:text="Finish"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <Button
-            android:id="@+id/back_to_category_selection_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="8dp"
-            android:text="back"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="0dp"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            app:cardCornerRadius="6dp"
-            app:cardElevation="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <EditText
-                android:id="@+id/artist_search_edit_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:ems="10"
-                android:hint="search Your favorite Artist"
-                android:inputType="textPersonName" />
-        </androidx.cardview.widget.CardView>
 
         <ProgressBar
             android:id="@+id/artistlist_loading_progressBar"
-            style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:background="@drawable/circle_4"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

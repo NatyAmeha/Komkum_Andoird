@@ -21,7 +21,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/backimage" />
+            app:srcCompat="@drawable/music_placeholder" />
 
         <TextView
             android:id="@+id/book_title_v_textview"
@@ -31,9 +31,9 @@
             android:layout_marginTop="4dp"
             android:layout_marginEnd="8dp"
             android:text="Book title"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:maxLines="2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="#FFFFFF"
-            android:textSize="21sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/book_v_imageview"
             app:layout_constraintTop_toTopOf="@+id/book_v_imageview" />
@@ -43,6 +43,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Author Name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintEnd_toEndOf="@+id/book_title_v_textview"
             app:layout_constraintStart_toStartOf="@+id/book_title_v_textview"
             app:layout_constraintTop_toBottomOf="@+id/book_title_v_textview" />
@@ -54,7 +55,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:numStars="5"
-            android:rating="3"
             app:layout_constraintStart_toStartOf="@+id/book_author_v_textview"
             app:layout_constraintTop_toBottomOf="@+id/book_author_v_textview" />
 
@@ -64,7 +64,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text=" (43 review)"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintBottom_toBottomOf="@+id/book_rating_v_ratingview"
             app:layout_constraintStart_toEndOf="@+id/book_rating_v_ratingview"
             app:layout_constraintTop_toTopOf="@+id/book_rating_v_ratingview" />
@@ -75,12 +74,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="TextView"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             app:layout_constraintStart_toStartOf="@+id/book_rating_v_ratingview"
             app:layout_constraintTop_toBottomOf="@+id/book_rating_v_ratingview" />
 
         <ImageView
-            android:id="@+id/imageView12"
+            android:id="@+id/vertical_book_format_imageview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"

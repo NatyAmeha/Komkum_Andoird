@@ -11,54 +11,57 @@
 
         <variable
             name="viewmodel"
-            type="com.zomatunes.zomatunes.ui.search.SearchViewModel" />
+            type="com.komkum.komkum.ui.search.SearchViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primaryDarkColor">
+        app:statusBarBackground="@color/background">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/search_appbar"
+            app:elevation="0dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#1CFFFFFF">
+            android:background="@color/transparent">
 
             <com.mancj.materialsearchbar.MaterialSearchBar
                 android:id="@+id/searchview"
+                android:layout_marginStart="8dp"
+
+                android:layout_marginEnd="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/primaryDarkColor"
-                android:elevation="50dp"
+                app:layout_scrollFlags="enterAlways"
                 app:mt_highlightedTextColor="@color/primaryTextColor"
-                app:mt_hint="Search Music Artist Books and more"
+                app:mt_hint="@string/search_music_podcast_books"
                 app:mt_menuDividerEnabled="true"
                 app:mt_menuIconDrawable="?android:attr/actionModeWebSearchDrawable"
-                app:mt_menuIconTint="#FFFFFF"
-                app:mt_navIconEnabled="true"
-                app:mt_placeholder="Search Music Artist Books and more"
-                app:mt_placeholderColor="@color/primaryTextColor"
+                app:mt_navIconEnabled="false"
+                app:mt_searchBarColor="@color/light_secondaryDarkColor"
+                app:mt_placeholder="@string/search_music_podcast_books"
                 app:mt_roundedSearchBarEnabled="true"
-                app:mt_searchBarColor="@color/primaryLightColor"
-                app:mt_searchIconTint="@color/primaryTextColor"
-                app:mt_speechMode="true"
-                app:mt_textColor="@color/primaryTextColor" />
+                app:mt_speechMode="true" />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/search_result_tablayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:elevation="30dp"
-                android:background="@color/primaryDarkColor">
+                app:layout_scrollFlags="noScroll"
+                android:elevation="0dp"
+                android:background="@color/transparent">
+
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Musics"/>
+                    android:text="@string/music" />
+
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Books"/>
+                    android:text="@string/podcast" />
+
             </com.google.android.material.tabs.TabLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -67,17 +70,16 @@
         <ProgressBar
             android:id="@+id/search_result_progressbar"
             style="?android:attr/progressBarStyle"
+            android:background="@drawable/circle_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
 
-        <TextView
-            android:id="@+id/music_search_error_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+        <include layout="@layout/error_page"
             android:visibility="gone"
-            android:text="Something went wrong please try again" />
+            android:id="@+id/error_view"/>
+
+
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/search_result_viewpager"

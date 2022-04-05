@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView177"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_margin_start"
+        android:text="@string/total_amount"
+        android:textAppearance="@style/Body3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/total_price_tview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="ETB 200"
+        android:textAppearance="@style/Title"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textView177"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView177" />
+
+    <TextView
+        android:id="@+id/textView228"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/payment_method"
+        android:textAppearance="@style/Subtitle1"
+        app:layout_constraintStart_toStartOf="@+id/textView177"
+        app:layout_constraintTop_toBottomOf="@+id/total_price_tview" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/payment_method_recyclerview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider15"
+        tools:itemCount="2"
+        tools:listitem="@layout/payment_method_list_item" />
+
+    <View
+        android:id="@+id/divider15"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView228"
+        app:layout_constraintTop_toBottomOf="@+id/textView228" />
+</androidx.constraintlayout.widget.ConstraintLayout>

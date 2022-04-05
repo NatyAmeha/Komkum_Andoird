@@ -8,42 +8,73 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/light_secondaryLightColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/name_textview"
-            android:layout_width="wrap_content"
+            style="@style/Subtitle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="24dp"
             android:text="Reviewer Name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#FFFFFF"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/review_date_textview"
+            app:layout_constraintStart_toEndOf="@+id/reviewer_avatarview"
+            app:layout_constraintTop_toTopOf="@+id/reviewer_avatarview" />
 
         <RatingBar
             android:id="@+id/reviewer_ratingbar"
             style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:numStars="5"
             android:rating="3"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/name_textview"
-            app:layout_constraintTop_toBottomOf="@+id/name_textview" />
+            app:layout_constraintTop_toBottomOf="@+id/name_textview"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/reviwer_comment_textview"
+            style="@style/Body2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="@dimen/default_margin_start"
             android:layout_marginBottom="8dp"
-            android:text="This section contains the comment of the reviwer This section contains the comment of the reviwer  This section contains the comment of the reviwer This section contains the comment of the reviwer  This section contains the comment of the reviwer "
+            android:background="@drawable/round_corner_drawable"
+            android:ellipsize="end"
+            android:maxLines="4"
+            android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/reviewer_ratingbar"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/reviewer_avatarview"
             app:layout_constraintTop_toBottomOf="@+id/reviewer_ratingbar" />
+
+        <com.komkum.komkum.ui.customview.AvatarView
+            android:id="@+id/reviewer_avatarview"
+            android:layout_width="@dimen/mini_circle_image_size"
+            android:layout_height="@dimen/mini_circle_image_size"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/review_date_textview"
+            style="@style/Caption2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Aug 12 2020"
+            app:layout_constraintBottom_toBottomOf="@+id/name_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/name_textview" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

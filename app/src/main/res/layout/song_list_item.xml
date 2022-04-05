@@ -7,23 +7,27 @@
 
         <import type="android.view.View" />
 
-        <import type="com.zomatunes.zomatunes.util.viewhelper.RecyclerviewState" />
+        <import type="com.komkum.komkum.util.viewhelper.RecyclerviewState" />
 
         <variable
             name="song"
-            type="com.zomatunes.zomatunes.data.model.Song" />
+            type="com.komkum.komkum.data.model.Song" />
 
         <variable
             name="selectedSong"
-            type="com.zomatunes.zomatunes.data.model.Song" />
+            type="com.komkum.komkum.data.model.Song" />
 
         <variable
             name="state"
-            type="com.zomatunes.zomatunes.util.viewhelper.RecyclerviewStateManager" />
+            type="com.komkum.komkum.util.viewhelper.RecyclerviewStateManager" />
 
         <variable
             name="type"
             type="String" />
+
+        <variable
+            name="selected"
+            type="Boolean"/>
 
     </data>
 
@@ -32,9 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
-
         android:clickable="true"
-        android:foreground="@{(state.selectedItem!=song || song != selectedSong) ? @color/trnasparentColor :  @color/background}">
+        android:foreground="@{(selected == false) ? @color/trnasparentColor :  @color/selectedSongBackground}">
 
         <ImageView
             android:id="@+id/thumbnail_imageview"
@@ -47,8 +50,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/selection_checkBox"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.51"
-            app:srcCompat="@drawable/backimage" />
+            app:layout_constraintVertical_bias="0.51" />
 
         <TextView
             android:id="@+id/tittle_textview"
@@ -61,8 +63,9 @@
             android:singleLine="true"
             android:text="@{song.tittle}"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#FFFFFF"
-            android:textSize="17sp"
+
+            android:textColor="@{selected ? @color/light_primaryColor : @color/light_secondaryTextColor}"
+            android:textSize="@dimen/song_title_text_size"
             app:layout_constraintEnd_toStartOf="@+id/playing_indicator_iv"
             app:layout_constraintStart_toEndOf="@+id/thumbnail_imageview"
             app:layout_constraintTop_toTopOf="@+id/thumbnail_imageview" />
@@ -71,10 +74,9 @@
             android:id="@+id/subtittle_textview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{song.category}"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="#B6FFFFFF"
-            android:textSize="11sp"
+            android:textColor="@{selected ? @color/light_primaryColor : @color/light_secondaryTextColor}"
+            android:textSize="@dimen/song_sub_title_text_size"
             app:layout_constraintEnd_toEndOf="@+id/tittle_textview"
             app:layout_constraintStart_toStartOf="@+id/tittle_textview"
             app:layout_constraintTop_toBottomOf="@+id/tittle_textview" />
@@ -92,10 +94,13 @@
         <TextView
             android:id="@+id/track_number_texxtview"
             android:layout_width="0dp"
-            android:layout_height="15dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="6dp"
             android:text="@{String.valueOf(song.trackNumber)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@{state.selectedItem==song ? @color/primaryColor : @color/primaryTextColor}"
+            android:textColor="@{selected ? @color/light_primaryColor : @color/light_secondaryTextColor}"
             android:visibility="@{type.equals(`ALBUM`) ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="@+id/thumbnail_imageview"
             app:layout_constraintEnd_toEndOf="@+id/thumbnail_imageview"
@@ -107,13 +112,14 @@
             android:layout_width="25dp"
             android:layout_height="0dp"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
             android:background="@color/trnasparentColor"
             android:visibility="gone"
             app:bar_color="@color/primaryColor"
             app:bar_num="6"
-            app:duration="20000"
+            app:duration="10000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/download_progress_textview"
             app:layout_constraintTop_toTopOf="parent"
@@ -164,7 +170,7 @@
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginEnd="16dp"
-            android:visibility="@{(state.isStateinMultiSelectionMode || type == `QUEUE`) ? View.VISIBLE : View.GONE}"
+            android:visibility="@{((state.isStateinMultiSelectionMode &amp;&amp; type == `USER_PLAYLIST`) || type == `QUEUE` ) ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

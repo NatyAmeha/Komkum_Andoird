@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="com.zomatunes.zomatunes.ui.book.BookViewModel"/>
+        <import type="com.komkum.komkum.ui.book.BookViewModel"/>
         <import type="android.view.View"/>
-        <import type="com.zomatunes.zomatunes.data.model.Book"/>
-        <import type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper"/>
-        <import type="com.zomatunes.zomatunes.data.model.MusicBrowse"/>
-        <import type="com.zomatunes.zomatunes.data.model.BookCollection"/>
+        <import type="com.komkum.komkum.data.model.Book"/>
+        <import type="com.komkum.komkum.data.model.RecyclerViewHelper"/>
+        <import type="com.komkum.komkum.data.model.MusicBrowse"/>
+        <import type="com.komkum.komkum.data.model.BookCollection"/>
 
         <variable
             name="bookViewmodel"
@@ -26,9 +26,10 @@
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:paddingTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primaryDarkColor"
+        android:background="@color/transparent"
         tools:context=".ui.audiobook.BookHomeFragment">
 
         <androidx.core.widget.NestedScrollView
@@ -44,7 +45,7 @@
                     android:id="@+id/textView73"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="24dp"
                     android:text="Recommended Genre"
                     android:visibility="@{bookViewmodel.bookHomeResult.categories.size > 0 ? View.VISIBLE : View.GONE}"
@@ -57,7 +58,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/new_trending_book_recyclerview"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_marginTop="8dp"
                     app:audiobookList="@{bookViewmodel.bookHomeResult.newAndPopularAudiobooks}"
                     app:bookInfo="@{bookInfo}"
@@ -69,19 +70,20 @@
                     android:id="@+id/textView74"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="32dp"
                     android:text="Bestselling Audiobooks"
-                    android:visibility="@{bookViewmodel.bookHomeResult.bestSellingAudiobooks.size > 0 ? View.VISIBLE : View.GONE}"
 
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/textView73"
+                    android:visibility="@{bookViewmodel.bookHomeResult.bestSellingAudiobooks.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/book_category_recyclerview" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/best_selling_book_recyclerview"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_marginStart="1dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="1dp"
@@ -96,12 +98,13 @@
                     android:id="@+id/textView76"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="32dp"
-                    android:visibility="@{bookViewmodel.bookHomeResult.exclusiveAudiobooks.size > 0 ? View.VISIBLE : View.GONE}"
                     android:text="Exclusive Audiobooks"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/textView74"
+                    android:visibility="@{bookViewmodel.bookHomeResult.exclusiveAudiobooks.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/best_selling_book_recyclerview" />
 
                 <TextView
@@ -109,9 +112,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="72dp"
-                    android:visibility="@{bookViewmodel.bookHomeResult.exclusiveAudiobooks.size > 0 ? View.VISIBLE : View.GONE}"
+                    android:text="Audiobook only Available on Komkum"
 
-                    android:text="Audiobook only Available on EthioMusic"
+                    android:visibility="@{bookViewmodel.bookHomeResult.exclusiveAudiobooks.size > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/textView76"
@@ -131,7 +134,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/exclusive_book_recyclerview"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_marginTop="8dp"
                     app:audiobookList="@{bookViewmodel.bookHomeResult.exclusiveAudiobooks}"
                     app:bookInfo="@{bookInfo}"
@@ -143,11 +146,13 @@
                     android:id="@+id/textView83"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="32dp"
                     android:text="New Audiobooks"
+                    android:visibility="@{bookViewmodel.bookHomeResult.newAudiobooks.size > 0 ? View.VISIBLE : View.GONE}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/textView77"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/new_trending_book_recyclerview" />
 
                 <TextView
@@ -156,6 +161,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="64dp"
                     android:text="Discover books which are new and noteworthy"
+                    android:visibility="@{bookViewmodel.bookHomeResult.newAudiobooks.size > 0 ? View.VISIBLE : View.GONE}"
+
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView83"
                     app:layout_constraintTop_toBottomOf="@+id/textView83" />
@@ -163,7 +170,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/new_book_recyclerview"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_marginTop="8dp"
                     app:audiobookList="@{bookViewmodel.bookHomeResult.newAudiobooks}"
                     app:bookInfo="@{bookInfo}"
@@ -175,18 +182,19 @@
                     android:id="@+id/textView87"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="32dp"
-                    android:visibility="@{bookViewmodel.bookHomeResult.newAndPopularAudiobooks.size > 0 ? View.VISIBLE : View.GONE}"
                     android:text="New And Trending Audiobooks"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/textView73"
+                    android:visibility="@{bookViewmodel.bookHomeResult.newAndPopularAudiobooks.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/featured_reading_list_recyclerview" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/book_category_recyclerview"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_marginTop="8dp"
                     app:browseInfo="@{categoryInfo}"
                     app:browseStringList="@{bookViewmodel.bookHomeResult.categories}"
@@ -199,11 +207,13 @@
                     android:id="@+id/textView88"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="32dp"
                     android:text="Comming soon"
+                    android:visibility="@{bookViewmodel.bookHomeResult.commingSoonAudiobooks.size > 0 ? View.VISIBLE : View.GONE}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/textView83"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/recommendation_reading_list_viewpager" />
 
                 <TextView
@@ -212,6 +222,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="72dp"
                     android:text="books those will Available soon"
+                    android:visibility="@{bookViewmodel.bookHomeResult.commingSoonAudiobooks.size > 0 ? View.VISIBLE : View.GONE}"
+
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView88"
                     app:layout_constraintTop_toBottomOf="@+id/textView88" />
@@ -219,7 +231,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/commingsoon_book_recyclerview"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="56dp"
                     app:audiobookList="@{bookViewmodel.bookHomeResult.commingSoonAudiobooks}"
@@ -235,6 +247,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="64dp"
                     android:text="check these new and buzz creating audiobooks"
+                    android:visibility="@{bookViewmodel.bookHomeResult.newAndPopularAudiobooks.size > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/textView87"
@@ -244,13 +257,14 @@
                     android:id="@+id/textView111"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="32dp"
-                    android:visibility="@{bookViewmodel.bookHomeResult.bestSellingBooks.size > 0 ? View.VISIBLE : View.GONE}"
 
                     android:text="Bestselling Books"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/textView76"
+                    android:visibility="@{bookViewmodel.bookHomeResult.bestSellingBooks.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/exclusive_book_recyclerview" />
 
                 <TextView
@@ -269,7 +283,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/bestselling_ebook_recyclerview"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_marginTop="8dp"
                     app:audiobookList="@{bookViewmodel.bookHomeResult.bestSellingBooks}"
                     app:bookInfo="@{bookInfo}"
@@ -281,13 +295,14 @@
                     android:id="@+id/textView113"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="32dp"
                     android:text="Exclusive Books"
-                    android:visibility="@{bookViewmodel.bookHomeResult.exclusiveBooks.size > 0 ? View.VISIBLE : View.GONE}"
 
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/textView111"
+                    android:visibility="@{bookViewmodel.bookHomeResult.exclusiveBooks.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/bestselling_ebook_recyclerview" />
 
                 <TextView
@@ -306,7 +321,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/exclusive_ebook_recyclerview"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_marginTop="8dp"
                     app:audiobookList="@{bookViewmodel.bookHomeResult.exclusiveBooks}"
                     app:bookInfo="@{bookInfo}"
@@ -318,13 +333,14 @@
                     android:id="@+id/textView116"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="32dp"
                     android:text="New Books"
-                    android:visibility="@{bookViewmodel.bookHomeResult.newBooks.size > 0 ? View.VISIBLE : View.GONE}"
 
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/textView83"
+                    android:visibility="@{bookViewmodel.bookHomeResult.newBooks.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/new_book_recyclerview" />
 
                 <TextView
@@ -342,7 +358,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/new_ebook_recyclerview"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_marginTop="8dp"
                     app:audiobookList="@{bookViewmodel.bookHomeResult.newBooks}"
                     app:bookInfo="@{bookInfo}"
@@ -354,14 +370,15 @@
                     android:id="@+id/textView93"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="32dp"
                     android:text="Featured Collections"
-                    android:visibility="@{bookViewmodel.bookHomeResult.featuredBookCollection.size > 0 ? View.VISIBLE : View.GONE}"
 
                     android:textAlignment="viewStart"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/textView76"
+                    android:visibility="@{bookViewmodel.bookHomeResult.featuredBookCollection.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/exclusive_ebook_recyclerview" />
 
                 <TextView
@@ -380,13 +397,13 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/featured_reading_list_recyclerview"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_marginTop="8dp"
+                    app:bookCollection="@{bookViewmodel.bookHomeResult.featuredBookCollection}"
+                    app:bookCollectionInfo="@{bookCollectionInfo}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView94"
-                    app:bookCollectionInfo="@{bookCollectionInfo}"
-                    app:bookCollection="@{bookViewmodel.bookHomeResult.featuredBookCollection}"/>
+                    app:layout_constraintTop_toBottomOf="@+id/textView94" />
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/recommendation_reading_list_viewpager"
@@ -404,7 +421,7 @@
                     android:id="@+id/more_exclusive_book_imageview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="@dimen/default_margin_start"
                     android:visibility="@{bookViewmodel.bookHomeResult.exclusiveAudiobooks.size > 0 ? View.VISIBLE : View.GONE}"
 
                     app:layout_constraintBottom_toBottomOf="@+id/textView77"
@@ -418,7 +435,7 @@
                     android:layout_height="wrap_content"
                     android:visibility="@{bookViewmodel.bookHomeResult.exclusiveBooks.size > 0 ? View.VISIBLE : View.GONE}"
 
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="@dimen/default_margin_start"
                     app:layout_constraintBottom_toBottomOf="@+id/textView113"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView113"
@@ -429,7 +446,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="9dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="@dimen/default_margin_start"
                     android:visibility="@{bookViewmodel.bookHomeResult.commingSoonAudiobooks.size > 0 ? View.VISIBLE : View.GONE}"
 
                     android:layout_marginBottom="15dp"
@@ -437,6 +454,18 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView88"
                     app:srcCompat="@drawable/ic_twotone_arrow_forward_ios_24" />
+
+                <TextView
+                    android:id="@+id/textView226"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="Coming soon"
+                    android:textAppearance="@style/Header2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
@@ -445,7 +474,8 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            app:progressVisibility="@{bookViewmodel.bookHomeResult}" />
 
         <include android:id="@+id/error_view"
             layout="@layout/error_page"

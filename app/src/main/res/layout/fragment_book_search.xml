@@ -4,9 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.zomatunes.zomatunes.data.model.Book"/>
-        <import type="com.zomatunes.zomatunes.data.model.Author"/>
-        <import type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper"/>
+        <import type="com.komkum.komkum.data.model.Book"/>
+        <import type="com.komkum.komkum.data.model.Author"/>
+        <import type="com.komkum.komkum.data.model.RecyclerViewHelper"/>
 
         <variable
             name="bookInfo"
@@ -16,7 +16,7 @@
             type="RecyclerViewHelper&lt;Author&lt;String , String>>" />
         <variable
             name="searchResult"
-            type="com.zomatunes.zomatunes.data.model.Search" />
+            type="com.komkum.komkum.data.model.Search" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -48,7 +48,7 @@
                     android:id="@+id/textView30"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="16dp"
                     android:text="Audiobooks"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -71,7 +71,7 @@
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{`View all (`+searchResult.audiobooks.size + `)`}"
+                        android:text="@{searchResult.audiobooks.size > 0 ? `View all (`+searchResult.audiobooks.size + `)` : `No audiobook found`}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -114,7 +114,7 @@
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{`View all (`+searchResult.books.size + `)`}"
+                        android:text="@{searchResult.books.size > 0 ? `View all (`+searchResult.books.size + `)` : `No books found`}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -155,7 +155,7 @@
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{`View all (`+searchResult.authors.size + `)`}"
+                        android:text="@{searchResult.authors.size > 0 ?  `View all (`+searchResult.authors.size + `)` : `No author found`}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />

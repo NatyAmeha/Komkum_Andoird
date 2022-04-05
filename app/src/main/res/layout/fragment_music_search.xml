@@ -6,10 +6,10 @@
     <data>
 
         <import type="android.view.View" />
-        <import type="com.zomatunes.zomatunes.data.model.Audiobook" />
-        <import type="com.zomatunes.zomatunes.data.model.Song"/>
-        <import type="com.zomatunes.zomatunes.data.model.Playlist"/>
-        <import type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper" />
+        <import type="com.komkum.komkum.data.model.Audiobook" />
+        <import type="com.komkum.komkum.data.model.Song"/>
+        <import type="com.komkum.komkum.data.model.Playlist"/>
+        <import type="com.komkum.komkum.data.model.RecyclerViewHelper" />
 
         <variable
             name="songInfo"
@@ -20,7 +20,7 @@
             type="RecyclerViewHelper&lt;Playlist&lt;String>>" />
         <variable
             name="searchResult"
-            type="com.zomatunes.zomatunes.data.model.Search" />
+            type="com.komkum.komkum.data.model.Search" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -40,35 +40,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <include
-                    android:id="@+id/msuic_genre_view"
-                    layout="@layout/library_item"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <TextView
                     android:id="@+id/textView30"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="16dp"
                     android:text="Songs"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textAppearance="@style/Title"
                     android:textStyle="bold"
-                    android:visibility="visible"
+                    android:visibility="@{searchResult.songs.size > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/msuic_genre_view" />
+                    app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
                 <Button
                     android:id="@+id/view_all_song_btn"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@{`View all (`+searchResult.songs.size + `)`}"
+                    android:backgroundTint="@color/light_secondaryLightColor"
+                    android:text="@{searchResult.songs.size > 0 ? `View all (`+searchResult.songs.size + `)` : `No songs found`}"
+                    android:visibility="@{searchResult.songs.size > 4 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/song_search_recyclerview" />
@@ -77,7 +69,9 @@
                     android:id="@+id/song_search_recyclerview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/light_secondaryLightColor"
                     app:info="@{songInfo}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -88,11 +82,13 @@
                     android:id="@+id/textView31"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="24dp"
                     android:text="Albums"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textAppearance="@style/Title"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/textView30"
+                    android:visibility="@{searchResult.albums.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view_all_song_btn"
                     tools:visibility="visible" />
 
@@ -100,7 +96,9 @@
                     android:id="@+id/album_search_recyclerview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/light_secondaryLightColor"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView31" />
@@ -108,9 +106,12 @@
                 <Button
                     android:id="@+id/view_all_album_btn"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@{`View all (`+searchResult.albums.size + `)`}"
+                    android:background="@color/light_secondaryLightColor"
+                    android:text="@{searchResult.albums.size > 0 ? `View all (`+searchResult.albums.size + `)` : `No albums found`}"
+                    android:visibility="@{searchResult.albums.size >  6  ? View.VISIBLE : View.GONE}"
+
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/album_search_recyclerview" />
@@ -119,18 +120,21 @@
                     android:id="@+id/textView32"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="24dp"
                     android:text="Artists"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textAppearance="@style/Title"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/textView31"
+                    android:visibility="@{searchResult.artists.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view_all_album_btn" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/artist_search_recyclerview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/light_secondaryLightColor"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -139,9 +143,12 @@
                 <Button
                     android:id="@+id/view_all_artist_btn"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@{`View all (`+searchResult.artists.size + `)`}"
+                    android:background="@color/light_secondaryLightColor"
+                    android:text="@{searchResult.artists.size > 0 ? `View all (`+searchResult.artists.size + `)` : `No artists found`}"
+                    android:visibility="@{searchResult.artists.size > 6 ? View.VISIBLE : View.GONE}"
+
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/artist_search_recyclerview" />
@@ -150,35 +157,59 @@
                     android:id="@+id/textView36"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="24dp"
-                    android:text="Plalists"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:text="Playlists"
+                    android:textAppearance="@style/Title"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/textView32"
+                    android:visibility="@{searchResult.playlists.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view_all_artist_btn" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/playlist_search_recyclerview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/light_secondaryLightColor"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView36"
                     app:playlistInfo="@{playlistInfo}"
-                    app:playlistList="@{searchResult.playlists}" />
+                    app:playlistList="@{searchResult.playlists.size > 3 ? searchResult.playlists.subList(0 , 3) : searchResult.playlists}" />
 
                 <Button
                     android:id="@+id/view_all_playlists_btn"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="56dp"
-                    android:text="@{`View all (`+searchResult.playlists.size + `)`}"
+                    android:background="@color/light_secondaryLightColor"
+                    android:text="@{searchResult.playlists.size > 0 ?`View all (`+searchResult.playlists.size + `)` : `No playlist found`}"
+
+                    android:visibility="@{searchResult.playlists.size > 3 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/playlist_search_recyclerview" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <include
+                        android:id="@+id/msuic_genre_view"
+                        layout="@layout/library_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </androidx.cardview.widget.CardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "976217994523",
-    "firebase_url": "https://ethiomusic-fd9e7.firebaseio.com",
-    "project_id": "ethiomusic-fd9e7",
-    "storage_bucket": "ethiomusic-fd9e7.appspot.com"
+    "project_number": "132953159289",
+    "firebase_url": "https://zomatunes-739e2-default-rtdb.firebaseio.com",
+    "project_id": "zomatunes-739e2",
+    "storage_bucket": "zomatunes-739e2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:976217994523:android:0f78863fe29fda75284fbe",
+        "mobilesdk_app_id": "1:132953159289:android:8e210d3cb14262860e06a8",
         "android_client_info": {
-          "package_name": "com.zomatunes.zomatunes"
+          "package_name": "com.komkum.komkum"
         }
       },
       "oauth_client": [
         {
-          "client_id": "976217994523-d047qh1gkl5r9kct4ve27tln7utart1v.apps.googleusercontent.com",
+          "client_id": "132953159289-vurdsc8sr6v9uk5199elek91hsp6qkhg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.zomatunes.zomatunes",
+            "package_name": "com.komkum.komkum",
             "certificate_hash": "9ae92a926859ae45320681fbd54f7c79c404d781"
           }
         },
         {
-          "client_id": "976217994523-ipdbc8puhhejn43gikbb3r1e0l0b6vn3.apps.googleusercontent.com",
+          "client_id": "132953159289-hpmpgol3fbdld6hldoto1bscegnpsga6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBADimGjBPd-fKKy_0GC0jgiFrwJ7cv3_k"
+          "current_key": "AIzaSyAO1kQWApTokR6iF4GGumuSjP3Ufd0S4bg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "976217994523-ipdbc8puhhejn43gikbb3r1e0l0b6vn3.apps.googleusercontent.com",
+              "client_id": "132953159289-hpmpgol3fbdld6hldoto1bscegnpsga6.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

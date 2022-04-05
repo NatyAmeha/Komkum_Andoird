@@ -15,7 +15,7 @@
         android:elevation="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/backimage" />
+        app:srcCompat="@drawable/music_placeholder" />
 
     <TextView
         android:id="@+id/menu_title_textview"
@@ -25,8 +25,7 @@
         android:layout_marginEnd="16dp"
         android:text="Menu Main Tittle"
         android:textAlignment="viewStart"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="18sp"
+        android:textAppearance="@style/Subtitle"
         app:layout_constraintBottom_toTopOf="@+id/menu_sub_title_textview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/menu_imageview"
@@ -38,6 +37,7 @@
         android:layout_height="wrap_content"
         android:text="Menu sub title"
         android:textAlignment="viewStart"
+        android:textAppearance="@style/Caption"
         app:layout_constraintEnd_toEndOf="@+id/menu_title_textview"
         app:layout_constraintStart_toStartOf="@+id/menu_title_textview"
         app:layout_constraintTop_toBottomOf="@+id/menu_title_textview" />

@@ -6,10 +6,10 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.zomatunes.zomatunes.ui.song.SongViewModel" />
+            type="com.komkum.komkum.ui.song.SongViewModel" />
         <variable
             name="listInfo"
-            type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper&lt;com.zomatunes.zomatunes.data.model.Song&lt;String,String>>" />
+            type="com.komkum.komkum.data.model.RecyclerViewHelper&lt;com.komkum.komkum.data.model.Song&lt;String,String>>" />
 
         <variable
             name="isFromCache"
@@ -18,7 +18,6 @@
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:background="@color/primaryDarkColor"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -26,26 +25,33 @@
             android:id="@+id/song_list_appbar"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:background="@color/primaryDarkColor">
+            android:background="@color/transparent">
 
             <androidx.appcompat.widget.Toolbar
                 app:subtitle="@{String.valueOf(viewmodel.songLists.size + ` songs`)}"
                 android:id="@+id/song_list_toolbar"
                 android:layout_height="64dp"
-                android:layout_width="match_parent"
-                android:background="@color/primaryDarkColor"/>
+                android:layout_width="match_parent" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/song_list_recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="64dp"
-            app:info="@{listInfo}"
+        <androidx.core.widget.NestedScrollView
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            app:list="@{viewmodel.songLists}"
-            tools:listitem="@layout/song_list_item" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/song_list_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="64dp"
+                app:info="@{listInfo}"
+                app:list="@{viewmodel.songLists}"
+                tools:listitem="@layout/song_list_item" />
+
+        </androidx.core.widget.NestedScrollView>
+
+
 
         <ProgressBar
             android:id="@+id/song_list_progressbar"

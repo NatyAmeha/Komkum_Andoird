@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="com.komkum.komkum.data.model.RecyclerViewHelper"/>
+        <import type="com.komkum.komkum.data.model.Product"/>
+        <import type="com.komkum.komkum.data.model.Team"/>
+        <import type="android.view.View"/>
+
+        <variable
+            name="teamInfo"
+            type="RecyclerViewHelper&lt;Team&lt;Product>>" />
+
+        <variable
+            name="nearTeamInfo"
+            type="RecyclerViewHelper&lt;Team&lt;Product>>" />
+        <variable
+            name="teamViewmodel"
+            type="com.komkum.komkum.ui.store.team.TeamViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/team_list_progressbar"
+            android:layout_gravity="center"
+            android:visibility="@{(teamViewmodel.nearAndTrendingTeamList == null)? View.VISIBLE : View.INVISIBLE}"
+            android:background="@drawable/circle_4"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:background="@color/transparent"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_width="match_parent" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/team_near_recyclerview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{teamViewmodel.nearAndTrendingTeamList.nearTeamList.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/near_product_textview"
+                    app:teamList="@{teamViewmodel.nearAndTrendingTeamList.nearTeamList}"
+                    app:teamWithProductInfo="@{nearTeamInfo}"
+                    tools:itemCount="2" />
+
+                <TextView
+                    android:id="@+id/near_product_textview"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+
+                    android:text="@string/teams_in_your_area"
+                    android:textStyle="bold"
+                    android:visibility="@{teamViewmodel.nearAndTrendingTeamList.nearTeamList.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/team_list_header_textview"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/trending_collections"
+
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+
+                    android:textStyle="bold"
+                    android:visibility="@{teamViewmodel.nearAndTrendingTeamList.teamList.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/team_near_recyclerview" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/trending_package_teams_recyclerview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{teamViewmodel.nearAndTrendingTeamList.teamList.size > 0 ? View.VISIBLE : View.GONE}"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/team_list_header_textview"
+                    app:teamList="@{teamViewmodel.nearAndTrendingTeamList.teamList}"
+                    app:teamWithProductInfo="@{teamInfo}"
+                    tools:itemCount="2" />
+
+                <TextView
+                    android:id="@+id/your_active_team_textview"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/active_teams"
+
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/trending_package_teams_recyclerview" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/your_active_team_recyclerview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:visibility="@{teamViewmodel.nearAndTrendingTeamList.userTeams.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/your_active_team_textview"
+                    app:teamList="@{teamViewmodel.nearAndTrendingTeamList.userTeams}"
+                    app:teamWithProductInfo="@{teamInfo}"
+                    tools:itemCount="2" />
+
+                <TextView
+                    android:id="@+id/your_collections_textview"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:textStyle="bold"
+
+                    android:visibility="@{teamViewmodel.nearAndTrendingTeamList.userCollections.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/your_active_team_recyclerview" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/your_collections_recyclerview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{teamViewmodel.nearAndTrendingTeamList.userCollections.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/your_collections_textview"
+                    app:teamList="@{teamViewmodel.nearAndTrendingTeamList.userCollections}"
+                    app:teamWithProductInfo="@{teamInfo}"
+                    tools:itemCount="2" />
+
+                <TextView
+                    android:id="@+id/game_team_textview"
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/games"
+                    android:textStyle="bold"
+                    android:visibility="@{teamViewmodel.nearAndTrendingTeamList.gameTeams.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/your_collections_recyclerview" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/game_team_recyclerview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="56dp"
+                    android:visibility="@{teamViewmodel.nearAndTrendingTeamList.gameTeams.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/game_team_textview"
+                    app:teamList="@{teamViewmodel.nearAndTrendingTeamList.gameTeams}"
+                    app:teamWithProductInfo="@{teamInfo}"
+                    tools:itemCount="2" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <TextView
+            android:id="@+id/error_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:text="Sorry\n Please try again later"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

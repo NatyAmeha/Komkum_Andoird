@@ -46,7 +46,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/chart_imageview_3"
         app:layout_constraintTop_toTopOf="@+id/chart_imageview_1"
-        app:srcCompat="@drawable/backimage" />
+        app:srcCompat="@drawable/music_placeholder" />
 
     <ImageView
         android:id="@+id/chart_imageview_3"
@@ -62,7 +62,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/chart_imageview_2"
-        app:srcCompat="@drawable/backimg" />
+        app:srcCompat="@drawable/music_placeholder" />
 
     <ImageView
         android:id="@+id/chart_logo_imageview"

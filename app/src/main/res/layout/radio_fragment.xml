@@ -8,6 +8,7 @@
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -16,12 +17,16 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:background="@drawable/circle_4"
+            android:elevation="50dp" />
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:background="@drawable/item_selected"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            android:visibility="visible">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/c_toolbar_layout"
@@ -29,20 +34,24 @@
                 android:layout_height="wrap_content"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
-                app:statusBarScrim="@color/primaryDarkColor"
+                app:statusBarScrim="@color/light_secondaryDarkColor"
+                app:contentScrim="@color/light_secondaryDarkColor"
                 app:titleEnabled="false">
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/appbar_container"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:visibility="gone">
 
-                    <com.zomatunes.zomatunes.ui.customview.CustomPlaylistImageview
+                    <com.komkum.komkum.ui.customview.CustomPlaylistImageview
                         android:id="@+id/radio_image_custom_view"
                         android:layout_width="@dimen/cover_image_size"
                         android:layout_height="@dimen/cover_image_size"
                         android:layout_marginTop="56dp"
+                        android:alpha="0.6"
+                        android:background="@drawable/radio_placeholder"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -50,24 +59,32 @@
 
                     <TextView
                         android:id="@+id/radio_name_textview"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
                         android:layout_marginTop="16dp"
+                        android:layout_marginEnd="32dp"
                         android:text="Radio Title"
-                        android:textSize="@dimen/title_text_view_size"
+                        android:textAlignment="center"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textSize="@dimen/title_text_view_size"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/radio_image_custom_view" />
 
                     <Button
                         android:id="@+id/shuffle_station_btn"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
                         android:layout_marginTop="8dp"
-                        android:text="Shuffle Radio Station"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginEnd="32dp"
+                        android:background="@drawable/btn_rounded"
+                        android:textAppearance="@style/Body2"
+                        android:textAllCaps="true"
+                        android:text="@string/start_radio_station"
+                        app:layout_constraintEnd_toEndOf="@+id/radio_name_textview"
+                        app:layout_constraintStart_toStartOf="@+id/radio_name_textview"
                         app:layout_constraintTop_toBottomOf="@+id/radio_name_textview" />
 
                     <Button
@@ -75,42 +92,54 @@
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/ic_round_favorite_border_24"
-                        android:text="Like Radio "
+                        android:drawableLeft="@drawable/ic_gray_favorite_border_24"
+                        android:text="@string/like_radio"
                         android:visibility="invisible"
                         app:layout_constraintEnd_toEndOf="@+id/shuffle_station_btn"
                         app:layout_constraintHorizontal_bias="0.422"
                         app:layout_constraintStart_toStartOf="@+id/shuffle_station_btn"
-                        app:layout_constraintTop_toBottomOf="@+id/shuffle_station_btn" />
+                        app:layout_constraintTop_toBottomOf="@+id/radio_listiners_count_textview" />
 
                     <Button
                         android:id="@+id/unlike_radio_btn"
                         style="@style/Widget.MaterialComponents.Button.TextButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
                         android:drawableLeft="@drawable/ic_favorite_border_black_24dp"
-                        android:text="Liked"
+                        android:text="@string/liked"
                         android:visibility="invisible"
                         app:layout_constraintEnd_toEndOf="@+id/shuffle_station_btn"
                         app:layout_constraintStart_toStartOf="@+id/shuffle_station_btn"
+                        app:layout_constraintTop_toBottomOf="@+id/radio_listiners_count_textview" />
+
+                    <TextView
+                        android:id="@+id/radio_listiners_count_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/shuffle_station_btn" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/radio_toolbar"
-                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/transparent"
                     android:layout_width="match_parent"
-                    app:layout_collapseMode="pin"/>
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin" />
             </com.google.android.material.appbar.CollapsingToolbarLayout>
-
 
 
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/radio_nestedscrollview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="gone"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -122,22 +151,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
-                    android:text="Artists in this Radio"
+                    android:text="@string/artists_in_radio"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="@+id/textView45"
-                    app:layout_constraintTop_toBottomOf="@+id/song_list_textview" />
+                    app:layout_constraintTop_toBottomOf="@+id/song_size_btn" />
 
                 <TextView
                     android:id="@+id/textView45"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="32dp"
-                    android:text="Songs in this Radio"
+                    android:text="@string/songs_in_radio"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="#FBF9F9"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -147,7 +174,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="@dimen/default_margin_start"
                     android:maxLines="4"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView45"
@@ -158,17 +185,45 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="@dimen/default_margin_start"
                     android:maxLines="4"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView47"
                     app:layout_constraintTop_toBottomOf="@+id/textView47" />
 
+                <Button
+                    android:id="@+id/song_size_btn"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Songs"
+                    app:layout_constraintStart_toStartOf="@+id/song_list_textview"
+                    app:layout_constraintTop_toBottomOf="@+id/song_list_textview" />
+
+                <Button
+                    android:id="@+id/artist_size_btn"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/artists"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/artist_list_textview"
+                    app:layout_constraintTop_toBottomOf="@+id/artist_list_textview" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
 
-
+        <TextView
+            android:id="@+id/radio_error_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/radio_error_message"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

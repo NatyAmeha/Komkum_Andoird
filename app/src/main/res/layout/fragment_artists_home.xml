@@ -7,10 +7,10 @@
         <import type="android.view.View"/>
         <variable
             name="viewmodel"
-            type="com.zomatunes.zomatunes.ui.artist.ArtistViewModel" />
+            type="com.komkum.komkum.ui.artist.ArtistViewModel" />
         <variable
             name="listinfo"
-            type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper&lt;com.zomatunes.zomatunes.data.model.Artist&lt;String,String>>" />
+            type="com.komkum.komkum.data.model.RecyclerViewHelper&lt;com.komkum.komkum.data.model.Artist&lt;String,String>>" />
 
     </data>
 
@@ -34,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="Popular Artists"
+                    android:text="@string/top_artists"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:visibility="@{viewmodel.popularArtists.data == null ? View.GONE : View.VISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +49,6 @@
                     android:text="see more"
                     android:visibility="@{viewmodel.popularArtists.data == null ? View.GONE : View.VISIBLE}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    android:textColor="#FFFFFF"
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView7"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
@@ -60,7 +59,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
-                    android:text="New Artists"
+                    android:text="@string/new_artists"
                     android:visibility="@{viewmodel.popularArtists.data == null ? View.GONE : View.VISIBLE}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     app:layout_constraintStart_toStartOf="@+id/textView7"
@@ -113,8 +112,7 @@
                     app:artistlist="@{viewmodel.popularArtists.data}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView7"
-                    tools:listitem="@layout/mini_view_list_item" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/newartist_recyclerview"

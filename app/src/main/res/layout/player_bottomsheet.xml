@@ -9,7 +9,7 @@
         <import type="android.support.v4.media.MediaMetadataCompat"/>
         <variable
             name="mainviewmodel"
-            type="com.zomatunes.zomatunes.MainActivityViewmodel" />
+            type="com.komkum.komkum.MainActivityViewmodel" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -52,7 +52,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/bottonsheet_song_progressbar"
                         app:layout_constraintVertical_bias="0.8"
                         app:loadImage="@{mainviewmodel.nowPlaying.getString(MediaMetadataCompat.METADATA_KEY_DISPLAY_ICON_URI)}"
-                        app:srcCompat="@drawable/backimage" />
+                        app:srcCompat="@drawable/ic_play_circle_filled_black_24dp" />
 
                     <ProgressBar
                         android:id="@+id/bottonsheet_song_progressbar"

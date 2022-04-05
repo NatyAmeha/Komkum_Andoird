@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="com.komkum.komkum.data.model.PodcastEpisode"/>
+        <import type="com.komkum.komkum.data.model.RecyclerViewHelper"/>
+        <import type="android.support.v4.media.session.PlaybackStateCompat"/>
+
+        <variable
+            name="episode"
+            type="com.komkum.komkum.data.model.PodcastEpisode" />
+
+        <variable
+            name="selected"
+            type="Boolean"/>
+
+        <variable
+            name="info"
+            type="RecyclerViewHelper&lt;PodcastEpisode>"/>
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="?attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        android:foreground="@{(selected == false) ? @color/trnasparentColor :  @color/selectedSongBackground}"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imageView19"
+            android:layout_width="20dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/episode_release_date_textview"
+            app:layout_constraintStart_toEndOf="@+id/episode_release_date_textview"
+            app:layout_constraintTop_toTopOf="@+id/episode_release_date_textview"
+            app:srcCompat="@drawable/ic_baseline_timer_24"
+            android:tint="@{selected ? @color/light_primaryColor : @color/gray_background}"
+            />
+
+        <ImageView
+            android:id="@+id/episode_imageview"
+            android:layout_width="@dimen/team_list_item_image_size"
+            android:layout_height="@dimen/team_list_item_image_size"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/new_episode_badge_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:cardBackgroundColor="@color/primaryColor"
+            app:cardCornerRadius="0dp"
+            app:layout_constraintEnd_toEndOf="@+id/episode_imageview"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/episode_imageview"
+            app:layout_constraintTop_toTopOf="@+id/episode_imageview">
+
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/Overline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="New" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/episode_title_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:maxLines="2"
+            android:textAppearance="@style/Subtitle"
+            android:textColor="@{selected ? @color/light_primaryColor : @color/light_secondaryTextColor}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/episode_imageview"
+            app:layout_constraintTop_toTopOf="@+id/episode_imageview" />
+
+        <ImageView
+            android:id="@+id/imageView18"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="4dp"
+            android:tint="@{selected ? @color/light_primaryColor : @color/gray_background}"
+            app:layout_constraintStart_toStartOf="@+id/episode_title_textview"
+            app:layout_constraintTop_toBottomOf="@+id/episode_sdescription_textview"
+            app:srcCompat="@drawable/ic_baseline_calendar_today_24" />
+
+        <TextView
+            android:id="@+id/episode_release_date_textview"
+            style="@style/Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@{selected ? @color/light_primaryColor : @color/light_secondaryTextColor}"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView18"
+            app:layout_constraintStart_toEndOf="@+id/imageView18"
+            app:layout_constraintTop_toTopOf="@+id/imageView18" />
+
+        <TextView
+            android:id="@+id/episode_duration_imageview"
+            style="@style/Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@{selected ? @color/light_primaryColor : @color/light_secondaryTextColor}"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView19"
+            app:layout_constraintStart_toEndOf="@+id/imageView19"
+            app:layout_constraintTop_toTopOf="@+id/imageView19" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/play_episode_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:layout_marginTop="12dp"
+            android:text="Play"
+            android:visibility="@{(selected &amp;&amp; info.playbackState.state == PlaybackStateCompat.STATE_PLAYING)? View.INVISIBLE : View.VISIBLE}"
+            app:chipIcon="@drawable/ic_baseline_play_circle_filled_24"
+            app:chipIconSize="40dp"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="@+id/episode_imageview"
+            app:layout_constraintTop_toBottomOf="@+id/episode_imageview" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/pause_episode_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="58dp"
+            android:text="Pause"
+            android:textColor="@color/primaryColor"
+            android:tint="@color/primaryColor"
+            android:visibility="@{(selected &amp;&amp; info.playbackState.state == PlaybackStateCompat.STATE_PLAYING)? View.VISIBLE : View.INVISIBLE}"
+            app:chipIcon="@drawable/ic_baseline_pause_circle_filled_24"
+
+            app:chipIconSize="40dp"
+            app:layout_constraintBottom_toBottomOf="@+id/play_episode_imageview"
+            app:layout_constraintStart_toStartOf="@+id/play_episode_imageview"
+            app:layout_constraintTop_toTopOf="@+id/play_episode_imageview" />
+
+        <ImageView
+            android:id="@+id/unlike_episode_imageview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/like_episode_imageview"
+            app:layout_constraintEnd_toEndOf="@+id/like_episode_imageview"
+            app:layout_constraintStart_toStartOf="@+id/like_episode_imageview"
+            app:layout_constraintTop_toTopOf="@+id/like_episode_imageview"
+            app:srcCompat="@drawable/ic_favorite_border_black_24dp" />
+
+        <ImageView
+            android:id="@+id/like_episode_imageview"
+            android:layout_width="25dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintBottom_toBottomOf="@+id/play_episode_imageview"
+            app:layout_constraintStart_toEndOf="@+id/play_episode_imageview"
+            app:layout_constraintTop_toTopOf="@+id/play_episode_imageview"
+            app:srcCompat="@drawable/ic_round_favorite_border_24" />
+
+        <ImageView
+            android:id="@+id/remove_download_imageview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/download_episode_imageview"
+            app:layout_constraintEnd_toEndOf="@+id/download_episode_imageview"
+            app:layout_constraintStart_toStartOf="@+id/download_episode_imageview"
+            app:layout_constraintTop_toTopOf="@+id/download_episode_imageview"
+            app:srcCompat="@drawable/ic_twotone_arrow_circle_down_24" />
+
+        <ImageView
+            android:id="@+id/download_episode_imageview"
+            android:layout_width="25dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="32dp"
+            app:layout_constraintBottom_toBottomOf="@+id/like_episode_imageview"
+            app:layout_constraintStart_toEndOf="@+id/like_episode_imageview"
+            app:layout_constraintTop_toTopOf="@+id/like_episode_imageview"
+            app:srcCompat="@drawable/ic_outline_arrow_circle_down_24" />
+
+        <TextView
+            android:id="@+id/percent_listened_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:text="23%"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/download_episode_imageview"
+            app:layout_constraintEnd_toEndOf="@+id/episode_title_textview"
+            app:layout_constraintTop_toTopOf="@+id/download_episode_imageview" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/primaryLightColor"
+            android:backgroundTint="#1FFFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/play_episode_imageview" />
+
+        <ProgressBar
+            android:id="@+id/episode_play_loading_progressbar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="4dp"
+
+            android:visibility="@{(selected &amp;&amp; info.playbackState.state == PlaybackStateCompat.STATE_BUFFERING)? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/play_episode_imageview"
+            app:layout_constraintStart_toStartOf="@+id/play_episode_imageview"
+            app:layout_constraintTop_toTopOf="@+id/play_episode_imageview" />
+
+        <TextView
+            android:id="@+id/episode_sdescription_textview"
+            style="@style/Body2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@{selected ? @color/light_primaryColor : @color/light_secondaryTextColor}"
+            app:layout_constraintEnd_toEndOf="@+id/episode_title_textview"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/episode_title_textview"
+            app:layout_constraintTop_toBottomOf="@+id/episode_title_textview" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -5,12 +5,139 @@
     <dimen name="list_item_spacing">16dp</dimen>
     <dimen name="list_item_spacing_half">8dp</dimen>
 
-    <dimen name="viewpager_next_item_visible">24dp</dimen>
-    <dimen name="viewpager_current_item_horizontal_margin">32dp</dimen>
+    <dimen name="viewpager_next_item_visible">16dp</dimen>
+    <dimen name="viewpager_current_item_horizontal_margin">16dp</dimen>
 
-    <dimen name="book_image_width">160dp</dimen>
-    <dimen name="book_image_height">150dp</dimen>
 
-    <dimen name="margin_start">16dp</dimen>
-    <dimen name="text_view_margin_top">80dp</dimen>
+
+
+    <!--      new dimension-->
+    <dimen name="book_image_width">145dp</dimen>
+    <dimen name="book_image_height">155dp</dimen>
+
+    <dimen name="book_horizontal_image_width">140dp</dimen>
+    <dimen name="book_horizontal_image_height">155dp</dimen>
+    <dimen name="book_image_margin_start">5dp</dimen>
+    <dimen name="book_collection_image_width">285dp</dimen>
+    <dimen name="book__collection_image_height">140dp</dimen>
+    <dimen name="book__collection_fragment_header_height">200dp</dimen>
+
+    <dimen name="book_page_title_textview_size">20sp</dimen>
+    <dimen name="book_page_artist_title_textview_size">16sp</dimen>
+
+    <dimen name="margin_start">8dp</dimen>
+    <dimen name="text_view_margin_top">6dp</dimen>
+
+    <dimen name="album_list_image_height">160dp</dimen>
+    <dimen name="album_list_selection_image_size">40dp</dimen>
+
+    <dimen name="cover_image_size">150dp</dimen>
+    <dimen name="title_text_view_size">21sp</dimen>
+    <dimen name="sub_title_text_view_size">14sp</dimen>
+
+    <dimen name="error_view_margin_top">72dp</dimen>
+    <dimen name="error_view_image_size">170dp</dimen>
+
+
+    <dimen name="mini_view_image_size">120dp</dimen>
+    <dimen name="min_view_image_margin_start">8dp</dimen>
+
+    <dimen name="playlist_image_size">110dp</dimen>
+    <dimen name="playlist_desc_text_size">13sp</dimen>
+
+    <dimen name="browse_item_textview_size">27sp</dimen>
+    <dimen name="browse_item_imageview_width">110dp</dimen>
+    <dimen name="browse_item_imageview_height">70dp</dimen>
+    <dimen name="browse_item_margin_start">6dp</dimen>
+    <dimen name="browse_item_margin_top">8dp</dimen>
+
+
+    <dimen name="song_cover_image_size">50dp</dimen>
+    <dimen name="song_title_text_size">17sp</dimen>
+    <dimen name="song_sub_title_text_size">13sp</dimen>
+
+    <dimen name="medium_view_image_width">155dp</dimen>
+    <dimen name="medium_view_image_height">155dp</dimen>
+
+    <dimen name="download_image_width">90dp</dimen>
+    <dimen name="download_image_height">80dp</dimen>
+    <dimen name="download_title_text_size">17sp</dimen>
+    <dimen name="download_sub_title_text_size">13dp</dimen>
+    <dimen name="download_icon_size">16dp</dimen>
+
+    <dimen name="play_icon_size">105dp</dimen>
+    <dimen name="next_prev_icon_size">53dp</dimen>
+    <dimen name="playl_title_text_size">22sp</dimen>
+    <dimen name="playl_sub_title_text_size">18sp</dimen>
+    <dimen name="player_margin_bottom">24dp</dimen>
+    <dimen name="player_header_icon_size">40dp</dimen>
+    <dimen name="player_header_title_text_size">16sp</dimen>
+    <dimen name="player_lyrics_text_size">14sp</dimen>
+    <dimen name="player_margin_top">16dp</dimen>
+    <dimen name="player_viewpager_top">12dp</dimen>
+
+    <dimen name="user_profile_image_view_size">135dp</dimen>
+
+
+
+    <dimen name="library_item_image_size">30dp</dimen>
+    <dimen name="library_item_text_size">18sp</dimen>
+
+
+    <dimen name="top_margin_value">32dp</dimen>
+    <dimen name="medium_margin_value">16dp</dimen>
+    <dimen name="minimum_margin_value">8dp</dimen>
+    <dimen name="home_fragment_margin_top">16dp</dimen>
+
+
+
+    <dimen name="login_margin_top">100dp</dimen>
+
+    <dimen name="default_margin_start">16dp</dimen>
+
+
+    <dimen name="bullet_span_size">15</dimen>
+
+    <dimen name="mainaccount_fragment_margin">80dp</dimen>
+    <dimen name="mainaccount_fragment_btn_margin_top">80dp</dimen>
+    <dimen name="onboarding_fragment_margin_bottom">125dp</dimen>
+
+
+
+    <dimen name="medium_icon_size">45dp</dimen>
+    <dimen name="small_icon_size">20dp</dimen>
+
+
+    <dimen name="package_image_width">145dp</dimen>
+    <dimen name="package_image_height">110dp</dimen>
+
+
+
+
+    <dimen name="product_list_item_size">190dp</dimen>
+    <dimen name="vertical_product_list_item_size">145dp</dimen>
+
+
+    <dimen name="team_mini_list_item_image_size">85dp</dimen>
+
+
+<!--    text size-->
+    <dimen name="header">22sp</dimen>
+    <dimen name="header2">28sp</dimen>
+    <dimen name="header3">32sp</dimen>
+    <dimen name="header4">40sp</dimen>
+    <dimen name="title">19sp</dimen>
+    <dimen name="subtitle">17sp</dimen>
+    <dimen name="subtitle1">14sp</dimen>
+    <dimen name="subtitle2">12sp</dimen>
+    <dimen name="body_1">16sp</dimen>
+    <dimen name="body_2">14sp</dimen>
+    <dimen name="body_3">15sp</dimen>
+    <dimen name="button">12sp</dimen>
+    <dimen name="caption">13sp</dimen>
+    <dimen name="caption2">12sp</dimen>
+    <dimen name="overline">10sp</dimen>
+
+
 </resources>
+

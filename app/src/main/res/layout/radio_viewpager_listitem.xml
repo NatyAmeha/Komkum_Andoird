@@ -20,7 +20,8 @@
             android:layout_marginEnd="@dimen/viewpager_current_item_horizontal_margin"
             android:text="Radiostation Tittle"
             android:textAlignment="viewStart"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAppearance="@style/Header"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,9 +30,9 @@
             android:id="@+id/station_description_textview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Description about the radiostation category"
+            android:text="Radio stations picked for this category"
             android:textAlignment="viewStart"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textAppearance="@style/Caption"
             app:layout_constraintEnd_toEndOf="@+id/statio_titile_textview"
             app:layout_constraintStart_toStartOf="@+id/statio_titile_textview"
             app:layout_constraintTop_toBottomOf="@+id/statio_titile_textview" />
@@ -52,7 +53,7 @@
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/default_margin_start"
             android:text="See more"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/station_list_recyclerview" />

@@ -8,8 +8,8 @@
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        app:statusBarBackground="@color/primaryDarkColor"
-        android:background="@color/primaryDarkColor"
+        app:statusBarBackground="@drawable/item_selected"
+        android:background="@drawable/item_selected"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,22 +17,21 @@
             android:id="@+id/download_appbar"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:background="@color/primaryDarkColor">
+            android:background="@color/transparent">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/download_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@color/primaryDarkColor"
                 app:layout_scrollFlags="scroll|snap|enterAlways"/>
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/download_tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:background="@color/primaryDarkColor"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/transparent"
                 app:tabIndicatorFullWidth="false"
                 app:tabMode="scrollable">
 
@@ -50,6 +49,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Book" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Episodes" />
 
 
             </com.google.android.material.tabs.TabLayout>
@@ -79,6 +83,7 @@
             android:id="@+id/dowload_loading_progressbar"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
+            android:background="@drawable/circle_4"
             android:layout_height="wrap_content"
             app:layout_anchor="@+id/download_viewpager"
             app:layout_anchorGravity="center" />

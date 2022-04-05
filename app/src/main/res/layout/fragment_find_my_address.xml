@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:background="@color/transparent"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_width="match_parent" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.store.team.FindMyAddressFragment">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/address_textinput_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:endIconMode="clear_text"
+                app:helperTextEnabled="true"
+                app:helperText="@string/we_will_help_you_find_your_place"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:placeholderText="@string/add_precise_location">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/address_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/specific_address"
+                    android:inputType="textShortMessage|textPostalAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ListView
+                android:id="@+id/suggested_address_list_view"
+                android:layout_width="0dp"
+                android:layout_height="300dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginBottom="56dp"
+                android:nestedScrollingEnabled="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/address_textinput_layout"
+                app:layout_constraintStart_toStartOf="@+id/address_textinput_layout"
+                app:layout_constraintTop_toBottomOf="@+id/address_textinput_layout" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/find_my_location_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/btn_rounded"
+        android:enabled="false"
+        android:text="@string/done"
+        android:visibility="visible" />
+
+    <ProgressBar
+        android:id="@+id/progressBar9"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

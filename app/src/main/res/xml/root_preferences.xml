@@ -3,92 +3,108 @@
 
     <PreferenceCategory app:title="General"
         app:iconSpaceReserved="false">
+<!--        <ListPreference-->
+<!--            app:entries="@array/language_entries"-->
+<!--            app:entryValues="@array/language_values"-->
+<!--            app:icon="@drawable/ic_baseline_language_24"-->
+<!--            app:key="language"-->
+<!--            app:title="Language"-->
+<!--            app:useSimpleSummaryProvider="true" />-->
+
         <ListPreference
+            android:defaultValue="64"
+            app:defaultValue="English"
             app:entries="@array/language_entries"
             app:entryValues="@array/language_values"
             app:icon="@drawable/ic_baseline_language_24"
             app:key="language"
             app:title="Language"
             app:useSimpleSummaryProvider="true" />
-        <SwitchPreferenceCompat
-            android:defaultValue="true"
-            app:defaultValue="true"
-            app:icon="@drawable/ic_baseline_history_24"
-            app:key="history"
-            app:summary="When this is turn on, your recent activities will be shown to the homepage"
-            app:title="Showing My History" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory app:title="Notifications"
-        app:iconSpaceReserved="false">
-        <SwitchPreferenceCompat
-            android:defaultValue="true"
-            app:defaultValue="true"
-            app:icon="@drawable/ic_baseline_notifications_24"
-            app:key="notification"
-            app:summary="Allow to Receive  Notifications about latest Releases"
-            app:title="Allow Notification" />
-
-    </PreferenceCategory>
-
-    <PreferenceCategory app:title="Playback"
-        app:iconSpaceReserved="false">
-        <ListPreference app:key="stream_quality"
-            app:title="Stream Quality"
-            app:icon="@drawable/ic_baseline_playlist_play_24"
-            app:entries="@array/stream_quality_entiries"
-            app:entryValues="@array/stream_quality_values"
-            app:useSimpleSummaryProvider="true"/>
-        <SwitchPreferenceCompat
-            android:defaultValue="false"
-            app:defaultValue="false"
-            app:icon="@drawable/ic_queue_music_black_24dp"
-            app:key="queue"
-            app:summary="Preserve all Queue History when you navigate through the app"
-            app:title="Preserve Queue List" />
 
         <Preference app:selectable="true"
-            app:title="Playback Info"
-            app:icon="@drawable/ic_baseline_info_24"/>
+            android:key="notification"
+            app:title="Notification"
+            app:icon="@drawable/ic_baseline_notifications_24">
+        </Preference>
+
+        <Preference app:iconSpaceReserved="false"
+            app:title="About"
+            app:icon="@drawable/ic_album_black_24dp"
+            app:selectable="true"/>
+
+<!--        <SwitchPreferenceCompat-->
+<!--            android:defaultValue="true"-->
+<!--            app:defaultValue="true"-->
+<!--            app:icon="@drawable/ic_baseline_history_24"-->
+<!--            app:key="history"-->
+<!--            app:summary="When this is turn on, your recent activities will be shown to the homepage"-->
+<!--            app:title="Showing My History" />-->
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="Downloads"
-        app:iconSpaceReserved="false">
+<!--    <PreferenceCategory app:title="Notifications"-->
+<!--        app:iconSpaceReserved="false">-->
+<!--&lt;!&ndash;        <SwitchPreferenceCompat&ndash;&gt;-->
+<!--&lt;!&ndash;            android:defaultValue="true"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:defaultValue="true"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:icon="@drawable/ic_baseline_notifications_24"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:key="notification"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:summary="Allow to Receive  Notifications about latest Releases"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:title="Allow Notification" />&ndash;&gt;-->
 
-        <SwitchPreferenceCompat
-            android:defaultValue="true"
-            app:defaultValue="true"
-            app:icon="@drawable/ic_baseline_wifi_24"
-            app:key="download_on_wifi"
-            app:summary="if this enabled dowload only takes place when there is a wifi"
-            app:title="Download Only on Wifi" />
 
-        <ListPreference
-            android:defaultValue="128"
-            app:entries="@array/download_quality_entiries"
-            app:entryValues="@array/download_quality_values"
-            app:icon="@drawable/ic_baseline_hd_24"
-            app:key="download_quality"
-            app:title="Download Quality"
-            app:useSimpleSummaryProvider="true" />
 
-        <ListPreference app:key="download_task"
-            android:defaultValue="3"
-            app:title="Prallel Downloads"
-            app:summary="Choose Number of Concurrent Download"
-            app:icon="@drawable/ic_baseline_format_list_numbered_24"
-            app:entries="@array/task_entries"
-            app:entryValues="@array/task_values"
-            app:useSimpleSummaryProvider="true"/>
+<!--    </PreferenceCategory>-->
 
-    </PreferenceCategory>
 
-    <Preference app:iconSpaceReserved="false"
-        app:title="About"
-        app:icon="@drawable/ic_album_black_24dp"
-        app:selectable="true"/>
+<!--    <PreferenceCategory app:title="Playback"-->
+<!--        app:iconSpaceReserved="false">-->
+<!--        <ListPreference app:key="stream_quality"-->
+<!--            android:defaultValue="Auto"-->
+<!--            app:title="Stream Quality"-->
+<!--            app:icon="@drawable/ic_baseline_playlist_play_24"-->
+<!--            app:entries="@array/stream_quality_entiries"-->
+<!--            app:entryValues="@array/stream_quality_values"-->
+<!--            app:useSimpleSummaryProvider="true"/>-->
+
+<!--&lt;!&ndash;        &ndash;&gt;-->
+<!--&lt;!&ndash;        <Preference app:selectable="true"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:title="Playback Info"&ndash;&gt;-->
+<!--&lt;!&ndash;            app:icon="@drawable/ic_baseline_info_24"/>&ndash;&gt;-->
+
+<!--    </PreferenceCategory>-->
+
+<!--    <PreferenceCategory app:title="Downloads"-->
+<!--        app:iconSpaceReserved="false">-->
+
+<!--        <SwitchPreferenceCompat-->
+<!--            android:defaultValue="true"-->
+<!--            app:defaultValue="true"-->
+<!--            app:icon="@drawable/ic_baseline_wifi_24"-->
+<!--            app:key="download_on_wifi"-->
+<!--            app:summary="if this enabled dowload only takes place when there is a wifi"-->
+<!--            app:title="Download Only on Wifi" />-->
+
+<!--        <ListPreference-->
+<!--            android:defaultValue="Low"-->
+<!--            app:defaultValue="Low"-->
+<!--            app:entries="@array/download_quality_entiries"-->
+<!--            app:entryValues="@array/download_quality_values"-->
+<!--            app:icon="@drawable/ic_baseline_hd_24"-->
+<!--            app:key="download_quality"-->
+<!--            app:title="Download Quality"-->
+<!--            app:useSimpleSummaryProvider="true" />-->
+
+<!--        <ListPreference app:key="download_task"-->
+<!--            android:defaultValue="3"-->
+<!--            app:title="Parallel Downloads"-->
+<!--            app:summary="Choose Number of Concurrent Download"-->
+<!--            app:icon="@drawable/ic_baseline_format_list_numbered_24"-->
+<!--            app:entries="@array/task_entries"-->
+<!--            app:entryValues="@array/task_values"-->
+<!--            app:useSimpleSummaryProvider="true"/>-->
+
+<!--    </PreferenceCategory>-->
 
 
 

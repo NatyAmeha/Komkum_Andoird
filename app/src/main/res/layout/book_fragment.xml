@@ -15,7 +15,7 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
-
+            android:background="@color/transparent"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
 
@@ -26,6 +26,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/offline_book_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
@@ -44,7 +45,7 @@
                     android:layout_height="@dimen/book_image_height"
                     android:layout_marginStart="@dimen/margin_start"
                     android:layout_marginTop="8dp"
-                    android:src="@drawable/backimage"
+                    android:src="@drawable/music_placeholder"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,11 +53,11 @@
                     android:id="@+id/book_title_textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_start"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:layout_marginEnd="@dimen/default_margin_start"
                     android:text="Book Title"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/book_cover_imageview"
                     app:layout_constraintTop_toTopOf="@+id/book_cover_imageview" />
@@ -65,6 +66,7 @@
                     android:id="@+id/book_author_textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:text="Author Name"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     app:layout_constraintEnd_toEndOf="@+id/book_title_textview"
@@ -76,6 +78,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Narrated by Narrator Name"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="@+id/book_author_textview"
                     app:layout_constraintStart_toStartOf="@+id/book_author_textview"
                     app:layout_constraintTop_toBottomOf="@+id/book_author_textview" />
@@ -86,8 +89,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="29% Listening"
-                    app:layout_constraintEnd_toEndOf="@+id/narrator_name_textview"
-                    app:layout_constraintStart_toStartOf="@+id/narrator_name_textview"
+                    app:layout_constraintEnd_toEndOf="@+id/book_author_textview"
+                    app:layout_constraintStart_toStartOf="@+id/book_author_textview"
                     app:layout_constraintTop_toBottomOf="@+id/narrator_name_textview" />
 
                 <TextView
@@ -97,8 +100,8 @@
                     android:layout_marginStart="@dimen/margin_start"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:text=" 5 Rating "
                     android:textAlignment="center"
+                    android:textColor="#FFFFFF"
                     app:layout_constraintEnd_toStartOf="@+id/divider4"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -112,6 +115,7 @@
                     android:layout_marginEnd="16dp"
                     android:text="1hr  45 min"
                     android:textAlignment="center"
+                    android:textColor="#FFFFFF"
                     app:layout_constraintEnd_toStartOf="@+id/divider5"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/divider4"
@@ -125,6 +129,7 @@
                     android:layout_marginEnd="16dp"
                     android:text="245 download"
                     android:textAlignment="center"
+                    android:textColor="#FFFFFF"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/divider5"
@@ -183,11 +188,12 @@
                     android:id="@+id/textView79"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="32dp"
                     android:text="Chapters"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="#FFFFFF"
+                    android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/continue_listening_btn" />
 

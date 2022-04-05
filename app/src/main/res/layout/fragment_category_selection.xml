@@ -6,13 +6,13 @@
     <data>
         <variable
             name="onboardingActivityViewmodel"
-            type="com.zomatunes.zomatunes.OnboardingActivityViewmodel" />
+            type="com.komkum.komkum.OnboardingActivityViewmodel" />
         <variable
             name="owner"
             type="androidx.lifecycle.LifecycleOwner" />
         <variable
             name="interactionManager"
-            type="com.zomatunes.zomatunes.util.viewhelper.IRecyclerViewInteractionListener" />
+            type="com.komkum.komkum.util.viewhelper.IRecyclerViewInteractionListener" />
     </data>
 
 

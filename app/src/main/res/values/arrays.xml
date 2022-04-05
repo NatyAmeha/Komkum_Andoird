@@ -13,26 +13,25 @@
     <string-array name="stream_quality_entiries">
         <item>Auto</item>
         <item>Low</item>
-        <item>Medium</item>
         <item>High</item>
     </string-array>
 
     <string-array name="download_quality_entiries">
-        <item>Low (96kps)</item>
-        <item>Medium (128kbs)</item>
-        <item>High (256kbs)</item>
+        <item>Low</item>
+        <item>High</item>
     </string-array>
 
+
+
     <string-array name="stream_quality_values">
-        <item>96</item>
-        <item>128</item>
-        <item>256</item>
+        <item>Auto</item>
+        <item>64</item>
+        <item>160</item>
     </string-array>
 
     <string-array name="download_quality_values">
-        <item>96</item>
-        <item>128</item>
-        <item>256</item>
+        <item>64</item>
+        <item>160</item>
     </string-array>
 
     <string-array name="task_entries">

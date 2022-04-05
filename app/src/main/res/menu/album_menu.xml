@@ -13,16 +13,19 @@
         android:title="Remove From Favorite"
         app:showAsAction="always" />
     <item
-        android:id="@+id/album_edit_menu_item"
-        android:icon="@drawable/ic_mode_edit_black_24dp"
-        android:title="Edit" />
-    <item
         android:id="@+id/download_menu_item"
-        android:title="Download" />
+        android:title="@string/download" />
+    <item
+        android:id="@+id/album_share_menu_item"
+        android:title="@string/share" />
     <item
         android:id="@+id/remove_download_menu_item"
-        android:title="Remove Download" />
+        android:title="@string/remove_download" />
     <item
         android:id="@+id/go_to_artist_menu_item"
-        android:title="Go To Artist" />
+        android:title="@string/go_to_artist" />
+    <item
+        android:id="@+id/album_edit_menu_item"
+        android:icon="@drawable/ic_mode_edit_black_24dp"
+        android:title="@string/more_option" />
 </menu>

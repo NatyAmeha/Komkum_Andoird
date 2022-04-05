@@ -20,9 +20,8 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="Album Name"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#FFFFFF"
+            android:textAlignment="viewStart"
+            android:textAppearance="@style/Title"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +33,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="Artist Name | 12 songs"
-            android:textAlignment="center"
+            android:textAlignment="viewStart"
+            android:textAppearance="@style/Body2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tittle_textview"
@@ -50,8 +50,7 @@
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/backimage" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/album_selected_imageview"

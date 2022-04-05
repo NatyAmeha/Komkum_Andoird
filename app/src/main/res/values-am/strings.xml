@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Komkum</string>
+    <string name="recently_played">አዳዳዲስ ሙዚቃዎች Am</string>
+    <string name="donations">የአድናቂዎች ድጋፍ Am</string>
+    <string name="new_songs">አዳዳዲስ ሙዚቃዎች Am</string>
+    <string name="new_albums">አዳዳዲስ አልበሞች</string>
+
+</resources>

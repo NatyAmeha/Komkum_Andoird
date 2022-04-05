@@ -3,23 +3,44 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/homeFragment"
-        android:icon="@drawable/ic_audiotrack_black_24dp"
-        android:title="Music" />
+        android:id="@+id/storeHomepageFragment"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="@string/title_home" />
+
     <item
-        android:id="@+id/bookHomeFragment"
-        android:icon="@drawable/ic_baseline_menu_book_24"
-        android:title="Books" />
+        android:id="@+id/productCategoryListFragment"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/categories" />
+
     <item
-        android:id="@+id/searchFragment"
-        android:icon="@drawable/ic_search_black_24dp"
-        android:title="Browse" />
-    <item
-        android:id="@+id/libraryFragment"
-        android:icon="@drawable/ic_baseline_library_music_24"
-        android:title="Library" />
-    <item
-        android:id="@+id/userFragment"
+        android:id="@+id/accountFragment"
         android:icon="@drawable/ic_person_black_24dp"
-        android:title="Me" />
+        android:title="@string/me" />
+
+<!--    <item-->
+<!--        android:id="@+id/baseFragment"-->
+<!--        android:icon="@drawable/ic_baseline_home_24"-->
+<!--        android:title="@string/entertainment" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/bookHomeFragment"-->
+<!--        android:icon="@drawable/ic_baseline_menu_book_24"-->
+<!--        android:title="Books" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/podcastHomeFragment"-->
+<!--        android:icon="@drawable/ic_baseline_mic_24"-->
+<!--        android:title="Podcasts" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/searchFragment"-->
+<!--        android:icon="@drawable/ic_search_black_24dp"-->
+<!--        android:title="Browse" />-->
+
+<!--    <item-->
+<!--        android:id="@+id/libraryFragment"-->
+<!--        android:icon="@drawable/ic_baseline_library_music_24"-->
+<!--        android:title="Library" />-->
+
+
 </menu>

@@ -9,11 +9,24 @@
         <import type="android.support.v4.media.MediaMetadataCompat" />
         <import type="android.support.v4.media.session.PlaybackStateCompat" />
         <import type="android.text.format.DateUtils" />
-        <import type="com.zomatunes.zomatunes.util.viewhelper.PlayerState.RadioState" />
+        <import type="com.komkum.komkum.util.viewhelper.PlayerState" />
+        <import type="com.komkum.komkum.data.model.Ads"/>
         <import type="android.view.View" />
         <variable
             name="viewmodel"
-            type="com.zomatunes.zomatunes.MainActivityViewmodel" />
+            type="com.komkum.komkum.MainActivityViewmodel" />
+        <variable
+            name="isAd"
+            type="Boolean"/>
+        <variable
+            name="playerState"
+            type="Integer"/>
+        <variable
+            name="isSongFavorite"
+            type="Boolean" />
+        <variable
+            name="adData"
+            type="Ads"/>
     </data>
 
     <androidx.constraintlayout.motion.widget.MotionLayout
@@ -21,8 +34,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/item_selected"
+
         app:layoutDescription="@xml/fragment_player_xml_player_container_scene">
 
+
+        <ProgressBar
+            android:id="@+id/player_loading_progressbar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="100dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/lyrics_container"
@@ -48,8 +74,11 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:text="Preview of song lyrics. user can tap to get full lyrics. alskdjf ;alskdfj lk jasdfj.  Preview of song lyrics. user can tap to get full lyrics. Preview of song lyrics. user can tap to get full lyrics. Preview of song lyrics. user can tap to get full lyrics. Preview of song lyrics. user can tap to get full lyrics Preview of song lyrics. user can tap to get full lyrics Preview of song lyrics. user can tap to get full lyrics Preview of song lyrics. user can tap to get full lyrics Preview of song lyrics. user can tap to get full lyrics Preview of song lyrics. user can tap to get full lyrics Preview of song lyrics. user can tap to get full lyrics Preview of song lyrics. user can tap to get full lyrics Preview of song lyrics. user can tap to get full lyrics alksjd fl;aksj df;laksjd fas;ldkfj a laksjd f;alskdjf "
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                    android:text="Lyrics not available for this song"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="#FFFFFF"
+                    android:textSize="17sp" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
@@ -63,13 +92,16 @@
             app:layout_constraintBottom_toTopOf="@+id/player_controller_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/queue_song_image_viewpager" />
+            app:layout_constraintTop_toBottomOf="@+id/queue_song_image_viewpager"
+            tools:itemCount="10"
+            tools:listitem="@layout/song_list_item" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/queue_song_image_viewpager"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:elevation="50dp"
+
             app:layout_constraintBottom_toTopOf="@+id/player_info_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -89,6 +121,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/player_info_container">
 
+            <Button
+                android:id="@+id/ad_acction_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/btn_rounded"
+                android:textAppearance="@style/Body2"
+                android:textAllCaps="true"
+                android:text="@{adData.adContent != null ? @string/order_now : @string/view_details}"
+                android:visibility="@{isAd  ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/song_progressBar"
                 android:layout_width="0dp"
@@ -97,8 +146,8 @@
                 android:layout_marginEnd="@dimen/margin_start"
                 android:layout_marginBottom="16dp"
                 android:indeterminate="false"
-                android:max="@{viewmodel.playbackDuration}"
-                android:progress="@{viewmodel.playbackPosition}"
+                android:enabled="@{(isAd ||  playerState == PlayerState.RADIO)? false : true}"
+
                 app:layout_constraintBottom_toTopOf="@+id/player_play_btn"
                 app:layout_constraintEnd_toEndOf="@+id/player_controller_container"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -113,9 +162,11 @@
                 app:layout_constraintBottom_toBottomOf="@+id/player_prev_btn"
                 app:layout_constraintEnd_toStartOf="@+id/player_prev_btn"
                 app:layout_constraintHorizontal_bias="0.5"
+                android:visibility="@{(!isAd &amp;&amp; playerState == PlayerState.PLAYLIST) ? View.VISIBLE : View.INVISIBLE}"
+
                 app:layout_constraintStart_toStartOf="@+id/song_progressBar"
                 app:layout_constraintTop_toTopOf="@+id/player_prev_btn"
-                app:srcCompat="@drawable/ic_baseline_queue_music_24" />
+                app:srcCompat="@drawable/ic_baseline_queue_music_white_24" />
 
             <ImageView
                 android:id="@+id/player_prev_btn"
@@ -126,6 +177,8 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/queue_list_image_view"
                 app:layout_constraintTop_toTopOf="@+id/player_play_btn"
+                android:visibility="@{(!isAd &amp;&amp;  playerState == PlayerState.PLAYLIST) ? View.VISIBLE : View.INVISIBLE}"
+
                 app:srcCompat="@drawable/exo_controls_previous" />
 
 
@@ -135,12 +188,25 @@
                 android:layout_height="@dimen/play_icon_size"
                 android:layout_marginBottom="@dimen/player_margin_bottom"
                 android:onClick="@{() -> viewmodel.play()}"
-                android:visibility="@{viewmodel.playbackState.state == PlaybackStateCompat.STATE_PLAYING ? View.INVISIBLE : View.VISIBLE}"
+                android:visibility="@{(viewmodel.playbackState.state == PlaybackStateCompat.STATE_PLAYING || isAd) ? View.INVISIBLE : View.VISIBLE}"
                 app:layout_constraintBottom_toBottomOf="@+id/player_controller_container"
                 app:layout_constraintEnd_toStartOf="@+id/player_next_btn"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/player_prev_btn"
                 app:srcCompat="@drawable/ic_play_circle_filled_black_24dp" />
+
+            <ProgressBar
+                android:id="@+id/stream_loader_progressbar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:elevation="10dp"
+                android:visibility="@{(viewmodel.playbackState.state == PlaybackStateCompat.STATE_BUFFERING &amp;&amp; !isAd) ? View.VISIBLE : View.INVISIBLE}"
+
+                app:layout_constraintBottom_toBottomOf="@+id/player_play_btn"
+                app:layout_constraintEnd_toEndOf="@+id/player_play_btn"
+                app:layout_constraintStart_toStartOf="@+id/player_play_btn"
+                app:layout_constraintTop_toTopOf="@+id/player_play_btn" />
 
             <ImageView
                 android:id="@+id/player_next_btn"
@@ -149,6 +215,8 @@
                 app:layout_constraintBottom_toBottomOf="@+id/player_play_btn"
                 app:layout_constraintEnd_toStartOf="@+id/like_song_imageview"
                 app:layout_constraintHorizontal_bias="0.5"
+                android:visibility="@{(!isAd &amp;&amp; (playerState == PlayerState.RADIO || playerState == PlayerState.PLAYLIST)) ? View.VISIBLE : View.INVISIBLE}"
+
                 app:layout_constraintStart_toEndOf="@+id/player_play_btn"
                 app:layout_constraintTop_toTopOf="@+id/player_play_btn"
                 app:srcCompat="@drawable/exo_controls_next" />
@@ -163,6 +231,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/song_progressBar"
                 app:layout_constraintStart_toEndOf="@+id/player_next_btn"
                 app:layout_constraintTop_toTopOf="@+id/player_next_btn"
+                android:visibility="@{(!isAd &amp;&amp;  !isSongFavorite &amp;&amp; playerState != PlayerState.PODCAST_EPISODE &amp;&amp; playerState != PlayerState.AUDIOBOOK) ? View.VISIBLE : View.INVISIBLE}"
                 app:srcCompat="@drawable/ic_round_favorite_border_24" />
 
             <TextView
@@ -170,6 +239,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:textColor="@color/white"
                 android:text="@{DateUtils.formatElapsedTime(viewmodel.playbackPosition/1000)}"
                 app:layout_constraintStart_toStartOf="@+id/song_progressBar"
                 app:layout_constraintTop_toBottomOf="@+id/song_progressBar" />
@@ -179,6 +249,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
+                android:textColor="@color/white"
                 android:text="@{DateUtils.formatElapsedTime(viewmodel.playbackDuration/1000)}"
                 app:layout_constraintEnd_toEndOf="@+id/song_progressBar"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -190,8 +261,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:onClick="@{() -> viewmodel.pause()}"
-
-                android:visibility="@{viewmodel.playbackState.state == PlaybackStateCompat.STATE_PLAYING ? View.VISIBLE : View.INVISIBLE}"
+                android:visibility="@{(viewmodel.playbackState.state == PlaybackStateCompat.STATE_PLAYING &amp;&amp; !isAd) ? View.VISIBLE : View.INVISIBLE}"
                 app:layout_constraintBottom_toBottomOf="@+id/player_play_btn"
                 app:layout_constraintEnd_toEndOf="@+id/player_play_btn"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -207,6 +277,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/player_prev_btn"
                 app:layout_constraintStart_toEndOf="@+id/queue_list_image_view"
                 app:layout_constraintTop_toTopOf="@+id/player_prev_btn"
+                android:visibility="@{(!isAd &amp;&amp; (playerState == PlayerState.RADIO || playerState == PlayerState.AUDIOBOOK || playerState == PlayerState.PODCAST_EPISODE)) ? View.VISIBLE : View.INVISIBLE}"
                 app:srcCompat="@drawable/ic_baseline_replay_10_24" />
 
             <ImageView
@@ -217,6 +288,8 @@
                 app:layout_constraintEnd_toEndOf="@+id/player_next_btn"
                 app:layout_constraintStart_toEndOf="@+id/player_play_btn"
                 app:layout_constraintTop_toTopOf="@+id/player_next_btn"
+                android:visibility="@{(!isAd &amp;&amp; (playerState == PlayerState.PODCAST_EPISODE || playerState == PlayerState.AUDIOBOOK || playerState == PlayerState.PODCAST_EPISODE)) ? View.VISIBLE : View.INVISIBLE}"
+
                 app:srcCompat="@drawable/ic_baseline_forward_10_24" />
 
             <ImageView
@@ -227,6 +300,8 @@
                 app:layout_constraintEnd_toEndOf="@+id/queue_list_image_view"
                 app:layout_constraintStart_toStartOf="@+id/queue_list_image_view"
                 app:layout_constraintTop_toTopOf="@+id/queue_list_image_view"
+                android:visibility="@{(!isAd &amp;&amp; playerState == PlayerState.RADIO ) ? View.VISIBLE : View.INVISIBLE}"
+
                 app:srcCompat="@drawable/ic_round_remove_circle_outline_24" />
 
             <ImageView
@@ -237,6 +312,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/like_song_imageview"
                 app:layout_constraintStart_toEndOf="@+id/player_next_btn"
                 app:layout_constraintTop_toTopOf="@+id/like_song_imageview"
+                android:visibility="@{(!isAd &amp;&amp;  isSongFavorite &amp;&amp; playerState != PlayerState.PODCAST_EPISODE &amp;&amp; playerState != PlayerState.AUDIOBOOK) ? View.VISIBLE : View.INVISIBLE}"
                 app:srcCompat="@drawable/ic_baseline_favorite_24" />
 
             <ImageView
@@ -247,6 +323,8 @@
                 app:layout_constraintEnd_toEndOf="@+id/like_song_imageview"
                 app:layout_constraintStart_toStartOf="@+id/like_song_imageview"
                 app:layout_constraintTop_toTopOf="@+id/like_song_imageview"
+                android:visibility="@{(!isAd &amp;&amp; (playerState == PlayerState.PODCAST_EPISODE || playerState == PlayerState.AUDIOBOOK)) ? View.VISIBLE : View.INVISIBLE}"
+
                 app:srcCompat="@drawable/exo_icon_next" />
 
             <ImageView
@@ -257,8 +335,9 @@
                 app:layout_constraintEnd_toEndOf="@+id/queue_list_image_view"
                 app:layout_constraintStart_toStartOf="@+id/queue_list_image_view"
                 app:layout_constraintTop_toTopOf="@+id/queue_list_image_view"
-                app:srcCompat="@drawable/exo_icon_previous" />
+                android:visibility="@{(!isAd &amp;&amp; (playerState == PlayerState.PODCAST_EPISODE || playerState == PlayerState.AUDIOBOOK)) ? View.VISIBLE : View.INVISIBLE}"
 
+                app:srcCompat="@drawable/exo_icon_previous" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -266,6 +345,7 @@
             android:id="@+id/player_info_container"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/player_margin_bottom"
             app:layout_constraintBottom_toTopOf="@+id/player_controller_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -277,16 +357,18 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="24dp"
-                android:textSize="@dimen/playl_title_text_size"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
                 android:text="@{viewmodel.nowPlaying.getString(MediaMetadataCompat.METADATA_KEY_TITLE)}"
                 android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textAppearance="@style/Header"
+                android:textColor="@color/white"
+                android:textSize="@dimen/playl_title_text_size"
                 android:textStyle="bold"
+                android:transitionName="title"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -297,10 +379,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:textSize="@dimen/playl_sub_title_text_size"
                 android:text="@{viewmodel.nowPlaying.getString(MediaMetadataCompat.METADATA_KEY_DISPLAY_SUBTITLE)}"
                 android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textAppearance="@style/Body1"
+                android:transitionName="subtitle"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/textView3"
                 app:layout_constraintStart_toStartOf="@+id/textView3"
@@ -314,7 +397,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:inputType="textImeMultiLine"
-                android:text="Preview of song lyrics. user can tap to get full lyrics  Preview of song lyrics. user can tap to get full lyrics"
+                android:text="No lyrics available fo this song"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/divider10"
@@ -345,6 +428,50 @@
                 app:layout_constraintStart_toEndOf="@+id/divider10"
                 app:layout_constraintTop_toBottomOf="@+id/short_lyrics_textview" />
 
+            <ImageView
+                android:id="@+id/ad_display_imageview"
+                android:layout_width="@dimen/medium_icon_size"
+                android:layout_height="@dimen/medium_icon_size"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/ad_title_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textAppearance="@style/Body2"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+
+                app:layout_constraintStart_toEndOf="@+id/ad_display_imageview"
+                app:layout_constraintTop_toTopOf="@+id/ad_display_imageview" />
+
+            <TextView
+                android:id="@+id/advertiser_name_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Caption2"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="@+id/ad_title_textview"
+                app:layout_constraintTop_toBottomOf="@+id/ad_title_textview" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/ad_display_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="ad_display_imageview,ad_title_textview,advertiser_name_textview" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/lyrics_display_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                app:constraint_referenced_ids="short_lyrics_textview,divider10,button5" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -368,6 +495,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/imageView13"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/imageView13"
+                android:visibility="@{(!isAd ) ? View.VISIBLE : View.INVISIBLE}"
                 app:srcCompat="@drawable/ic_more_vert_black_24dp" />
 
             <ImageView
@@ -389,7 +517,7 @@
                 android:layout_marginEnd="16dp"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="Now Playing from category"
+                android:text="@{isAd  ? `Advertisement` : `Now Playing`}"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#FFFFFF"
@@ -444,6 +572,8 @@
                 app:layout_constraintBottom_toBottomOf="@+id/textView71"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView49"
+                android:visibility="@{(!isAd ) ? View.VISIBLE : View.INVISIBLE}"
+
                 app:srcCompat="@drawable/ic_more_vert_black_24dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 

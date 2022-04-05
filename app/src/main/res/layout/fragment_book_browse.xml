@@ -4,11 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.zomatunes.zomatunes.ui.book.BookViewModel"/>
-        <import type="com.zomatunes.zomatunes.data.model.Author"/>
+        <import type="com.komkum.komkum.ui.book.BookViewModel"/>
+        <import type="com.komkum.komkum.data.model.Author"/>
         <import type="android.view.View"/>
-        <import type="com.zomatunes.zomatunes.data.model.Book"/>
-        <import type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper"/>
+        <import type="com.komkum.komkum.data.model.BookCollection"/>
+        <import type="com.komkum.komkum.data.model.Book"/>
+        <import type="com.komkum.komkum.data.model.RecyclerViewHelper"/>
         <variable
             name="bookViewmodel"
             type="BookViewModel" />
@@ -19,6 +20,9 @@
         <variable
             name="authorInfo"
             type="RecyclerViewHelper&lt;Author&lt;String,String>>" />
+        <variable
+            name="bookCollectionInfo"
+            type="RecyclerViewHelper&lt;BookCollection>" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -40,14 +44,16 @@
                 android:layout_height="match_parent"
                 app:toolbarId="@+id/toolbar"
                 app:title="Book Genre"
+                android:fitsSystemWindows="true"
                 app:expandedTitleGravity="center"
                 app:collapsedTitleGravity="left|center"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
-                app:contentScrim="?attr/colorPrimary">
+                app:contentScrim="@color/primaryDarkColor">
 
                 <ImageView
                     android:id="@+id/app_bar_image"
+                    android:fitsSystemWindows="true"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop" />
@@ -74,12 +80,13 @@
                     android:id="@+id/textView95"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="24dp"
                     android:text="Bestselling Audiobooks"
-                    android:visibility="@{bookViewmodel.bookhomeResultByGenre.bestSellingAudiobooks.size > 0 ? View.VISIBLE : View.GONE }"
-
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
+
+                    android:textStyle="bold"
+                    android:visibility="@{bookViewmodel.bookhomeResultByGenre.bestSellingAudiobooks.size > 0 ? View.VISIBLE : View.GONE }"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -100,12 +107,15 @@
                     android:id="@+id/textView96"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="24dp"
+                    app:layout_goneMarginStart="@dimen/default_margin_start"
                     android:text="New and Noteworthy"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
 
+                    android:textStyle="bold"
                     android:visibility="@{bookViewmodel.bookhomeResultByGenre.newAudiobooks.size > 0 ? View.VISIBLE : View.GONE }"
-                    app:layout_constraintStart_toStartOf="@+id/textView97"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/exclusive_book_recyclerview" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -124,11 +134,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:text="Exclusive Books and Audiobooks"
-                    android:visibility="@{bookViewmodel.bookhomeResultByGenre.exclusiveAudiobooks.size > 0 ? View.VISIBLE : View.GONE }"
-
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    app:layout_constraintStart_toStartOf="@+id/textView115"
+
+                    android:textStyle="bold"
+                    android:visibility="@{bookViewmodel.bookhomeResultByGenre.exclusiveAudiobooks.size > 0 ? View.VISIBLE : View.GONE }"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/bestselling_ebook_recyclerview" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -148,10 +160,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="Comming soon"
-                    android:visibility="@{bookViewmodel.bookhomeResultByGenre.commingSoonAudiobooks.size > 0 ? View.VISIBLE : View.GONE }"
-
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    app:layout_constraintStart_toStartOf="@+id/textView99"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:textStyle="bold"
+                    android:visibility="@{bookViewmodel.bookhomeResultByGenre.commingSoonAudiobooks.size > 0 ? View.VISIBLE : View.GONE }"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/authors_recyclerview" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -159,7 +172,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="56dp"
+                    android:layout_marginBottom="1dp"
+                    android:paddingBottom="56dp"
                     app:audiobookList="@{bookViewmodel.bookhomeResultByGenre.commingSoonAudiobooks}"
                     app:bookInfo="@{bookInfo}"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -173,11 +187,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:text="Bestseller Authors"
-                    android:visibility="@{bookViewmodel.bookhomeResultByGenre.bestsellerAuthors.size > 0 ? View.VISIBLE : View.GONE }"
-
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    app:layout_constraintStart_toStartOf="@+id/textView96"
-                    app:layout_constraintTop_toBottomOf="@+id/new_book_recyclerview" />
+                    android:textStyle="bold"
+                    android:visibility="@{bookViewmodel.bookhomeResultByGenre.bestsellerAuthors.size > 0 ? View.VISIBLE : View.GONE }"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/genre_collection_recyclerview" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/authors_recyclerview"
@@ -195,11 +210,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:text="Bestselling Books"
-                    android:visibility="@{bookViewmodel.bookhomeResultByGenre.bestSellingBooks.size > 0 ? View.VISIBLE : View.GONE }"
-
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    app:layout_constraintStart_toStartOf="@+id/textView95"
+
+                    android:textStyle="bold"
+                    android:visibility="@{bookViewmodel.bookhomeResultByGenre.bestSellingBooks.size > 0 ? View.VISIBLE : View.GONE }"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/bestselling_book_recyclerview" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -212,6 +229,31 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView115" />
+
+                <TextView
+                    android:id="@+id/textView100"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="Collections"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:visibility="@{bookViewmodel.bookhomeResultByGenre.featuredBookCollection.size > 0 ? View.VISIBLE : View.GONE }"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/textView96"
+                    app:layout_constraintTop_toBottomOf="@+id/new_book_recyclerview" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/genre_collection_recyclerview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:bookCollection="@{bookViewmodel.bookhomeResultByGenre.featuredBookCollection}"
+                    app:bookCollectionInfo="@{bookCollectionInfo}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView100" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
@@ -224,6 +266,14 @@
             android:layout_gravity="center"
             android:visibility="@{(bookViewmodel.bookhomeResultByGenre == null)? View.VISIBLE : View.INVISIBLE}" />
 
+        <TextView
+            android:id="@+id/book_browse_error_textview"
+            android:layout_width="wrap_content"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:text="Sorry.\n Unable to get content for this category" />
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

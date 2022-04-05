@@ -5,10 +5,7 @@
     android:useLevel="true">
 
     <gradient
-        android:startColor="#79807D7D"
-        android:centerColor="#08807D7D"
-        android:endColor="#8A000000"
+        android:startColor="@color/light_secondaryDarkColor"
+        android:endColor="@color/light_secondaryLightColor"
         android:angle="270"/>
-
-
 </shape>

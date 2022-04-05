@@ -4,24 +4,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper"/>
-        <import type="com.zomatunes.zomatunes.data.model.Radio"/>
+        <import type="com.komkum.komkum.data.model.RecyclerViewHelper"/>
+        <import type="com.komkum.komkum.data.model.Radio"/>
         <variable
             name="viewmodel"
-            type="com.zomatunes.zomatunes.ui.radio.RadioViewModel" />
+            type="com.komkum.komkum.ui.radio.RadioViewModel" />
         <variable
             name="radioInfo"
             type="RecyclerViewHelper&lt;Radio>" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-
-
+        android:background="@drawable/item_selected"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
+            android:background="@color/transparent"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
 
@@ -44,7 +44,19 @@
             android:layout_gravity="center"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:progressVisibility="@{viewmodel.radioStationList}"/>
+
+        <TextView
+            android:id="@+id/radio_list_error_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:text="No Station found \n Your favorite stations goes here"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textStyle="bold" />
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

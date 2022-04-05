@@ -7,14 +7,18 @@
         <import type="android.view.View"/>
         <variable
             name="listInfo"
-            type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper&lt;com.zomatunes.zomatunes.data.model.Song&lt;String,String>>" />
+            type="com.komkum.komkum.data.model.RecyclerViewHelper&lt;com.komkum.komkum.data.model.Song&lt;String,String>>" />
 
         <variable
             name="viewmodel"
-            type="com.zomatunes.zomatunes.ui.playlist.PlaylistViewModel" />
+            type="com.komkum.komkum.ui.playlist.PlaylistViewModel" />
 
         <variable
             name="isFromCache"
+            type="Boolean" />
+
+        <variable
+            name="removeFlag"
             type="Boolean" />
         <variable
             name="isLikedSongPlaylist"
@@ -23,23 +27,28 @@
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:background="@drawable/item_selected"
+        android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/playlist_error_textview"
-            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:text="Something went wrong. please try again" />
+            android:layout_gravity="center"
+            android:text="Something went wrong. please try again"
+
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:visibility="gone" />
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
+            android:elevation="30dp"
+            android:background="@drawable/item_selected"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/trnasparentColor">
+            android:visibility="@{viewmodel.playlistData != null ? View.VISIBLE : View.INVISIBLE}"
+            android:layout_height="wrap_content">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:id="@+id/c_toolbar_layout"
@@ -47,45 +56,56 @@
                 android:layout_height="wrap_content"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
-                app:statusBarScrim="@color/primaryDarkColor"
+                app:statusBarScrim="@color/light_secondaryDarkColor"
+                app:contentScrim="@color/light_secondaryDarkColor"
                 app:titleEnabled="false">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="@{viewmodel.playlistData != null ? View.VISIBLE : View.INVISIBLE}"
                     app:layout_collapseMode="parallax">
 
-                    <com.zomatunes.zomatunes.ui.customview.CustomPlaylistImageview
+                    <com.komkum.komkum.ui.customview.CustomPlaylistImageview
                         android:id="@+id/custom_playlist_imageview"
                         android:layout_width="@dimen/cover_image_size"
                         android:layout_height="@dimen/cover_image_size"
-                        android:layout_marginTop="56dp"
+                        android:layout_marginTop="64dp"
+                        android:transitionName="imageview"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
                         android:id="@+id/shuffle_playlist_btn"
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Shuffle Playlist"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/playlist_name_textview" />
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="@drawable/btn_rounded"
+                        android:text="@string/shuffle_songs"
+                        android:textAllCaps="true"
+                        android:textAppearance="@style/Body2"
+                        android:visibility="@{viewmodel.playlistData.songs.size > 0 ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/playlist_name_textview"
+                        app:layout_constraintStart_toStartOf="@+id/playlist_name_textview"
+                        app:layout_constraintTop_toBottomOf="@+id/playlist_song_size_textview"
+                        app:layout_constraintVertical_bias="0.0" />
 
                     <TextView
                         android:id="@+id/playlist_name_textview"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
+                        android:layout_marginStart="32dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginEnd="24dp"
-                        android:textSize="@dimen/title_text_view_size"
+                        android:layout_marginEnd="32dp"
+                        android:inputType="textFilter"
                         android:text="@{viewmodel.playlistData.name}"
                         android:textAlignment="center"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textSize="@dimen/title_text_view_size"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/custom_playlist_imageview" />
@@ -94,13 +114,26 @@
                         android:id="@+id/playlist_song_size_textview"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="16dp"
-                        android:text="@{String.valueOf(viewmodel.playlistData.songs.size) + ` songs`}"
                         android:textAlignment="center"
                         android:textSize="@dimen/sub_title_text_view_size"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         app:layout_constraintEnd_toEndOf="@+id/playlist_name_textview"
                         app:layout_constraintStart_toStartOf="@+id/playlist_name_textview"
+                        app:layout_constraintTop_toBottomOf="@+id/playlist_name_textview" />
+
+                    <TextView
+                        android:id="@+id/playlist_follow_number_textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="@{String.valueOf(viewmodel.playlistData.followersId.size()) + ` Followers`}"
+                        android:textAlignment="center"
+                        android:visibility="@{(viewmodel.playlistData.followersId == null || viewmodel.playlistData.followersId.size == 0)? View.GONE : View.VISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/shuffle_playlist_btn"
+                        app:layout_constraintStart_toStartOf="@+id/shuffle_playlist_btn"
                         app:layout_constraintTop_toBottomOf="@+id/shuffle_playlist_btn" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -116,15 +149,24 @@
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/playlist_song_recyclerview"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/playlist_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="56dp"
-            app:info="@{listInfo}"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:list="@{viewmodel.playlistData.songs}"
-            tools:listitem="@layout/song_list_item" />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/playlist_song_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="56dp"
+                app:info="@{listInfo}"
+                app:list="@{viewmodel.playlistData.songs}"
+                tools:listitem="@layout/song_list_item" />
+
+        </androidx.core.widget.NestedScrollView>
+
+
 
 
 
@@ -134,14 +176,16 @@
             selectedItemSize="@{listInfo.stateManager.multiselectedItems.size}"
             favoriteFlag="@{isFromCache}"
             addFlag="@{isFromCache}"
-            downloadFlag="@{isFromCache}"
+            downloadFlag="@{isFromCache }"
             isLikedList="@{isLikedSongPlaylist}"
-            removeFlag="@{isFromCache.TRUE}"
+            removeFlag="@{isFromCache || removeFlag}"
             android:visibility="gone"/>
 
         <ProgressBar
             android:id="@+id/playlist_song_progressbar"
             style="?android:attr/progressBarStyle"
+            android:background="@drawable/circle_4"
+            android:elevation="30dp"
             app:progressVisibility="@{viewmodel.playlistData}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

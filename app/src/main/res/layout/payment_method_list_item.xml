@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="?attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/payment_method_name_tview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin_start"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:textAppearance="@style/Title"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/payment_method_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/payment_method_desc_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Body2"
+            app:layout_constraintEnd_toEndOf="@+id/payment_method_name_tview"
+            app:layout_constraintStart_toStartOf="@+id/payment_method_name_tview"
+            app:layout_constraintTop_toBottomOf="@+id/payment_method_name_tview" />
+
+        <ImageView
+            android:id="@+id/payment_method_image"
+            android:layout_width="@dimen/medium_circle_image_size"
+            android:layout_height="@dimen/medium_circle_image_size"
+            android:layout_marginEnd="@dimen/default_margin_start"
+            app:layout_constraintBottom_toBottomOf="@+id/payment_method_desc_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/payment_method_name_tview"
+            app:srcCompat="@drawable/ic_baseline_account_balance_wallet_24" />
+
+        <View
+            android:id="@+id/divider12"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/payment_method_image"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/payment_method_desc_textview"
+            app:layout_constraintTop_toBottomOf="@+id/payment_method_desc_textview" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

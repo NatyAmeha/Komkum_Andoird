@@ -4,12 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.zomatunes.zomatunes.data.model.Book"/>
+        <import type="com.komkum.komkum.data.model.Book"/>
         <import type="android.view.View"/>
-        <import type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper"/>
+        <import type="com.komkum.komkum.data.model.RecyclerViewHelper"/>
         <variable
             name="bookViewmodel"
-            type="com.zomatunes.zomatunes.ui.book.BookViewModel" />
+            type="com.komkum.komkum.ui.book.BookViewModel" />
         <variable
             name="bookInfo"
             type="RecyclerViewHelper&lt;Book&lt;String>>" />
@@ -21,6 +21,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
+            android:background="@color/transparent"
             android:id="@+id/appbar"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
@@ -51,10 +52,11 @@
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
+                    android:layout_marginStart="48dp"
                     android:drawableLeft="@drawable/ic_baseline_menu_book_24"
                     android:text="Available as Ebook"
                     android:textAlignment="viewStart"
+                    android:textSize="12sp"
                     app:iconPadding="8dp"
                     app:layout_constraintEnd_toEndOf="@+id/textView110"
                     app:layout_constraintStart_toEndOf="@+id/textView109"
@@ -67,10 +69,10 @@
                     android:layout_marginStart="@dimen/margin_start"
                     android:layout_marginTop="8dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/backimage"
+                    android:src="@drawable/audiobook_placeholder"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/backimg" />
+                    app:srcCompat="@drawable/audiobook_placeholder" />
 
                 <TextView
                     android:id="@+id/book_title_textview"
@@ -81,6 +83,7 @@
                     android:layout_marginEnd="8dp"
                     android:text="Book Title"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/book_cover_imageview"
                     app:layout_constraintTop_toTopOf="@+id/book_cover_imageview" />
@@ -111,16 +114,16 @@
                     android:id="@+id/rating_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
-                    android:text=" 5 "
+                    android:text="0"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/ratingBar"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/book_cover_imageview"
                     app:layout_constraintTop_toBottomOf="@+id/book_cover_imageview" />
 
                 <TextView
@@ -198,8 +201,8 @@
                     android:layout_height="wrap_content"
                     android:text="Play Sample"
                     android:visibility="visible"
-                    app:layout_constraintEnd_toEndOf="@+id/narrator_name_textview"
-                    app:layout_constraintStart_toStartOf="@+id/narrator_name_textview"
+                    app:layout_constraintEnd_toEndOf="@+id/book_author_textview"
+                    app:layout_constraintStart_toStartOf="@+id/book_author_textview"
                     app:layout_constraintTop_toBottomOf="@+id/narrator_name_textview" />
 
                 <TextView
@@ -222,7 +225,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_start"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="@dimen/default_margin_start"
                     android:text="Buy for 100 Birr or $9.99"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -232,7 +235,7 @@
                     android:id="@+id/textView75"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_start"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="16dp"
                     android:text="About the audiobook"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -320,11 +323,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Released Date"
+                    android:text="Released"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#FFFFFF"
-                    app:layout_constraintEnd_toStartOf="@+id/release_date_textview"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="@+id/textView84"
                     app:layout_constraintTop_toBottomOf="@+id/textView84" />
 
@@ -332,7 +333,6 @@
                     android:id="@+id/release_date_textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="1dp"
                     android:text="Aug 13 2019"
@@ -341,7 +341,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/textView86"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/textView86"
+                    app:layout_constraintStart_toStartOf="@+id/textView110"
                     app:layout_constraintTop_toTopOf="@+id/textView86" />
 
                 <View
@@ -497,7 +497,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:text="Start Listening"
                     android:visibility="gone"
@@ -552,11 +552,11 @@
                     android:id="@+id/textView110"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="56dp"
+                    android:layout_marginEnd="@dimen/default_margin_start"
                     android:text="Audiobook"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textSize="16sp"
+                    android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="@+id/textView109"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/account_sync_menu_item"
+        android:icon="@drawable/ic_baseline_sync_24"
+        android:title="Sync"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/cart_menu_item"
+        android:icon="@drawable/ic_baseline_shopping_cart_24"
+        android:title="cart"
+        app:showAsAction="always" />
+<!--    <item-->
+<!--        android:id="@+id/library_menu_item"-->
+<!--        android:icon="@drawable/ic_baseline_library_music_24"-->
+<!--        android:title="Notification"-->
+<!--        app:showAsAction="always" />-->
+    <item
+        android:id="@+id/setting_menu_item"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="Setting"
+        app:showAsAction="always" />
+</menu>

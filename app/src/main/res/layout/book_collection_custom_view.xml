@@ -35,7 +35,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/book_1_imageview"
         app:layout_constraintTop_toTopOf="@+id/book_1_imageview"
-        app:srcCompat="@drawable/backimage" />
+        app:srcCompat="@drawable/music_placeholder" />
 
     <ImageView
         android:id="@+id/book_3_imageview"
@@ -49,7 +49,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/book_2_imageview"
         app:layout_constraintTop_toTopOf="@+id/book_1_imageview"
-        app:srcCompat="@drawable/backimg" />
+        app:srcCompat="@drawable/music_placeholder" />
 
     <ImageView
         android:id="@+id/book_4_imageview"
@@ -63,7 +63,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/book_3_imageview"
         app:layout_constraintTop_toTopOf="@+id/book_2_imageview"
-        app:srcCompat="@drawable/backimage" />
+        app:srcCompat="@drawable/music_placeholder" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/collection_description_container"

@@ -5,15 +5,15 @@
 
     <data>
         <import type="android.view.View"/>
-        <import type="com.zomatunes.zomatunes.data.model.Book"/>
-        <import type="com.zomatunes.zomatunes.data.model.Author"/>
-        <import type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper"/>
+        <import type="com.komkum.komkum.data.model.Book"/>
+        <import type="com.komkum.komkum.data.model.Author"/>
+        <import type="com.komkum.komkum.data.model.RecyclerViewHelper"/>
         <variable
             name="authorInfo"
             type="RecyclerViewHelper&lt;Author&lt;String,String>>" />
         <variable
             name="authorViewmodel"
-            type="com.zomatunes.zomatunes.ui.author.AuthorViewModel" />
+            type="com.komkum.komkum.ui.author.AuthorViewModel" />
         <variable
             name="bookInfo"
             type="RecyclerViewHelper&lt;Book&lt;String>>" />
@@ -42,25 +42,27 @@
                 app:isViewVisibility="@{authorViewmodel.authorMetadataResult}">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:background="@drawable/item_selected"
                     android:id="@+id/author_header_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_collapseMode="parallax">
-                    <ImageView
+                    <View
                         android:id="@+id/back_imageview"
                         android:layout_width="0dp"
                         android:layout_height="140dp"
+                        android:background="@color/primaryColor"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/backimg"
+                        android:src="@drawable/music_placeholder"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
 
                     <ImageView
                         android:id="@+id/author_profile_imageview"
                         android:layout_width="145dp"
                         android:layout_height="131dp"
-                        android:src="@drawable/circularimg"
                         app:layout_constraintBottom_toBottomOf="@+id/back_imageview"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -83,12 +85,25 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:text="@{String.valueOf(Integer.sum(authorViewmodel.authorMetadataResult.author.audiobooks.size , authorViewmodel.authorMetadataResult.author.books.size))+` Tittles`}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/author_name_textview"
                         app:layout_constraintVertical_bias="0.0" />
+
+                    <Button
+                        android:id="@+id/donate_author_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="Make Donation"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/author_follower_textview" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.Toolbar
@@ -113,13 +128,12 @@
                     android:id="@+id/author_bio_textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="@{authorViewmodel.authorMetadataResult.author.description}"
-                    android:maxLines="4"
+                    android:layout_marginEnd="@dimen/default_margin_start"
                     android:textAlignment="viewStart"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -128,14 +142,15 @@
                     android:id="@+id/textView106"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:layout_marginTop="24dp"
                     android:text="Books Authored"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textSize="20sp"
                     android:textStyle="bold"
+                    android:visibility="@{authorViewmodel.authorMetadataResult.author.books.size > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/author_bio_textview" />
+                    app:layout_constraintTop_toBottomOf="@+id/author_category_chipgroup" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/author_book_recyclerview"
@@ -153,11 +168,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:text="Audiobook Authored"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
+
                     android:textSize="21sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/textView106"
+                    android:visibility="@{authorViewmodel.authorMetadataResult.author.audiobooks.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/author_book_recyclerview" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -176,11 +194,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:text="Similar Authors"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
+
                     android:textSize="21sp"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="@+id/textView107"
+                    android:visibility="@{authorViewmodel.authorMetadataResult.similarAuthor.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/author_audiobook_recyclerview" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -201,6 +222,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_marginEnd="16dp"
+                    android:visibility="@{authorViewmodel.authorMetadataResult.author.books.size > 5 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintBottom_toBottomOf="@+id/textView106"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView106"
@@ -211,10 +233,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
+                    android:visibility="@{authorViewmodel.authorMetadataResult.author.audiobooks.size > 5 ? View.VISIBLE : View.GONE}"
+
                     app:layout_constraintBottom_toBottomOf="@+id/textView107"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView107"
                     app:srcCompat="@drawable/ic_twotone_arrow_forward_ios_24" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/author_category_chipgroup"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:clickable="true"
+                    app:layout_constraintEnd_toEndOf="@+id/author_bio_textview"
+                    app:layout_constraintStart_toStartOf="@+id/author_bio_textview"
+                    app:layout_constraintTop_toBottomOf="@+id/author_bio_textview"
+                    app:singleLine="true">
+
+                </com.google.android.material.chip.ChipGroup>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>

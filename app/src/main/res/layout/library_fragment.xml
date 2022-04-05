@@ -6,23 +6,22 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.zomatunes.zomatunes.ui.library.LibraryViewModel" />
+            type="com.komkum.komkum.ui.library.LibraryViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:background="@color/primaryDarkColor"
         tools:context=".ui.library.LibraryFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
+            android:background="@color/transparent"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
-                android:background="@color/primaryDarkColor"
                 android:layout_height="?attr/actionBarSize"
                 android:layout_width="match_parent" />
         </com.google.android.material.appbar.AppBarLayout>
@@ -39,80 +38,16 @@
                 android:layout_height="match_parent">
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/account_cardview"
+                    android:id="@+id/cardView2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="1dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="1dp"
-                    app:cardBackgroundColor="#1CFFFFFF"
+                    app:cardCornerRadius="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <ImageView
-                            android:id="@+id/profile_imageview"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="8dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:srcCompat="@drawable/circularimg" />
-
-                        <TextView
-                            android:id="@+id/username_textview"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginEnd="8dp"
-                            android:text="User Name"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textColor="#FFFFFF"
-                            app:layout_constraintEnd_toStartOf="@+id/imageView6"
-                            app:layout_constraintStart_toEndOf="@+id/profile_imageview"
-                            app:layout_constraintTop_toTopOf="@+id/profile_imageview" />
-
-                        <TextView
-                            android:id="@+id/description_imageview"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:text="Manage account"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                            android:textSize="16sp"
-                            app:layout_constraintEnd_toEndOf="@+id/username_textview"
-                            app:layout_constraintStart_toStartOf="@+id/username_textview"
-                            app:layout_constraintTop_toBottomOf="@+id/username_textview" />
-
-                        <ImageView
-                            android:id="@+id/imageView6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="0dp"
-                            android:layout_marginEnd="8dp"
-                            app:layout_constraintBottom_toBottomOf="@+id/description_imageview"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/username_textview"
-                            app:srcCompat="@drawable/ic_mode_edit_black_24dp" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="1dp"
-                    app:cardBackgroundColor="#1CFFFFFF"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/account_cardview">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -165,13 +100,31 @@
                             app:layout_constraintTop_toBottomOf="@+id/liked_radio" />
 
                         <include
-                            android:id="@+id/favorite_author"
+                            android:id="@+id/favorite_podcast"
                             layout="@layout/library_item"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/favaorite_artist" />
+
+                        <include
+                            android:id="@+id/favorite_episode"
+                            layout="@layout/library_item"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/favorite_podcast" />
+
+                        <include
+                            android:id="@+id/favorite_author"
+                            layout="@layout/library_item"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/favorite_episode" />
 
                         <include
                             android:id="@+id/download"
@@ -187,7 +140,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:visibility="gone"
-                            app:constraint_referenced_ids="liked_song_item,liked_album_item,playlist_item,liked_radio,favaorite_artist,favorite_author"
+                            app:constraint_referenced_ids="liked_song_item,liked_album_item,playlist_item,liked_radio,favaorite_artist,favorite_author,favorite_podcast,favorite_episode"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -197,13 +150,12 @@
 
                 <TextView
                     android:id="@+id/textView40"
+                    style="@style/Title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="24dp"
-                    android:text="Friends"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="#FFFFFF"
+                    android:text="Facebook Friends"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
@@ -211,7 +163,9 @@
                     android:id="@+id/friends_list_recyclerview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="56dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -227,33 +181,6 @@
                     app:layout_constraintBaseline_toBaselineOf="@+id/textView40"
                     app:layout_constraintEnd_toEndOf="parent" />
 
-                <Button
-                    android:id="@+id/invite_friend_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="56dp"
-                    android:layout_marginBottom="64dp"
-                    android:background="@drawable/btn_rounded"
-                    android:drawableLeft="@drawable/ic_baseline_add_24"
-                    android:text="Invite friends"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/friends_list_recyclerview" />
-
-                <TextView
-                    android:id="@+id/textView37"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="You can access your facebook friends' activity by connecting the app with facebook. "
-                    android:textAlignment="center"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView40" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
@@ -262,7 +189,8 @@
             android:id="@+id/library_loading_progressbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:background="@drawable/circle_4" />
 
         <TextView
             android:id="@+id/textView61"

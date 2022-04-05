@@ -4,7 +4,7 @@
 
     <data>
         <variable name="album"
-            type="com.zomatunes.zomatunes.data.model.BaseModel"/>
+            type="com.komkum.komkum.data.model.BaseModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,22 +26,19 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/backimage" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/tittle_textview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="4dp"
-            android:inputType="textImeMultiLine"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:text="Title TextView  Title TextView Title TextView "
             android:textAlignment="viewStart"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#BCFFFFFF"
-            android:textSize="16sp"
+            android:textAppearance="@style/Body1"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/medium_thumbnail_imageview"
             app:layout_constraintStart_toStartOf="@+id/medium_thumbnail_imageview"
             app:layout_constraintTop_toBottomOf="@+id/medium_thumbnail_imageview" />
@@ -50,10 +47,12 @@
             android:id="@+id/subtittle_textview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:text="Subtitle TextView"
             android:textAlignment="viewStart"
-            android:textColor="#92FFFFFF"
-            android:textSize="13sp"
+            android:textAppearance="@style/Caption"
+            android:maxLines="1"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tittle_textview"
             app:layout_constraintStart_toStartOf="@+id/tittle_textview"
             app:layout_constraintTop_toBottomOf="@+id/tittle_textview" />

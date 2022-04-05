@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,7 +9,7 @@
         android:id="@+id/error_imageview"
         android:layout_width="@dimen/error_view_image_size"
         android:layout_height="@dimen/error_view_image_size"
-        android:layout_marginTop="@dimen/error_view_margin_top"
+        android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -18,6 +17,7 @@
 
     <TextView
         android:id="@+id/error_textview"
+        style="@style/Body1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -25,7 +25,6 @@
         android:layout_marginEnd="32dp"
         android:text="Somthing went wrong. Please try again jlkasj lkjas dfs kjsfd Somthing went wrong. Please try again Somthing went wrong. Please try again"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/error_imageview" />
@@ -45,8 +44,14 @@
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="try again"
+        android:text="@string/try_again"
         app:layout_constraintEnd_toEndOf="@+id/goto_download_btn"
         app:layout_constraintStart_toStartOf="@+id/goto_download_btn"
         app:layout_constraintTop_toBottomOf="@+id/goto_download_btn" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/non_main_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="error_imageview,error_textview,goto_download_btn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-       <import type="com.zomatunes.zomatunes.data.model.Song"/>
+       <import type="com.komkum.komkum.data.model.Song"/>
         <variable
             name="size"
             type="Integer" />
@@ -38,7 +38,7 @@
             android:id="@+id/appbar"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:background="@color/primaryDarkColor">
+            android:background="@color/light_secondaryDarkColor">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/radio_toolbar"
@@ -94,11 +94,13 @@
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
 
-                    android:drawableTop="@drawable/ic_round_favorite_border_24"
+                    android:drawableTop="@drawable/ic_gray_favorite_border_24"
+                    android:ellipsize="end"
+                    android:enabled="@{!favoriteFlag &amp;&amp; !isLikedList &amp;&amp; selectedItemSize > 0}"
                     android:insetTop="2dp"
                     android:insetBottom="2dp"
+                    android:maxLines="1"
                     android:text="Like"
-                    android:enabled="@{!favoriteFlag &amp;&amp; !isLikedList &amp;&amp; selectedItemSize > 0}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/add_icon"
@@ -113,10 +115,12 @@
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
                     android:drawableTop="@drawable/ic_baseline_play_circle_outline_24"
+                    android:ellipsize="end"
+                    android:enabled="@{selectedItemSize > 0}"
                     android:insetTop="2dp"
                     android:insetBottom="2dp"
-                    android:text="Play"
-                    android:enabled="@{selectedItemSize > 0}"
+                    android:maxLines="1"
+                    android:text="@string/play"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/fav_icon"
@@ -130,11 +134,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_marginEnd="8dp"
-                    android:drawableTop="@drawable/ic_outline_cloud_download_24"
+                    android:drawableTop="@drawable/ic_file_download_black_24dp"
+                    android:ellipsize="end"
+                    android:enabled="@{!downloadFlag &amp;&amp; selectedItemSize > 0}"
                     android:insetTop="2dp"
                     android:insetBottom="2dp"
+                    android:maxLines="1"
                     android:text="Download"
-                    android:enabled="@{!downloadFlag &amp;&amp; selectedItemSize > 0}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/delete_icon"
@@ -150,10 +156,12 @@
                     android:layout_marginEnd="8dp"
                     android:clickable="false"
                     android:drawableTop="@drawable/ic_round_remove_circle_outline_24"
+                    android:ellipsize="end"
+                    android:enabled="@{removeFlag &amp;&amp; selectedItemSize > 0}"
                     android:insetTop="2dp"
                     android:insetBottom="2dp"
+                    android:maxLines="1"
                     android:text="Remove"
-                    android:enabled="@{removeFlag &amp;&amp; selectedItemSize > 0}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -167,11 +175,13 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="8dp"
-                    android:drawableTop="@drawable/ic_outline_add_circle_outline_24"
+                    android:drawableTop="@drawable/ic_baseline_add_24"
+                    android:ellipsize="end"
+                    android:enabled="@{!addFlag &amp;&amp; selectedItemSize > 0}"
                     android:insetTop="2dp"
                     android:insetBottom="2dp"
+                    android:maxLines="1"
                     android:text="Add"
-                    android:enabled="@{!addFlag &amp;&amp; selectedItemSize > 0}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/download_icon"

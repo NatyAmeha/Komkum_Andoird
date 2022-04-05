@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.komkum.komkum.ui.customview.AvatarView
+            android:id="@+id/comment_avatarview"
+            android:layout_width="@dimen/mini_circle_image_size"
+            android:layout_height="@dimen/mini_circle_image_size"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/commenter_textview"
+            style="@style/Subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="@dimen/default_margin_start"
+            android:text="Username"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/comment_avatarview"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/comment_date_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Feb 20 2021"
+            android:textAppearance="@style/Caption2"
+            app:layout_constraintStart_toStartOf="@+id/commenter_textview"
+            app:layout_constraintTop_toBottomOf="@+id/commenter_textview" />
+
+        <TextView
+            android:id="@+id/comment_textview"
+            style="@style/Body3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/round_corner_drawable"
+            android:ellipsize="end"
+            android:maxLines="5"
+            android:padding="6dp"
+            android:text="com.Comment about the episode Comment about the episode Comment about the episode Comment about the episode Comment about the episode Comment about the episode Comment about the alksjd flaks d episode and podcast"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/commenter_textview"
+            app:layout_constraintStart_toStartOf="@+id/comment_avatarview"
+            app:layout_constraintTop_toBottomOf="@+id/comment_date_textview" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

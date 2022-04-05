@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.zomatunes.zomatunes">
+    package="com.komkum.komkum">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -9,37 +9,54 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="com.android.vending.BILLING" />
 
     <application
-        android:name=".ZomaTunesApplication"
+        android:name="com.komkum.komkum.ZomaTunesApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppthemeDark"
-        tools:replace="android:theme">
+        android:theme="@style/AppthemeLight">
         <activity
-            android:name=".MainActivity"
+            android:name="com.komkum.komkum.MainActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/AppthemeDark.Launcher">
+            android:windowSoftInputMode="adjustPan"
+            android:launchMode="singleTop"
+            android:theme="@style/AppthemeLight.Launcher"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <nav-graph android:value="@navigation/main_navigation"/>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+                    android:host="komkum.com"
+                    android:scheme="https"/>
+                <data
+                    android:host="komkum.com"
+                    android:scheme="http"/>
+            </intent-filter>
+
+            <nav-graph android:value="@navigation/main_navigation" />
         </activity>
 
         <activity
-            android:name=".ui.book.BookReaderActivity"
+            android:name="com.komkum.komkum.ui.book.BookReaderActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_book_reader"
             android:theme="@style/AppthemeDark.Fullscreen" />
-        <activity android:name=".ui.payment.PaymentActivity" />
-        <activity android:name=".ui.download.DemoActivity" />
-        <activity android:name=".ui.download.SwipeActivity">
+        <activity android:name="com.komkum.komkum.ui.payment.PaymentActivity" />
+        <activity android:name="com.komkum.komkum.ui.download.DemoActivity" />
+        <activity android:name="com.komkum.komkum.ui.download.SwipeActivity">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -49,19 +66,18 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name=".ui.setting.SettingsActivity"
+            android:name="com.komkum.komkum.ui.setting.SettingsActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity android:name=".SplashScreenActivity" />
+        <activity android:name="com.komkum.komkum.SplashScreenActivity" />
+        <activity android:name="com.komkum.komkum.ControllerActivity" />
         <activity
-            android:name=".ControllerActivity"
-            android:launchMode="singleTop" />
-        <activity
-            android:name=".OnboardingActivity"
-            android:launchMode="singleTask"
+            android:name="com.komkum.komkum.OnboardingActivity"
+            android:exported="true"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
-        <nav-graph android:value="@navigation/onboarding_navigation" />
+
+            <nav-graph android:value="@navigation/onboarding_navigation" />
         </activity>
 
         <activity
@@ -81,12 +97,19 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.komkum.komkum.ComposeActivity"
+            android:exported="true"
+            android:label="@string/title_activity_compose"
+            android:theme="@style/AppthemeDark.NoActionBar" />
+
+
         <service
             android:name=".media.PlaybackService"
             android:enabled="true"
             android:exported="true" />
         <service
-            android:name=".Downloader.MediaDownloaderService"
+            android:name="com.komkum.komkum.Downloader.MediaDownloaderService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.exoplayer.downloadService.action.RESTART" />
@@ -99,19 +122,29 @@
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
-            android:name=".util.notification.FcmService"
+            android:name="com.komkum.komkum.util.notification.FcmService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-        <receiver android:name=".Downloader.DownloadReceiver">
+        <receiver android:name=".Downloader.DownloadReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED" />
                 <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
             </intent-filter>
-        </receiver> <!-- <meta-data -->
+        </receiver>
+
+        <receiver android:name="androidx.media.session.MediaButtonReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
+
+        <!-- <meta-data -->
         <!-- android:name="preloaded_fonts" -->
         <!-- android:resource="@array/preloaded_fonts" /> -->
         <meta-data
@@ -120,13 +153,23 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_audiotrack_black_24dp" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+
         <!--
- Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more.
-        -->
+     Set color used with incoming notification messages. This is used when no color is set for the incoming
+                 notification message. See README(https://goo.gl/6BKBk7) for more.
+            -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/primaryColor" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
+
+

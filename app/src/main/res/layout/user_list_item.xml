@@ -15,28 +15,27 @@
 
         <ImageView
             android:id="@+id/user_profile_imageview"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="16dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="@dimen/default_margin_start"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/circularimg" />
+            android:src="@drawable/ic_person_black_24dp" />
 
         <TextView
             android:id="@+id/username_textview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="@dimen/default_margin_start"
+            android:layout_marginEnd="@dimen/default_margin_start"
             android:text="User Name"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/user_profile_imageview"
-            app:layout_constraintTop_toTopOf="@+id/user_profile_imageview" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/user_description_textview"

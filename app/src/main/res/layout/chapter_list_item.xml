@@ -5,8 +5,8 @@
 
     <data>
         <import type="android.view.View" />
-        <import type="com.zomatunes.zomatunes.data.model.Chapter"/>
-        <import type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper"/>
+        <import type="com.komkum.komkum.data.model.Chapter"/>
+        <import type="com.komkum.komkum.data.model.RecyclerViewHelper"/>
         <import type="android.support.v4.media.session.PlaybackStateCompat"/>
         <variable
             name="bookImage"
@@ -17,128 +17,165 @@
             type="RecyclerViewHelper&lt;Chapter>"/>
 
         <variable
+            name="selected"
+            type="Boolean"/>
+
+        <variable
             name="chapter"
-            type="com.zomatunes.zomatunes.data.model.Chapter" />
+            type="com.komkum.komkum.data.model.Chapter" />
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/chapter_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground">
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/primaryLightColor"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="2dp">
 
-        <View
-            android:id="@+id/view3"
-            android:layout_width="27dp"
-            android:layout_height="18dp"
-            android:background="@drawable/tab_item_not_active"
-            app:layout_constraintBottom_toBottomOf="@+id/duration_textview"
-            app:layout_constraintStart_toEndOf="@+id/duration_textview"
-            app:layout_constraintTop_toTopOf="@+id/duration_textview"
-            app:layout_constraintVertical_bias="1.0" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/chapter_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/book_imageview"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="@dimen/margin_start"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:loadImage="@{bookImage}"
-            app:srcCompat="@drawable/backimage" />
+            <View
+                android:id="@+id/view3"
+                android:layout_width="27dp"
+                android:layout_height="18dp"
+                android:background="@drawable/tab_item_not_active"
+                app:layout_constraintBottom_toBottomOf="@+id/duration_textview"
+                app:layout_constraintStart_toEndOf="@+id/duration_textview"
+                app:layout_constraintTop_toTopOf="@+id/duration_textview"
+                app:layout_constraintVertical_bias="1.0" />
 
-        <TextView
-            android:id="@+id/chapter_number_textview"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
-            android:text="@{`Chapter`+ ` ` + chapter.chapterNumber}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#8EFFFFFF"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/book_imageview"
-            app:layout_constraintTop_toTopOf="@+id/book_imageview" />
+            <ImageView
+                android:id="@+id/book_imageview"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:loadImage="@{bookImage}"
+                app:srcCompat="@drawable/music_placeholder" />
 
-        <TextView
-            android:id="@+id/chapter_name_textview"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{chapter.name}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintEnd_toEndOf="@+id/chapter_number_textview"
-            app:layout_constraintStart_toStartOf="@+id/chapter_number_textview"
-            app:layout_constraintTop_toBottomOf="@+id/chapter_number_textview" />
+            <TextView
+                android:id="@+id/chapter_number_textview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:text="@{`Chapter`+ ` ` + chapter.chapterNumber}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@{selected ? @color/primaryColor : @color/secondaryTextColor}"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/book_imageview"
+                app:layout_constraintTop_toTopOf="@+id/book_imageview" />
 
-        <ImageView
-            android:id="@+id/chapter_play_imageview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="@{(info.stateManager.selectedItem==chapter &amp;&amp; info.playbackState.state == PlaybackStateCompat.STATE_PLAYING)? View.INVISIBLE : View.VISIBLE}"
-            app:layout_constraintStart_toStartOf="@+id/book_imageview"
-            app:layout_constraintTop_toBottomOf="@+id/book_imageview"
-            app:srcCompat="@drawable/exo_controls_play" />
+            <TextView
+                android:id="@+id/chapter_name_textview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{chapter.name}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@{selected ? @color/primaryColor : @color/primaryTextColor}"
+                app:layout_constraintEnd_toEndOf="@+id/chapter_number_textview"
+                app:layout_constraintStart_toStartOf="@+id/chapter_number_textview"
+                app:layout_constraintTop_toBottomOf="@+id/chapter_number_textview" />
 
-        <TextView
-            android:id="@+id/duration_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="11hr 12 min"
-            app:layout_constraintBottom_toBottomOf="@+id/chapter_play_imageview"
-            app:layout_constraintStart_toEndOf="@+id/chapter_play_imageview"
-            app:layout_constraintTop_toTopOf="@+id/chapter_play_imageview" />
+            <ImageView
+                android:id="@+id/chapter_play_imageview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:visibility="@{(info.stateManager.selectedItem==chapter &amp;&amp; info.playbackState.state == PlaybackStateCompat.STATE_PLAYING)? View.INVISIBLE : View.VISIBLE}"
+                app:layout_constraintStart_toStartOf="@+id/book_imageview"
+                app:layout_constraintTop_toBottomOf="@+id/book_imageview"
+                app:srcCompat="@drawable/ic_play_circle_filled_black_24dp" />
 
-        <ImageView
-            android:id="@+id/chapter_pause_imageview"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility="@{(info.stateManager.selectedItem==chapter &amp;&amp; info.playbackState.state == PlaybackStateCompat.STATE_PLAYING)? View.VISIBLE : View.INVISIBLE}"
-            app:layout_constraintBottom_toBottomOf="@+id/chapter_play_imageview"
-            app:layout_constraintEnd_toEndOf="@+id/chapter_play_imageview"
-            app:layout_constraintStart_toStartOf="@+id/chapter_play_imageview"
-            app:layout_constraintTop_toTopOf="@+id/chapter_play_imageview"
-            app:srcCompat="@drawable/exo_controls_pause" />
+            <TextView
+                android:id="@+id/duration_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textColor="@{selected ? @color/primaryColor : @color/secondaryTextColor}"
+                app:layout_constraintBottom_toBottomOf="@+id/chapter_play_imageview"
+                app:layout_constraintStart_toEndOf="@+id/chapter_play_imageview"
+                app:layout_constraintTop_toTopOf="@+id/chapter_play_imageview" />
 
-        <ImageView
-            android:id="@+id/download_status_imageview"
-            android:layout_width="20dp"
-            android:layout_height="0dp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="@+id/view3"
-            app:layout_constraintStart_toEndOf="@+id/view3"
-            app:layout_constraintTop_toTopOf="@+id/view3"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_file_download_black_24dp" />
+            <ImageView
+                android:id="@+id/chapter_pause_imageview"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="@{(info.stateManager.selectedItem==chapter &amp;&amp; info.playbackState.state == PlaybackStateCompat.STATE_PLAYING)? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintBottom_toBottomOf="@+id/chapter_play_imageview"
+                app:layout_constraintEnd_toEndOf="@+id/chapter_play_imageview"
+                app:layout_constraintStart_toStartOf="@+id/chapter_play_imageview"
+                app:layout_constraintTop_toTopOf="@+id/chapter_play_imageview"
+                app:srcCompat="@drawable/ic_pause_circle_filled_black_24dp" />
 
-        <TextView
-            android:id="@+id/download_progress_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="26%"
-            android:visibility="visible"
-            app:layout_constraintStart_toEndOf="@+id/download_status_imageview"
-            app:layout_constraintTop_toTopOf="@+id/download_status_imageview" />
+            <ImageView
+                android:id="@+id/download_status_imageview"
+                android:layout_width="15dp"
+                android:layout_height="0dp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/view3"
+                app:layout_constraintStart_toEndOf="@+id/view3"
+                app:layout_constraintTop_toTopOf="@+id/view3"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/ic_file_download_black_24dp" />
 
-        <ProgressBar
-            android:id="@+id/completed_progressbar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            android:max="@{chapter.duration}"
-            android:progress="@{Integer.valueOf(String.valueOf(chapter.currentPosition))}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/duration_textview" />
+            <TextView
+                android:id="@+id/download_progress_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="26%"
+                android:visibility="visible"
+                app:layout_constraintStart_toEndOf="@+id/download_status_imageview"
+                app:layout_constraintTop_toTopOf="@+id/download_status_imageview" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ProgressBar
+                android:id="@+id/completed_progressbar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/book_imageview"
+                app:layout_constraintTop_toBottomOf="@+id/duration_textview" />
+
+            <com.taishi.library.Indicator
+                android:id="@+id/playing_indicator_iv"
+                android:layout_width="25dp"
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="@dimen/default_margin_start"
+                android:layout_marginBottom="16dp"
+                android:background="@color/trnasparentColor"
+                android:visibility="@{selected == true ? View.VISIBLE : View.GONE}"
+                app:bar_color="@color/primaryColor"
+                app:bar_num="6"
+                app:duration="20000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:step_num="70" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
 </layout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/light_secondaryLightColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.komkum.komkum.ui.customview.CustomPlaylistImageview
+            android:id="@+id/team_product_imageview"
+            android:layout_width="@dimen/team_mini_list_item_image_size"
+            android:layout_height="@dimen/team_mini_list_item_image_size"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <com.komkum.komkum.ui.customview.AvatarView
+                android:id="@+id/product_number_avatarview"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </com.komkum.komkum.ui.customview.CustomPlaylistImageview>
+
+
+        <TextView
+            android:id="@+id/team_title_textview"
+            style="@style/Subtitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/team_product_imageview"
+            app:layout_constraintTop_toTopOf="@+id/team_product_imageview" />
+
+        <TextView
+            android:id="@+id/team_subtitle_textview"
+            style="@style/Caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/team_title_textview"
+            app:layout_constraintStart_toStartOf="@+id/team_title_textview"
+            app:layout_constraintTop_toBottomOf="@+id/team_title_textview" />
+
+
+        <TextView
+            android:id="@+id/team_subtitle1_textview"
+            style="@style/Caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="#D32F2F"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/team_subtitle_textview"
+            app:layout_constraintStart_toStartOf="@+id/team_subtitle_textview"
+            app:layout_constraintTop_toBottomOf="@+id/team_subtitle_textview" />
+
+        <View
+            android:id="@+id/divider7"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/team_title_textview"
+            app:layout_constraintStart_toStartOf="@+id/team_product_imageview"
+            app:layout_constraintTop_toBottomOf="@+id/team_product_imageview" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

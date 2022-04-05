@@ -4,16 +4,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.zomatunes.zomatunes.data.model.Playlist"/>
-        <import type="com.zomatunes.zomatunes.data.model.Radio"/>
-        <import type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper"/>
+        <import type="com.komkum.komkum.data.model.Playlist"/>
+        <import type="com.komkum.komkum.data.model.Radio"/>
+        <import type="com.komkum.komkum.data.model.RecyclerViewHelper"/>
         <import type="android.view.View"/>
         <variable
             name="viewmodel"
-            type="com.zomatunes.zomatunes.ui.browse.BrowseMusicViewModel" />
+            type="com.komkum.komkum.ui.browse.BrowseMusicViewModel" />
         <variable
             name="artistInfo"
-            type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper&lt;com.zomatunes.zomatunes.data.model.Artist&lt;String,String>>" />
+            type="com.komkum.komkum.data.model.RecyclerViewHelper&lt;com.komkum.komkum.data.model.Artist&lt;String,String>>" />
 
         <variable
             name="playlistInfo"
@@ -26,12 +26,12 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/primaryDarkColor">
+        android:layout_height="match_parent">
 
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyle"
+            android:background="@drawable/circle_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -60,7 +60,7 @@
                     android:layout_height="match_parent"
                     android:foreground="@drawable/appbar_gradient"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/backimage" />
+                    android:src="@drawable/music_placeholder" />
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -85,8 +85,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="24dp"
-                    android:text="Songs"
+                    android:text="@string/songs"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textStyle="bold"
                     android:visibility="@{viewmodel.browseResult.songPlaylists.size > 0 ? View.VISIBLE : View.GONE }"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -110,8 +111,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="32dp"
-                    android:text="New Albums"
+                    android:text="@string/new_albums"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textStyle="bold"
                     android:visibility="@{viewmodel.browseResult.newAlbum.size > 0 ? View.VISIBLE : View.GONE }"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/songs_playlist_recyclerview" />
@@ -132,8 +134,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="32dp"
-                    android:text="Popular Albums"
+                    android:text="@string/popular_albums"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textStyle="bold"
                     android:visibility="@{viewmodel.browseResult.popularAlbum.size > 0 ? View.VISIBLE : View.GONE }"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/new_album_recyclerview" />
@@ -154,8 +157,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="32dp"
-                    android:text="Playlists"
+                    android:text="@string/playlists"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textStyle="bold"
                     android:visibility="@{viewmodel.browseResult.playlist.size > 0 ? View.VISIBLE : View.GONE }"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/popular_album_recyclerview" />
@@ -177,8 +181,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="32dp"
-                    android:text="Top Artists"
+                    android:text="@string/top_artists"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textStyle="bold"
                     android:visibility="@{viewmodel.browseResult.artist.size > 0 ? View.VISIBLE : View.GONE }"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/playlist_recyclerview" />
@@ -199,9 +204,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
-                    android:text="Stations"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/radio_stations"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textStyle="bold"
                     android:visibility="@{viewmodel.browseResult.radioStations.size > 0 ? View.VISIBLE : View.GONE }"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/artist_recyclerview" />
@@ -221,6 +227,16 @@
                     app:radioList="@{viewmodel.browseResult.radioStations}" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
+
+        <TextView
+            android:id="@+id/music_browse_error_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:text="Sorry \n Cannot find songs for this category"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

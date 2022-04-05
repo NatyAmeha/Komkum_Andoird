@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/member_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp">
+
+        <com.komkum.komkum.ui.customview.AvatarView
+            android:id="@+id/team_member_imageview"
+            android:layout_width="@dimen/mini_circle_image_size"
+            android:layout_height="@dimen/mini_circle_image_size"
+            android:layout_marginStart="@dimen/default_margin_start"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/team_rank_textview"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/team_member_name_textview"
+            style="@style/Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintBottom_toBottomOf="@+id/team_member_imageview"
+            app:layout_constraintEnd_toStartOf="@+id/team_member_reward_textview"
+            app:layout_constraintStart_toEndOf="@+id/team_member_imageview"
+            app:layout_constraintTop_toTopOf="@+id/team_member_imageview" />
+
+        <TextView
+            android:id="@+id/team_member_reward_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="50 coin"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintBottom_toBottomOf="@+id/team_member_name_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/team_member_name_textview" />
+
+        <TextView
+            android:id="@+id/team_rank_textview"
+            style="@style/Subtitle"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="12"
+            android:textAlignment="viewEnd"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/team_member_imageview"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/team_member_imageview" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

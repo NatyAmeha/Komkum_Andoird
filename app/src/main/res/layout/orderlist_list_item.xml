@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/product_image_1"
+        android:layout_width="@dimen/medium_icon_size"
+        android:layout_height="@dimen/medium_icon_size"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/product_placeholder" />
+
+    <ImageView
+        android:id="@+id/product_image_2"
+        android:layout_width="@dimen/medium_icon_size"
+        android:layout_height="@dimen/medium_icon_size"
+        android:layout_marginStart="16dp"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/product_image_1"
+        app:layout_constraintStart_toStartOf="@+id/product_image_1"
+        app:layout_constraintTop_toTopOf="@+id/product_image_1"
+        app:srcCompat="@drawable/product_placeholder" />
+
+    <ImageView
+        android:id="@+id/product_image_3"
+        android:layout_width="@dimen/medium_icon_size"
+        android:layout_height="@dimen/medium_icon_size"
+        android:layout_marginStart="16dp"
+        android:elevation="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/product_image_1"
+        app:layout_constraintStart_toStartOf="@+id/product_image_2"
+        app:layout_constraintTop_toTopOf="@+id/product_image_1"
+        app:srcCompat="@drawable/product_placeholder" />
+
+    <TextView
+        android:id="@+id/textView200"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:background="@color/light_secondaryDarkColor"
+        android:elevation="30dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:padding="8dp"
+        android:text="+3"
+        app:layout_constraintBottom_toBottomOf="@+id/product_image_1"
+        app:layout_constraintStart_toEndOf="@+id/product_image_2"
+        app:layout_constraintStart_toStartOf="@+id/product_image_3"
+        app:layout_constraintTop_toTopOf="@+id/product_image_1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView227"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="121dp"
+        tools:layout_editor_absoluteY="13dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

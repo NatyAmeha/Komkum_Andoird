@@ -16,7 +16,7 @@
         android:id="@+id/start_to_queue_transition"
         motion:constraintSetStart="@+id/start"
         motion:constraintSetEnd="@+id/queue_list_end"
-        motion:duration="400">
+        motion:duration="300">
         <OnClick motion:targetId="@id/queue_list_image_view" />
     </Transition>
 
@@ -49,7 +49,7 @@
             android:id="@+id/player_collapsed_header_container"
             android:layout_marginLeft="0dp" />
         <Constraint
-            android:elevation="50dp"
+            android:elevation="70dp"
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -61,7 +61,38 @@
             android:layout_marginLeft="20dp"
             android:layout_marginStart="24dp"
             android:layout_marginRight="20dp"
-            android:layout_marginEnd="24dp" />
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="@dimen/player_margin_top" />
+        <Constraint
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toTopOf="@+id/queue_song_image_viewpager"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/player_main_header_container"
+            android:layout_marginTop="@dimen/player_margin_top" />
+        <Constraint
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/player_loading_progressbar"
+            android:visibility="invisible" />
+        <Constraint
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="invisible"
+            motion:layout_constraintBottom_toTopOf="@+id/player_controller_container"
+            motion:layout_constraintTop_toBottomOf="@+id/queue_song_image_viewpager"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/lyrics_container"
+            android:layout_marginTop="8dp" />
     </ConstraintSet>
 
 
@@ -87,7 +118,8 @@
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
             android:elevation="20dp"
-            android:layout_marginLeft="0dp" />
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="16dp" />
         <Constraint
             android:id="@+id/player_info_container"
             motion:layout_constraintEnd_toEndOf="parent"
@@ -127,6 +159,16 @@
             motion:layout_constraintStart_toStartOf="parent"
             android:layout_marginBottom="16dp"
             android:layout_marginTop="8dp" />
+        <Constraint
+            android:id="@+id/player_loading_progressbar"
+            android:elevation="100dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="invisible"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
     </ConstraintSet>
 
     <ConstraintSet
@@ -152,7 +194,8 @@
             motion:layout_constraintTop_toTopOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
             android:elevation="20dp"
-            android:layout_marginLeft="0dp" />
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="16dp" />
         <Constraint
             android:id="@+id/player_info_container"
             motion:layout_constraintEnd_toEndOf="parent"
@@ -187,14 +230,23 @@
             motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="16dp"
             android:visibility="visible"
-            motion:layout_constraintBottom_toTopOf="@+id/player_controller_container"
             motion:layout_constraintTop_toBottomOf="@+id/queue_song_image_viewpager"
+            motion:layout_constraintBottom_toTopOf="@+id/player_controller_container"
             motion:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="16dp"
             android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp" />
+        <Constraint
+            android:id="@+id/player_loading_progressbar"
+            android:elevation="100dp"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="invisible"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent" />
 
     </ConstraintSet>
 

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.komkum.komkum.data.model.RecyclerViewHelper"/>
+        <import type="android.view.View"/>
+        <import type="com.komkum.komkum.data.model.Podcast"/>
+        <variable
+            name="podcastViewmodel"
+            type="com.komkum.komkum.ui.podcast.PodcastViewModel" />
+
+        <variable
+            name="podcastInfo"
+            type="RecyclerViewHelper&lt;Podcast&lt;String>>" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:background="@color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/podcast_home_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_anchor="@+id/podcast_Progressbar"
+            app:layout_anchorGravity="end|center">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/frameLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                tools:context=".ui.podcast.PodcastHomeFragment">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/popularpodcast_viewpager"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/banner_2_image_size_"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                </androidx.viewpager2.widget.ViewPager2>
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/viewpager_tablayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    app:layout_constraintBottom_toBottomOf="@+id/popularpodcast_viewpager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:tabBackground="@drawable/tab_item_selector"
+                    app:tabGravity="center"
+                    app:tabIndicator="@color/transparent"
+                    app:tabIndicatorColor="@color/transparent"
+                    app:tabMaxWidth="20dp">
+
+                </com.google.android.material.tabs.TabLayout>
+
+
+                <TextView
+                    android:id="@+id/textView126"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/popular_podcasts"
+                    android:textAppearance="@style/Subtitle"
+                    android:textStyle="bold"
+                    android:visibility="@{podcastViewmodel.podcastHomeResult.popularPodcasts.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/popularpodcast_viewpager" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/popular_podcast_recyclerview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView126"
+                    app:podcastInfo="@{podcastInfo}"
+                    app:podcastList="@{podcastViewmodel.podcastHomeResult.popularPodcasts}" />
+
+                <TextView
+                    android:id="@+id/category_1_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:layout_marginTop="24dp"
+                    android:textAppearance="@style/Subtitle"
+                    android:textStyle="bold"
+                    android:visibility="@{podcastViewmodel.podcastHomeResult.podcastsByCategory1.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/popular_podcast_recyclerview" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/featured_podcast_recyclerview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/category_1_textview"
+                    app:podcastInfo="@{podcastInfo}"
+                    app:podcastList="@{podcastViewmodel.podcastHomeResult.podcastsByCategory1}" />
+
+                <androidx.compose.ui.platform.ComposeView
+                    android:id="@+id/donation_composeview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:visibility="@{podcastViewmodel.podcastHomeResult.topPodcasterByDonation.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView145" />
+
+                <TextView
+                    android:id="@+id/category_2_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:layout_marginTop="16dp"
+                    android:textAppearance="@style/Subtitle"
+                    android:textStyle="bold"
+                    android:visibility="@{podcastViewmodel.podcastHomeResult.podcastsByCategory2.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/donation_composeview" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/podcast_category1_recyclerview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+
+                    app:layout_constraintTop_toBottomOf="@+id/category_2_textview"
+                    app:podcastInfo="@{podcastInfo}"
+                    app:podcastList="@{podcastViewmodel.podcastHomeResult.podcastsByCategory2}" />
+
+                <TextView
+                    android:id="@+id/category_3_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:layout_marginTop="24dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textStyle="bold"
+                    android:visibility="@{podcastViewmodel.podcastHomeResult.podcastsByCategory3.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/podcast_category1_recyclerview" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/podcast_category2_recyclerview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/category_3_textview"
+                    app:podcastInfo="@{podcastInfo}"
+                    app:podcastList="@{podcastViewmodel.podcastHomeResult.podcastsByCategory3}" />
+
+                <TextView
+                    android:id="@+id/textView145"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/donations"
+                    android:textAppearance="@style/Subtitle"
+                    android:textStyle="bold"
+                    android:visibility="@{podcastViewmodel.podcastHomeResult.topPodcasterByDonation.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/featured_podcast_recyclerview" />
+
+                <TextView
+                    android:id="@+id/category_4_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:layout_marginTop="16dp"
+                    android:textAppearance="@style/Title"
+                    android:textStyle="bold"
+                    android:visibility="@{podcastViewmodel.podcastHomeResult.podcastsByCategory4.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/podcast_category2_recyclerview" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="56dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/category_4_textview"
+                    app:podcastInfo="@{podcastInfo}"
+                    app:podcastList="@{podcastViewmodel.podcastHomeResult.podcastsByCategory4}" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <ProgressBar
+            android:id="@+id/podcast_Progressbar"
+            style="?android:attr/progressBarStyle"
+            android:visibility="@{(podcastViewmodel.podcastHomeResult == null)? View.VISIBLE : View.INVISIBLE}"
+            android:layout_gravity="center"
+            android:background="@drawable/circle_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <include
+            android:id="@+id/error_view"
+            layout="@layout/error_page"
+            android:visibility="gone" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+
+</layout>

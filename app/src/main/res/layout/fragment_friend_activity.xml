@@ -5,11 +5,11 @@
 
     <data>
 
-        <import type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper" />
+        <import type="com.komkum.komkum.data.model.RecyclerViewHelper" />
         <import type="android.view.View"/>
-        <import type="com.zomatunes.zomatunes.data.model.Book"/>
-        <import type="com.zomatunes.zomatunes.data.model.Author"/>
-        <import type="com.zomatunes.zomatunes.data.model.Playlist" />
+        <import type="com.komkum.komkum.data.model.Book"/>
+        <import type="com.komkum.komkum.data.model.Author"/>
+        <import type="com.komkum.komkum.data.model.Playlist" />
 
         <variable
             name="playlistInfo"
@@ -17,7 +17,7 @@
 
         <variable
             name="artistInfo"
-            type="com.zomatunes.zomatunes.data.model.RecyclerViewHelper&lt;com.zomatunes.zomatunes.data.model.Artist&lt;String,String>>" />
+            type="com.komkum.komkum.data.model.RecyclerViewHelper&lt;com.komkum.komkum.data.model.Artist&lt;String,String>>" />
 
         <variable
             name="bookInfo"
@@ -28,17 +28,25 @@
 
         <variable
             name="userViewmodel"
-            type="com.zomatunes.zomatunes.ui.user.UserViewModel" />
+            type="com.komkum.komkum.ui.user.UserViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="No friend activity available"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:visibility="gone" />
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
+            android:background="@color/primaryDarkColor"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
 
@@ -76,10 +84,12 @@
                     android:id="@+id/textView101"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/default_margin_start"
                     android:layout_marginTop="16dp"
                     android:text="Public playlist"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textStyle="bold"
+                    android:visibility="@{userViewmodel.friendsActivity.publicPlaylists.size > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -87,10 +97,14 @@
                     android:id="@+id/fav_artist_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:text="Artists"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:layout_marginTop="40dp"
+                    android:text="Favorite Artists"
+
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    app:layout_constraintStart_toStartOf="@+id/textView101"
+                    android:textStyle="bold"
+                    android:visibility="@{userViewmodel.friendsActivity.favoriteArtists.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/public_playlist_recyclerview" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -110,10 +124,14 @@
                     android:id="@+id/books_audiobooks_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:layout_marginTop="40dp"
                     android:text="Books and Audiobooks"
+
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    app:layout_constraintStart_toStartOf="@+id/fav_artist_textview"
+                    android:textStyle="bold"
+                    android:visibility="@{userViewmodel.friendsActivity.books.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/artist_recyclerview" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -131,10 +149,13 @@
                     android:id="@+id/author_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="@dimen/default_margin_start"
+                    android:layout_marginTop="40dp"
                     android:text="Favorite Author"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    app:layout_constraintStart_toStartOf="@+id/books_audiobooks_textview"
+                    android:textStyle="bold"
+                    android:visibility="@{userViewmodel.friendsActivity.favoriteAuthors.size > 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/books_audiobook_recyclerview" />
 
                 <androidx.recyclerview.widget.RecyclerView

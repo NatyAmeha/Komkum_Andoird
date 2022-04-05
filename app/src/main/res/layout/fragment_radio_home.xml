@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="com.zomatunes.zomatunes.ui.radio.RadioViewModel" />
+            type="com.komkum.komkum.ui.radio.RadioViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
