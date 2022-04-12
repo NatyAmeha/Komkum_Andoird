@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -49,7 +50,8 @@ class AccountFragment : Fragment() {
 
     init {
         lifecycleScope.launchWhenCreated {
-            userViewmodel.getUserData()
+            if(activity != null && isAdded)
+                userViewmodel.getUserData()
         }
     }
 
@@ -178,15 +180,23 @@ class AccountFragment : Fragment() {
                 (requireActivity() as MainActivity).moveToTeamList(TeamGridListFragment.LOAD_USER_TEAMS)
             }
 
+            var rewardBallon = requireContext()
+                .getBalloon(getString(R.string.reward_description) ,
+                    "REWARD_FINDER" , 0.55f , viewLifecycleOwner)
+
             var teamBallon = requireActivity()
                 .getBalloon(getString(R.string.user_team_description) ,
                     "TEAM_LIST", lifeyCycleOwner = viewLifecycleOwner)
 
-            var rewardBallon = requireContext()
-                .getBalloon(getString(R.string.reward_description) ,
-                    "REWARD_FINDER" , 0.55f , viewLifecycleOwner)
-            teamBallon.relayShowAlignTop(rewardBallon , binding.rewardFinderImageview)
-            teamBallon.showAlignTop(binding.teamsListItem.imageView16)
+            var homeAddressBallon = requireActivity().getBalloon(getString(R.string.select_home_address_ballon_msg),
+                "SELECT_HOME_ADDRESS" , 0.9f , viewLifecycleOwner)
+
+            rewardBallon.relayShowAlignTop(teamBallon , binding.teamsListItem.imageView16)
+                .relayShowAlignTop(homeAddressBallon , binding.changeDefaultAddress.imageView16)
+            rewardBallon.showAlignTop(binding.rewardFinderImageview)
+
+//            teamBallon.relayShowAlignTop(rewardBallon , binding.rewardFinderImageview)
+//            teamBallon.showAlignTop(binding.teamsListItem.imageView16)
 
 
             binding.wishlistListItem.libraryItemImageView.setImageResource(R.drawable.ic_gray_favorite_border_24)
@@ -212,6 +222,8 @@ class AccountFragment : Fragment() {
                     binding.changeDefaultAddress.listItemSubtitleTextview.text = address.address ?: "unable to convert"
                 }
             }
+
+
 
             binding.changeDefaultAddress.root.setOnClickListener {
                 var homeAddressOptions = listOf(getString(R.string.use_current_address_for_default_location) , getString(
@@ -274,7 +286,8 @@ class AccountFragment : Fragment() {
             }
 
             binding.withdrawImageview.setOnClickListener {
-                Toast.makeText(requireContext() , getString(R.string.coming_soon) , Toast.LENGTH_LONG).show()
+                var bundle = bundleOf("WALLET_BALANCE" to user?.walletBalance?.roundToInt())
+                findNavController().navigate(R.id.cashoutFragment , bundle)
             }
 
             binding.transactionImageview.setOnClickListener {

@@ -152,7 +152,7 @@
             android:value="@string/facebook_app_id" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_audiotrack_black_24dp" />
+            android:resource="@drawable/ic_stat_notification_icon" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

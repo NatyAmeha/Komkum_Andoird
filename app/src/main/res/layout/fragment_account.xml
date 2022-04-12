@@ -64,7 +64,7 @@
 
                     <TextView
                         android:id="@+id/textView43"
-                        style="@style/Overline"
+                        style="@style/Caption2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -536,7 +536,7 @@
                     style="@style/Body3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Manage Account"
+                    android:text="@string/manage_account"
                     app:layout_constraintEnd_toEndOf="@+id/account_name_textview"
                     app:layout_constraintStart_toEndOf="@+id/account_profile_imageview"
                     app:layout_constraintStart_toStartOf="@+id/account_name_textview"

@@ -155,18 +155,23 @@ var userRepo : UserRepository , var paymentUsecase: PaymentUsecase , var walletU
     fun isAuthenticated() = userRepo.userManager.isLoggedIn()
 
     fun getPlaceSuggestion(query : String , token: AutocompleteSessionToken , placesClient: PlacesClient) = liveData {
-        var request = findAutocompletePredictionsRequest {
-            setCountries("ET")
-            setTypeFilter(TypeFilter.ESTABLISHMENT)
-            setSessionToken(token)
-            setQuery(query)
+        try {
+            var request = findAutocompletePredictionsRequest {
+                setCountries("ET")
+                typeFilter = TypeFilter.ESTABLISHMENT
+                sessionToken = token
+                setQuery(query)
 
+            }
+            var response = placesClient.awaitFindAutocompletePredictions(request)
+            var result = response.autocompletePredictions.map { it ->
+                Address(_id = it.placeId , address = it.getFullText(null).toString() , )
+            }
+            emit(result)
+        }catch (ex : Throwable){
+            error.value = ex.message
         }
-        var response = placesClient.awaitFindAutocompletePredictions(request)
-        var result = response.autocompletePredictions.map { it ->
-            Address(_id = it.placeId , address = it.getFullText(null).toString() , )
-        }
-        emit(result)
+
     }
 
     fun getPlaceDetails(placeId : String , placesClient: PlacesClient) = liveData{

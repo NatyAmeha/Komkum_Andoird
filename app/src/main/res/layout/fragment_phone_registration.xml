@@ -62,6 +62,7 @@
             app:ccpDialog_textColor="@color/material_on_background_emphasis_high_type"
             app:ccp_defaultNameCode="ET"
             app:ccp_hintExampleNumber="false"
+            app:ccp_clickable="false"
             app:ccp_hintExampleNumberType="FIXED_LINE_OR_MOBILE"
             app:ccp_rememberLastSelection="true"
             app:ccp_showFlag="false"

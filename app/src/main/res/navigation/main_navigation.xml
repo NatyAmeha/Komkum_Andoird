@@ -448,5 +448,9 @@
         android:id="@+id/findMyAddressFragment"
         android:name="com.komkum.komkum.ui.store.team.FindMyAddressFragment"
         android:label="FindMyAddressFragment" />
+    <fragment
+        android:id="@+id/cashoutFragment"
+        android:name="com.komkum.komkum.ui.wallet.CashoutFragment"
+        android:label="CashoutFragment" />
 
 </navigation>

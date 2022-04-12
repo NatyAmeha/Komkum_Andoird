@@ -228,7 +228,7 @@
     <string name="team_purchase_unavailable_msg">ለዚህ ምርት የቡድን ግዢ አይፈቀድም</string>
     <string name="choose_package">ጥቅል ይምረጡ</string>
     <string name="create_new_package">አዲስ ጥቅል ይፍጠሩ</string>ቻ
-    <string name="continue_to_buy">"መግዛቶን ይቀጥሉ"</string>
+    <string name="continue_to_buy">"ወደ መግዣ ይሂዱ"</string>
     <string name="member_with_commission">የቡድኑ አባላት አና በኮሚሽን ያገኙት ገንዘብ</string>
     <string name="summary">ማጠቃለያ</string>
     <string name="discount_code_not_valid">የቅናሽ ኮዱ አይሰራም ወይም አስቀድሞ ጥቅም ላይ ውሏል</string>
@@ -267,7 +267,7 @@
     <string name="wishlist">የምኞት ዝርዝር</string>
     <string name="recharge">ይሙሉ</string>
     <string name="rewards">ሽልማቶች</string>
-    <string name="transactions">ትራንዛክሽን</string>
+    <string name="transactions">መረጃ</string>
     <string name="your_wallet">የአርሶ ዋሌት</string>
     <string name="no_product_found">ምንም ምርት አልተገኘም።</string>
     <string name="payment_method">የመክፈያ አማራጭ</string>
@@ -289,7 +289,7 @@
     <string name="cash_prize">የገንዘብ ሽልማት</string>
     <string name="new_arrival">አዲስ የገቡ ምርቶች</string>
     <string name="end_date">የመጨረሻ ቀን</string>
-    <string name="activities">አንቅስቃሰዎች</string>
+    <string name="activities">የእርሶ አንቅስቃሴዎች</string>
     <string name="membership_perks">ነጻ መላኪያ፣ በነፃ ሙዚቃዎችን እና ፖድካስቶችት ወደ ስልኮ ማውረድ፣ ከማስታወቂያ ነጻ  እና ሎሎችም ጥቅሞች</string>
     <string name="membership_price">በወር ከ30 ብር ጀምሮ</string>
     <string name="become_a_member">አባል መሆን</string>
@@ -544,7 +544,7 @@
     <string name="coupon_code_restriction">በአንድ ትአዛዝ ላይ  ከ2 በላይ የኩፖን ኮዶችን መጠቀም አይችሉም</string>
     <string name="unable_to_send_code">ኮዱን መላክ አልተቻለም። እባክዎ ዳግም ይሞክሩ</string>
     <string name="contact_us">ይደውሉልን</string>
-    <string name="no_reward_found">ምንም ሽልማት አልተገኘም። \nየእርስዎ የጨዋታ ሽልማቶች እና ኮሚሽኖች እዚህ የተሰበሰቡ ናቸው።</string>
+    <string name="no_reward_found">ምንም ሽልማት አልተገኘም። \nየእርስዎ የጨዋታ ሽልማቶች እና ኮሚሽኖች እዚህ ይሰበሰብሎታል።</string>
     <string name="delivery_date_has_expired">የመረከቢያ ቀኑ አልፏል</string>
     <string name="discount_code_applied">የቅናሽ ኮድ ተተግብሯል።</string>
     <string name="no_account_found">በዚህ ስልክ ቁጥር ወይም ኢሜል ምንም መለያ  አልተመዘገበም።</string>
@@ -562,6 +562,28 @@
     <string name="share_your_team">ቡድንዎን ያጋሩ</string>
     <string name="order_your_next_order_for_free">ቀጣይ ትእዛዝዎን በነጻ ይዘዙ</string>
     <string name="invite_people_after_order_complete">ቤተሰብዎን፣ ጓደኞችዎን እና የስራ ባልደረቦችዎን ወደ ቡድንዎ በመጋብዝ  በእርሶ ሊንክ ምርቶችን ሲገዙ እርሶ 5% ኮሚሽን ያግኙ። 5% ኮሚሽኖ መተግበሪያው ላይ  ወዳለው ዋሌቶ ይተላለፍሎታል ፣ ለቀጣይ ትዕዛዝዎ ዋሌቶን በመጠቀም በኮሚሽንዎ መክፈል ይችላሉ።</string>
+    <string name="cbe_birr">CBE ብር</string>
+    <string name="cash_out">ገንዘቦን ይውሰዱ</string>
+    <string name="approved">ጸድቋል</string>
+    <string name="declined">ተቀባይነት አላገኘም</string>
+    <string name="pending">በመጠባበቅ ላይ</string>
+    <string name="mobile_card">የሞባይል ካርድ</string>
+    <string name="successful">ተሳክቷል</string>
+    <string name="select_cash_out_method">ገንዘብ ማውጫ ዘዴን ይምረጡ</string>
+    <string name="close">ገባኝ</string>
+    <string name="telebirr">ቴሌ ብር</string>
+    <string name="request_cash_out">ገንዘቦ ለመውሰድ ይጠይቁ</string>
+    <string name="manage_account">መለያዎትን ያስተዳድሩ</string>
+    <string name="order_cancelled">ተሰርዟል</string>
+    <string name="select_home_address_ballon_msg">የቤት አድራሻዎን መምረጥ ከቤተሰብዎ፣ ከጓደኞችዎ እና ከጎረቤቶችዎ ጋር በቡድን ሆነው በቤትዎ አካባቢ እንዲገዙ እና የመላኪያ ቅናሽ እንዲያገኙ ያስችልዎታል።</string>
+    <string name="you_can_only_withdraw_up_to">ማውጣት የሚችሉት እስከ</string>
+    <string name="in_your_wallet">በዋሌቶ ውስጥ ይገኛል።</string>
+    <string name="you_have">""</string>
+    <string name="up_to_amount">ድረስ ነው።</string>
+    <string name="cash_out_description">የገንዘብ ማውጣት ጥያቄዎን ካጸደቅን በኋላ ማሳወቂያ እንልክልዎታለን እና ክፍያው ወደ መረጡት የመክፈያ ዘዴ ይተላለፋል።</string>
+    <string name="cashout_request_status_message">ገንዘብ የማውጣት ጥያቄዎ በግምገማ ላይ ነው። ስለጥያቄዎ ሁኔታ ማሳወቂያ እንልክልዎታለን</string>
+    <string name="last_request">የቀድሞ ጥያቄዎ</string>
+    <string name="cashout_eligability_message">ገንዘብ ማውጣት የሚችሉት በዋሌቶ ላይ ብር  500 እና ክዚያ በላይ ካለ ብቻ ነው።</string>
 
 
 </resources>

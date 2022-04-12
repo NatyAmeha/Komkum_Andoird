@@ -144,6 +144,8 @@
                     android:layout_marginTop="24dp"
                     android:background="@color/light_secondaryLightColor"
                     android:padding="8dp"
+                    android:textStyle="bold"
+
                     android:visibility="@{productViewmodel.productBrowseResult.packages.size > 0 ? View.VISIBLE : View.GONE}"
                     android:text="@string/packages"
                     android:textAppearance="@style/Title"

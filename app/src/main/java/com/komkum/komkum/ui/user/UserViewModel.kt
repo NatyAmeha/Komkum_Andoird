@@ -145,6 +145,18 @@ var walletUsecase: WalletUsecase , var paymentUsecase: PaymentUsecase) : ViewMod
         emit(result)
     }
 
+    fun requestCashout(cashout: Cashout) = liveData {
+        var result = userRepo.requestCashout(cashout)
+        emit(result.data)
+    }
+
+    fun getCashoutRequests(userId : String) = liveData {
+        var result = userRepo.getCasoutRequest (userId)
+        emit(result.data)
+    }
+
+
+
     fun makeDonation(donationInfo : Donation) = liveData {
         var result = walletUsecase.makeDonation(donationInfo)
         emit(result)

@@ -29,6 +29,7 @@ data class Order<P, A>(
         const val STATUS_NEAR_STORE = 2
         const val STATUS_OUT_FOR_DELIVERY = 3
         const val STATUS_DELIVERED = 4
+        const val STATUS_CANCELLED = 5
     }
 }
 

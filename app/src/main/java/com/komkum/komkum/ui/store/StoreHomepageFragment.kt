@@ -93,29 +93,32 @@ class StoreHomepageFragment : Fragment(), IRecyclerViewInteractionListener<Produ
 
     init {
         lifecycleScope.launchWhenCreated {
-            var pref = PreferenceHelper.getInstance(requireContext())
-            var defaultLatitudeValue = pref.get(PreferenceHelper.DEFAULT_LATITUDE_VALUE , 0f)
-            var defaultLongitudeValue = pref.get(PreferenceHelper.DEFAULT_LONGITUDE_VALUE , 0f)
-            if(defaultLatitudeValue != 0f || defaultLongitudeValue != 0f){
-                homeViewmodel.getStoreHomepageResult(defaultLongitudeValue.toDouble() , defaultLatitudeValue.toDouble())
-            }
-            else{
-                requireActivity().requestAndAccessLocationBeta(onFailure = {locationStatus ->
-                    if(locationStatus == false){
-                        (requireActivity() as MainActivity).showDialog(getString(R.string.error) ,
-                            getString(R.string.app_need_location_feature) ,
-                            getString(R.string.turn_on_location),
-                            autoDismiss = false){
-                            var intent = Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-                            startActivity(intent)
-                        }
-                    }
-                    homeViewmodel.getStoreHomepageResult() }) {
-                    homeViewmodel.getStoreHomepageResult(it.longitude , it.latitude)
+            if(activity != null && isAdded){
+                var pref = PreferenceHelper.getInstance(requireContext())
+                var defaultLatitudeValue = pref.get(PreferenceHelper.DEFAULT_LATITUDE_VALUE , 0f)
+                var defaultLongitudeValue = pref.get(PreferenceHelper.DEFAULT_LONGITUDE_VALUE , 0f)
+                if(defaultLatitudeValue != 0f || defaultLongitudeValue != 0f){
+                    homeViewmodel.getStoreHomepageResult(defaultLongitudeValue.toDouble() , defaultLatitudeValue.toDouble())
                 }
-            }
+                else{
+                    requireActivity().requestAndAccessLocationBeta(onFailure = {locationStatus ->
+                        if(locationStatus == false){
+                            (requireActivity() as MainActivity).showDialog(getString(R.string.error) ,
+                                getString(R.string.app_need_location_feature) ,
+                                getString(R.string.turn_on_location),
+                                autoDismiss = false){
+                                var intent = Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                                startActivity(intent)
+                            }
+                        }
+                        homeViewmodel.getStoreHomepageResult() }) {
+                        homeViewmodel.getStoreHomepageResult(it.longitude , it.latitude)
+                    }
+                }
 
-            PreferenceHelper.getInstance(requireContext())[PreferenceHelper.RELOAD_STORE_PAGE] = false
+                PreferenceHelper.getInstance(requireContext())[PreferenceHelper.RELOAD_STORE_PAGE] = false
+
+            }
         }
     }
 

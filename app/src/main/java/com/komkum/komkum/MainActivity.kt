@@ -47,6 +47,7 @@ import com.komkum.komkum.util.notification.FcmService
 import java.util.*
 import javax.inject.Inject
 import kotlin.concurrent.schedule
+import kotlin.concurrent.timer
 import kotlin.math.roundToInt
 
 
@@ -60,12 +61,14 @@ class MainActivity : ControllerActivity(), IMainActivity,
 
     lateinit var binding: ActivityMainBinding
     lateinit var queueAdapter: SongAdapter
+    lateinit var timer : TimerTask
 
 
     var selectedMediaId: String? = null
     var selectedSongIndex: Int = 0
     var playerState: Int = -1
     var isPlayerViewVisible = false
+
 
 
     var playerTitle: String? = null
@@ -138,7 +141,6 @@ class MainActivity : ControllerActivity(), IMainActivity,
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewContainer = binding.mainactivityContainer
-
 
         var isAuthenticated = mainViewmodel.userRepo.userManager.isLoggedIn()
 
@@ -387,11 +389,15 @@ class MainActivity : ControllerActivity(), IMainActivity,
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
+    override fun onDestroy() {
+        if(::timer.isInitialized) timer.cancel()
+        super.onDestroy()
+    }
 
     // this fun shows main information like user commission, game reward and wallet status
     fun showMainInfoInDialog(pref: SharedPreferences) {
         // show language picker dialog if not shown in onboarding activity
-        Timer().schedule(15000){
+         timer = Timer().schedule(15000){
             runOnUiThread {
                 showLanguageSelelectDialog(true , 5000)
             }
@@ -401,7 +407,6 @@ class MainActivity : ControllerActivity(), IMainActivity,
 //        // USER COMMISSION DIALOG
         mainViewmodel.getCommission().observe(this) { commission ->
             if (commission != null && commission >= 50) {
-                var a = getString(R.string.commission_reward_msg_2)
                 this.showDialog(
                     "${getString(R.string.birr)} ${commission.roundToInt()} ${getString(R.string.commission)}",
                     "${getString(R.string.commission_reward_msg)} ${getString(R.string.birr)} ${commission.roundToInt()} ${getString(R.string.commission_reward_msg_2)}",

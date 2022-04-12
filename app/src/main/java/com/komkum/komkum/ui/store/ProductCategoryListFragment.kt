@@ -34,7 +34,8 @@ class ProductCategoryListFragment : Fragment() , IRecyclerViewInteractionListene
 
     init {
         lifecycleScope.launchWhenCreated {
-            productViewmodel.getProductBrowseCategories()
+            if(activity != null && isAdded)
+                productViewmodel.getProductBrowseCategories()
         }
     }
 

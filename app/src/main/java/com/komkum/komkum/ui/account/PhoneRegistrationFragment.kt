@@ -1,5 +1,6 @@
 package com.komkum.komkum.ui.account
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -31,12 +32,12 @@ import com.komkum.komkum.util.PreferenceHelper.set
 import com.komkum.komkum.util.extensions.configureActionBar
 import com.komkum.komkum.util.extensions.handleError
 import com.komkum.komkum.util.extensions.sendIntent
+import com.komkum.komkum.util.extensions.showDialog
 import com.komkum.komkum.util.notification.FcmService
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.concurrent.schedule
-import kotlin.concurrent.timer
 
 
 @AndroidEntryPoint
@@ -46,11 +47,16 @@ class PhoneRegistrationFragment : Fragment() {
     val viewmodel : OnboardingActivityViewmodel by activityViewModels()
 
     var resendCodeAgain = true
+    var canExitRegistration = true
+
     lateinit var timer : TimerTask
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        setHasOptionsMenu(true)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -61,7 +67,14 @@ class PhoneRegistrationFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
             android.R.id.home ->{
-                findNavController().navigateUp()
+                if(canExitRegistration)
+                    findNavController().navigateUp()
+                else{
+                    requireActivity().showDialog(getString(R.string.discard) , showNegative = true ,
+                        positiveButtonText = getString(R.string.yes)){
+                        findNavController().navigateUp()
+                    }
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -77,12 +90,13 @@ class PhoneRegistrationFragment : Fragment() {
         }
 
         binding.sendCodeBtn.setOnClickListener {
+            canExitRegistration = false
             binding.registrationProgressbar.isVisible = true
             binding.sendCodeBtn.isEnabled = false
             var phoneNumber = binding.countryCodePicker.fullNumberWithPlus
             verifyPhoneNumber(phoneNumber)
             timer = Timer().schedule(60*1000){
-                requireActivity().runOnUiThread {
+                activity?.runOnUiThread {
                     if(resendCodeAgain){
                         binding.registrationProgressbar.isVisible = false
                         Toast.makeText(requireContext() , getString(R.string.unable_to_send_code) , Toast.LENGTH_LONG).show()
@@ -162,6 +176,7 @@ class PhoneRegistrationFragment : Fragment() {
         binding.registrationProgressbar.isVisible = true
         viewmodel.signUpWithPhoneNumber(userinfo).observe(viewLifecycleOwner){result ->
             binding.registrationProgressbar.isVisible = false
+            canExitRegistration = true
             when(result){
                 is AccountState.Registered -> {
                     viewmodel.user  = result.user

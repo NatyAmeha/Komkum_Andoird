@@ -39,6 +39,7 @@ import com.komkum.komkum.data.model.Transaction.Companion.TRANSACTION_TYPE_DONAT
 import com.komkum.komkum.data.model.Transaction.Companion.TRANSACTION_TYPE_PURCHASE
 import com.komkum.komkum.data.model.Transaction.Companion.TRANSACTION_TYPE_REWARD
 import com.komkum.komkum.data.model.Transaction.Companion.TRANSACTION_TYPE_SUBSCRIPTION_UPGRADE
+import com.komkum.komkum.data.model.Transaction.Companion.TRANSACTION_TYPE_WITHDRAWAL
 import com.komkum.komkum.databinding.FragmentTransactionBinding
 import com.komkum.komkum.ui.component.imageListItem
 import com.komkum.komkum.ui.theme.ZomaTunesTheme
@@ -122,6 +123,7 @@ class TransactionFragment : Fragment() {
     fun getTransactionTitle(type : Int) : String{
         return when(type){
             TRANSACTION_TYPE_DEPOSIT -> getString(R.string.deposit)
+            TRANSACTION_TYPE_WITHDRAWAL -> getString(R.string.cash_out)
             TRANSACTION_TYPE_DONATION -> getString(R.string.donations)
             TRANSACTION_TYPE_PURCHASE -> getString(R.string.purchase)
             TRANSACTION_TYPE_REWARD -> getString(R.string.reward)
@@ -133,7 +135,7 @@ class TransactionFragment : Fragment() {
     fun amountStatus(type : Int) : String?{
         return when(type){
             TRANSACTION_TYPE_DEPOSIT, TRANSACTION_TYPE_REWARD , TRANSACTION_TYPE_COMMISSION -> "+"
-            TRANSACTION_TYPE_DONATION,TRANSACTION_TYPE_PURCHASE, TRANSACTION_TYPE_SUBSCRIPTION_UPGRADE -> "-"
+            TRANSACTION_TYPE_WITHDRAWAL , TRANSACTION_TYPE_DONATION,TRANSACTION_TYPE_PURCHASE, TRANSACTION_TYPE_SUBSCRIPTION_UPGRADE -> "-"
             else -> null
         }
     }

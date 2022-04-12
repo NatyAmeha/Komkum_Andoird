@@ -238,7 +238,6 @@ class OrderListFragment : Fragment() , IRecyclerViewInteractionListener<Order<Pr
                 Column(Modifier.widthIn(min = 150.dp),
                     horizontalAlignment = Alignment.Start) {
                     var remainingDay = order.estDelTime?.getRemainingDayInNumber(requireContext()) ?: 0
-                    Toast.makeText(requireContext() , remainingDay.toString() , Toast.LENGTH_LONG).show()
                     var orderStatusMsg = if(order.status == Order.STATUS_DELIVERED) "${getString(R.string.order_delivered)}"
                     else if(order.estDelTime?.getRemainingDay(requireContext()) == null){
                         stringResource(R.string.delivery_date_has_expired)

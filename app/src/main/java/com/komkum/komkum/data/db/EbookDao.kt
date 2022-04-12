@@ -10,17 +10,17 @@ import com.komkum.komkum.data.model.EbookDbInfo
 @Dao
 interface EbookDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun saveBook(bookInfo : EbookDbInfo)
+     fun saveBook(bookInfo : EbookDbInfo)
 
     @Query("SELECT * FROM EbookDbInfo WHERE _id = :bookId")
-    suspend fun getBook(bookId : String) : EbookDbInfo?
+     fun getBook(bookId : String) : EbookDbInfo?
 
     @Query("SELECT * FROM EbookDbInfo")
-    suspend fun getBooks() : List<EbookDbInfo>?
+     fun getBooks() : List<EbookDbInfo>?
 
     @Query("UPDATE EbookDbInfo SET lastReadingPage = :pageNumber WHERE _id = :bookId")
-    suspend fun updateLastReadingPage(bookId : String , pageNumber : Int)
+     fun updateLastReadingPage(bookId : String , pageNumber : Int)
 
     @Query("DELETE FROM EbookDbInfo WHERE _id = :bookId")
-    suspend fun deleteBook(bookId: String)
+     fun deleteBook(bookId: String)
 }

@@ -175,7 +175,6 @@ class TeamFragment : Fragment(), IRecyclerViewInteractionListener<Product> {
         var pref = PreferenceHelper.getInstance(requireContext())
         var userId = pref.get(AccountState.USER_ID , "")
         pref[AccountState.IS_REDIRECTION] = true
-        var a = loadType
         defaultLatitudeValue = pref.get(PreferenceHelper.DEFAULT_LATITUDE_VALUE , 0f)
         defaultLongitudeValue = pref.get(PreferenceHelper.DEFAULT_LONGITUDE_VALUE , 0f)
 
@@ -503,15 +502,15 @@ class TeamFragment : Fragment(), IRecyclerViewInteractionListener<Product> {
             var descSpannable = Spanner()
                 .append("${getString(R.string.by_using_this_team)} ${getString(R.string.you_can_save)} ")
                 .append("${getString(R.string.birr)} $discountedAmount" , Spans.bold())
-                .append(" ${getString(R.string.from_your_order)}.")
+                .append(" ${getString(R.string.from_your_order)}. ")
                 .append(getString(R.string.with_out_this_team))
-                .append(" ${getString(R.string.birr)} ${stdProductPrices.roundToInt()}" , Spans.bold())
-                .append("${getString(R.string.link_phrase)} ${getString(R.string.you_only_pay)}")
-                .append(" ${getString(R.string.birr)} ${discountPRices.roundToInt()}" , Spans.bold())
+                .append(" ${getString(R.string.birr)} ${stdProductPrices.roundToInt()} " , Spans.bold())
+                .append("${getString(R.string.link_phrase)} ${getString(R.string.you_only_pay)} ")
+                .append(" ${getString(R.string.birr)} ${discountPRices.roundToInt()} " , Spans.bold())
                 .append("${getString(R.string.only)}. ${getString(R.string.wait_for_team_formation)}")
 
             binding.tDescriptionTextview.text = descSpannable
-            binding.totalProductPriceTextview.text = "${getString(R.string.birr)} $discountPRices"
+            binding.totalProductPriceTextview.text = "${getString(R.string.birr)} ${discountPRices.roundToInt()}"
             binding.teamDiscountTextview.text = "${discountedPercent}% (${getString(R.string.birr)} ${discountedAmount}) ${getString(R.string.discount)}"
 
             var totalProductPrice = teamInfo.products?.sumOf { product -> (product.dscPrice ?: 0.0).times(product.minQty) }

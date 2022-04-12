@@ -127,9 +127,17 @@ object  NotificationHelper {
                 arg = bundleOf("TEAM_ID" to notificationInfo.intent , "FROM_REMINDER" to true)
                 notificationId = 112
             }
+            NotificationTypes.CASHOUT_REQUEST_APPROVED.ordinal ->{
+                destination = R.id.transactionFragment
+                notificationId = 113
+            }
+            NotificationTypes.CASHOUT_REQUEST_DECLINED.ordinal -> {
+                destination = R.id.cashoutFragment
+                notificationId = 114
+            }
             else ->{
                 destination = R.id.storeHomepageFragment
-                notificationId = 113
+                notificationId = 115
             }
         }
 

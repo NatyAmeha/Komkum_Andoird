@@ -94,23 +94,23 @@ class MainAccountFragment : Fragment() {
 
         LoginManager.getInstance().registerCallback(fbcallbackManager , object : FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult) {
-                result?.let {
-//                    var r = GraphRequest.newMyFriendsRequest(it.accessToken){ _, response ->
-//                        var jsonResponse  = response.jsonObject.getJSONArray("data")
-//                        for (i in 0 until jsonResponse.length()){
-//                            var user = jsonResponse.getJSONObject(i)
-//                            var id = user.getString("id")
-//                            var name  = user.getString("name")
-//                            var email = user.getString("email")
-//                            var imageUrl = user.getJSONObject("picture").getJSONObject("data").getString("url")
-//                            var userResult = User(facebookId = id ,  username = name  , profileImagePath = imageUrl , phoneNumber = "")
-//                        }
-//                        Log.i("resultdata" , jsonResponse.toString())
-//                    }
-//                    var  param =  Bundle()
-//                    param.putString("fields", "id,name, picture");
-//                    r.parameters = param
-//                    r.executeAsync()
+                result.let {
+            //                    var r = GraphRequest.newMyFriendsRequest(it.accessToken){ _, response ->
+            //                        var jsonResponse  = response.jsonObject.getJSONArray("data")
+            //                        for (i in 0 until jsonResponse.length()){
+            //                            var user = jsonResponse.getJSONObject(i)
+            //                            var id = user.getString("id")
+            //                            var name  = user.getString("name")
+            //                            var email = user.getString("email")
+            //                            var imageUrl = user.getJSONObject("picture").getJSONObject("data").getString("url")
+            //                            var userResult = User(facebookId = id ,  username = name  , profileImagePath = imageUrl , phoneNumber = "")
+            //                        }
+            //                        Log.i("resultdata" , jsonResponse.toString())
+            //                    }
+            //                    var  param =  Bundle()
+            //                    param.putString("fields", "id,name, picture");
+            //                    r.parameters = param
+            //                    r.executeAsync()
 
                     var request = GraphRequest.newMeRequest(it.accessToken) { _, response ->
                         try{
@@ -138,9 +138,7 @@ class MainAccountFragment : Fragment() {
                                                 pref[AccountState.IS_REDIRECTION] = false
                                                 pref[PreferenceHelper.RELOAD_STORE_PAGE] = true
                                                 requireActivity().finish()
-                                            }
-
-                                            else{
+                                            } else{
                                                 pref[PreferenceHelper.RELOAD_STORE_PAGE] = false
                                                 this@MainAccountFragment.sendIntent(MainActivity::class.java)
                                             }

@@ -83,6 +83,12 @@ class OrderDetailFragment : Fragment() , IRecyclerViewInteractionListener<Ordere
 
                     binding.orderStatusCardview.setCardBackgroundColor(resources.getColor(R.color.primaryColor))
                 }
+                else if(it.status == Order.STATUS_CANCELLED){
+                    binding.orderStatusCardview.setCardBackgroundColor(resources.getColor(R.color.red))
+                    binding.mainOrderStatusTextview.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_error_outline_24, 0, 0, 0)
+                    binding.mainOrderStatusTextview.text = getString(R.string.order_cancelled)
+                    binding.orderDeliveryDateTextview.text = getString(R.string.order_cancelled)
+                }
                 else if(it.estDelTime?.getRemainingDay(requireContext()) != null){
                     binding.mainOrderStatusTextview.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_baseline_more_time_24, 0, 0, 0)
                     binding.mainOrderStatusTextview.text = getString(R.string.order_pending)

@@ -183,13 +183,13 @@ class OrderFragment : Fragment() {
                             var dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK)
                             var hourOfDay = calendar.get(Calendar.HOUR_OF_DAY)
                             when(dayOfWeek){
-                                Calendar.TUESDAY, Calendar.THURSDAY ->{
+                                Calendar.MONDAY, Calendar.WEDNESDAY ->{
                                     if(hourOfDay > 12)
                                         binding.deliveryDateTextview.text = "${getString(R.string.with_in)} 2 ${getString(R.string.days)}"
 
                                     else binding.deliveryDateTextview.text = getString(R.string.today)
                                 }
-                                Calendar.SATURDAY -> {
+                                Calendar.FRIDAY -> {
                                     if(hourOfDay > 12)
                                         binding.deliveryDateTextview.text = "${getString(R.string.with_in)} 3 ${getString(R.string.days)}"
 

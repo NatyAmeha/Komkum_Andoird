@@ -22,6 +22,7 @@ import com.komkum.komkum.ui.store.order.OrderViewmodel
 import com.komkum.komkum.util.PreferenceHelper
 import com.komkum.komkum.util.PreferenceHelper.set
 import com.komkum.komkum.util.extensions.configureActionBar
+import com.komkum.komkum.util.extensions.handleError
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -124,7 +125,16 @@ class FindMyAddressFragment : Fragment() {
             else {
                 binding.addressTextview.setText("")
                 binding.suggestedAddressListView.adapter = null
-                Toast.makeText(requireContext() , "Error occurred please try again" , Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext() , getString(R.string.error_message) , Toast.LENGTH_LONG).show()
+            }
+        }
+
+        orderViewmodel.getError().observe(viewLifecycleOwner){}
+        orderViewmodel.error.observe(viewLifecycleOwner){
+            it.handleError(requireContext()){
+                orderViewmodel.removeOldError()
+                binding.progressBar9.isVisible = false
+                Toast.makeText(requireContext() , getString(R.string.error_message) , Toast.LENGTH_LONG).show()
             }
         }
     }

@@ -89,6 +89,7 @@ interface UserApi {
     @PUT("user/shippingaddr/add")
     suspend fun addNewAddress(@Body addressInfo : Address) : Response<Address>
 
+    //deprecated
     @GET("user/shippingaddr")
     suspend fun getUserAddress(@Query("pid") productIds : String , @Query("address") addressId : String? = null) : Response<ShippingAddressInfo>
 
@@ -99,7 +100,12 @@ interface UserApi {
     @GET("user/commission")
     suspend fun getCommissionAmount() : Response<Double>
 
-    @GET("user/rewards")
+    @GET("wallet/cashoutrequests")
+    suspend fun getUserCashoutRequest(@Query("user") userId : String) : Response<Cashout>
+
+    @GET("wallet/rewards")
     suspend fun getRewardAmount() : Response<List<RewardInfo>>
 
+    @POST("wallet/cashout")
+    suspend fun cashout(@Body cashoutRequestInfo : Cashout) : Response<Boolean>
 }

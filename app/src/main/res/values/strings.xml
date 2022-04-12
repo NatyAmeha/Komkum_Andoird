@@ -628,6 +628,28 @@
    <string name="share_your_team">Share your team</string>
    <string name="order_your_next_order_for_free">Order your next order for free</string>
    <string name="invite_people_after_order_complete">Invite your family, friends, and work colleagues to your team and get a 5% commission when people buy products by your link. Your commission will be transferred to your wallet, and you can use your commission for your next order.</string>
+   <string name="order_cancelled">Cancelled</string>
+    <string name="manage_account">Manage Account</string>
+   <string name="select_home_address_ballon_msg">Selecting your home address allows you to buy with your family, friends, and Neighbours as a group in your home area and get a delivery discount.</string>
+    <string name="request_cash_out">Request Cash out</string>
+   <string name="close">I understand</string>
+   <string name="select_cash_out_method">Select cash out method</string>
+    <string name="successful">Cash out request successful</string>
+    <string name="mobile_card">Mobile Card</string>
+   <string name="telebirr">Telebirr</string>
+   <string name="cbe_birr">CBE Birr</string>
+    <string name="cash_out">Cash out</string>
+    <string name="approved">Approved</string>
+   <string name="declined">Declined</string>
+   <string name="pending">Pending</string>
+    <string name="you_have">You have</string>
+   <string name="in_your_wallet">in your wallet</string>
+   <string name="you_can_only_withdraw_up_to">You can only withdraw up to</string>
+    <string name="up_to_amount">""</string>
+   <string name="cash_out_description">After we approve your request, we will send you a notification and the payment will be forwarded to your chosen payment method.</string>
+   <string name="cashout_request_status_message">Your cash out request is in review. we will send you a notification about the status of your request</string>
+   <string name="last_request">Previous request</string>
+   <string name="cashout_eligability_message">You can withdraw money only if you have more than ETB 500 on your wallet</string>
 
 
 </resources>

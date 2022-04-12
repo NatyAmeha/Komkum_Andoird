@@ -111,8 +111,16 @@ class UserRepository @Inject constructor(var userApi: UserApi , var appDb: AppDb
         userApi.getCommissionAmount()
     }
 
+    suspend fun getCasoutRequest(userId : String) = dataRequestHelper(userId ,  errorHandler = fun(message : String) = error.postValue(message)){
+        userApi.getUserCashoutRequest(it!!)
+    }
+
     suspend fun getGameAndCommissionRewardAmount() = dataRequestHelper<Any , List<RewardInfo>>( errorHandler = fun(message : String) = error.postValue(message)){
         userApi.getRewardAmount()
+    }
+
+    suspend fun requestCashout(cashoutInfo : Cashout) = dataRequestHelper(cashoutInfo , fun(message : String) = error.postValue(message)){
+        userApi.cashout(it!!)
     }
 
 
